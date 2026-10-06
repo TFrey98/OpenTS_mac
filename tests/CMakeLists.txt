@@ -2,6 +2,10 @@
 # runs. Set before the subdirectories so every target below inherits it.
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test-bin")
 
+if(OPENTS_PORTABLE_TESTS_ONLY)
+    find_package(Threads REQUIRED)
+endif()
+
 # Builds one test harness and registers it with CTest.
 #
 # A harness compiles the engine sources it exercises instead of linking the game, so ENGINE
@@ -30,6 +34,10 @@ function(opents_add_test target)
         ${TEST_INCLUDES}
     )
 
+    if(NOT WIN32)
+        list(REMOVE_ITEM TEST_DEFINITIONS WIN32 _WINDOWS _MBCS)
+        target_compile_definitions(${target} PRIVATE __cdecl=)
+    endif()
     if(TEST_DEFINITIONS)
         target_compile_definitions(${target} PRIVATE ${TEST_DEFINITIONS})
     endif()
@@ -50,6 +58,11 @@ function(opents_add_test target)
     # there, so it is only passed where it applies.
     if(TEST_FLOAT)
         target_compile_options(${target} PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/fp:precise>)
+        if(NOT MSVC)
+            target_compile_options(${target} PRIVATE
+                $<$<CXX_COMPILER_ID:Clang,AppleClang,GNU>:-fno-fast-math;-ffp-contract=off>
+            )
+        endif()
         if(CMAKE_SIZEOF_VOID_P EQUAL 4)
             target_compile_options(${target} PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/arch:SSE2>)
         endif()
@@ -59,6 +72,9 @@ function(opents_add_test target)
         target_link_libraries(${target} PRIVATE kernel32 user32 shell32)
     endif()
     target_link_libraries(${target} PRIVATE ${TEST_LIBRARIES})
+    if(OPENTS_PORTABLE_TESTS_ONLY)
+        target_link_libraries(${target} PRIVATE Threads::Threads)
+    endif()
 
     if(TEST_STAMP)
         add_dependencies(${target} OpenTSBuildStamp)
@@ -66,6 +82,13 @@ function(opents_add_test target)
 
     add_test(NAME ${TEST_NAME} COMMAND ${target})
 endfunction()
+
+if(OPENTS_PORTABLE_TESTS_ONLY)
+    foreach(test colorops unvqdec lcwcomp lcwblock audioring audiohandle audiolevel priorityqueue shapefacing blowfish)
+        add_subdirectory(${test})
+    endforeach()
+    return()
+endif()
 
 add_subdirectory(actionids)
 add_subdirectory(cpudetect)
@@ -90,6 +113,7 @@ add_subdirectory(autosave)
 add_subdirectory(audioring)
 add_subdirectory(audiohandle)
 add_subdirectory(audiolevel)
+add_subdirectory(blowfish)
 add_subdirectory(auddecode)
 add_subdirectory(audiocache)
 add_subdirectory(audiomixer)

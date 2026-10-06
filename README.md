@@ -11,6 +11,13 @@
 
 # OpenTS
 
+This fork develops a native desktop macOS ARM64 port. A development application
+presents diagnostic frames through the desktop engine's renderer on Metal;
+ten engine tests also build on Apple Silicon. The full game executable still
+requires Windows. Track the work in the [port TODO](TODO.md). See
+[Mac port status](docs/MACOS_PORT.md) and
+[build instructions](docs/BUILDING.md#macos-desktop-window-and-frame-presenter).
+
 OpenTS is a community-led, open-source reconstruction of *Command & Conquer:
 Tiberian Sun*. Instead of patching or extending the retail executable, it
 rebuilds the engine as a standalone program.

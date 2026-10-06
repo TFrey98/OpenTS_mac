@@ -19,7 +19,8 @@
 | Configurations | Debug and Release, on both platforms |
 
 Other generators, compilers, architectures, and configurations are currently
-unsupported.
+unsupported for the game executable. The macOS test configuration below builds
+a selected set of engine tests.
 
 Install Visual Studio 2022 with the **Desktop development with C++** workload,
 a Windows SDK, and CMake 3.23 or newer. Git for Windows is needed to clone the
@@ -39,6 +40,71 @@ accepts the other's save and admits it to a network game, and the result is a
 failed load or a desync rather than a refusal. Until the stamp distinguishes
 them, keep a saved game with the platform that wrote it, and play a network
 game with peers running the same platform.
+
+## macOS desktop window and frame presenter
+
+`OPENTS_MACOS_SHELL_ONLY=ON` builds `OpenTSMacShell.app` for desktop macOS.
+It uses the desktop OpenTS frame presenter, a Cocoa window supplied by SDL,
+and bgfx's Metal renderer. It displays a generated RGB565 diagnostic frame.
+The full game, assets, menus, and simulation are not loaded by this target.
+
+With CMake 3.23 or newer and Xcode Command Line Tools, run:
+
+```sh
+git submodule update --init --recursive thirdparty/SDL thirdparty/bgfx.cmake
+cmake --preset macos-arm64-shell-debug
+cmake --build --preset macos-arm64-shell-debug --parallel 4
+build/macos-shell-debug/bin/OpenTSMacShell.app/Contents/MacOS/OpenTSMacShell
+```
+
+Use the `macos-arm64-shell-release` configure and build presets for an
+optimized build under `build/macos-shell-release`. The application supports
+window resizing, Retina drawable sizing, mouse capture during clicks, Escape
+to close, and Command+Return to toggle desktop fullscreen. These input
+handlers are development scaffolding for the eventual game application.
+
+For a bounded startup and presentation check:
+
+```sh
+build/macos-shell-debug/bin/OpenTSMacShell.app/Contents/MacOS/OpenTSMacShell --smoke-test
+```
+
+This opens a window, presents 60 frames, and closes. It exits with a failure
+if renderer startup or presentation fails, if the selected backend is not
+Metal, or if the loop cannot present 60 frames within 15 seconds. It needs an
+active macOS desktop session. The test-only option below and the shell-only
+option cannot be enabled in the same build directory.
+
+## macOS ARM64 portability tests
+
+On an Apple Silicon Mac, `OPENTS_PORTABLE_TESTS_ONLY=ON` builds ten engine
+test harnesses with Apple Clang. It produces no game executable. These tests
+require CMake 3.23 or newer and Xcode Command Line Tools; no game assets or
+third-party submodules are required.
+
+From the repository root:
+
+```sh
+cmake --preset macos-arm64-tests-debug
+cmake --build --preset macos-arm64-tests-debug --parallel 4
+ctest --preset macos-arm64-tests-debug
+
+cmake --preset macos-arm64-tests-release
+cmake --build --preset macos-arm64-tests-release --parallel 4
+ctest --preset macos-arm64-tests-release
+```
+
+The presets select `arm64` and place the harnesses in
+`build/macos-debug/test-bin` or `build/macos-release/test-bin`. They cover
+color conversion, VQA frame decoding, LCW compression and block streams,
+audio rings, audio handles, audio levels, priority queue ordering, shape
+facings, and Blowfish encryption. Tests with floating-point contracts disable
+fast math and multiply-add contraction under Clang and GCC.
+
+The remaining tests and the Windows application are excluded from this
+configuration. Passing these harnesses establishes behavior only for the
+components they exercise. The [port TODO](../TODO.md) tracks the work required
+to launch the game; [Mac port status](MACOS_PORT.md) records verified results.
 
 ## Dependencies
 
