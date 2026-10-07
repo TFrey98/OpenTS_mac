@@ -15,8 +15,9 @@ proprietary assets, original executables, and build output outside Git.
 
 ## Completed foundation
 
-- [x] Add ARM64 Debug and Release CMake presets for the desktop shell and
-  selected engine tests.
+- [x] Build ARM64 Debug and Release configurations of the desktop shell and
+  selected engine tests from `platform/macos/OpenTS.xcodeproj` with Xcode
+  alone, including SDL, bgfx, bimg, and bx.
 - [x] Build ten asset-free engine harnesses and pass all ten in both
   configurations, including Blowfish vectors and decoding tests.
 - [x] Build `OpenTSMacShell.app` using SDL's Cocoa window and the desktop
@@ -29,7 +30,7 @@ Full engine startup, real assets, and gameplay remain unverified on macOS.
 
 ## Next tasks
 
-1. **M1.1:** Resolve the Metal reference-count warnings during Debug shutdown.
+1. **M1.2:** Interactively validate the shell's window and input handling.
 2. **M2.1:** Separate the engine build from Windows sources, resources, and
    compiler options so Apple Clang can expose the remaining compilation gaps.
 3. **M3.1:** Define the required asset version and validate the supplied GDI
@@ -44,9 +45,11 @@ validation.
 Review [the Mac application](platform/macos/main.cpp) and
 [the frame presenter](code/bgfxbackend.cpp).
 
-- [ ] **M1.1:** Trace texture, shader, transient buffer, and Metal device
+- [x] **M1.1:** Trace texture, shader, transient buffer, and Metal device
   ownership through shutdown; fix or establish the cause of each Debug
-  reference-count warning.
+  reference-count warning. The in-flight frame warnings are fixed. The
+  remaining shader and device warnings are bgfx check false positives,
+  recorded in the status document.
 - [ ] **M1.2:** Interactively validate resizing, Retina scaling, Command+Return
   fullscreen, mouse capture, focus loss, Escape, and window close.
 - [ ] **M1.3:** Exercise repeated launch and exit, renderer startup failure,
@@ -63,7 +66,7 @@ Review [the engine build](code/CMakeLists.txt),
 [Windows declarations](code/win.h), and [startup](code/startup.cpp).
 
 - [ ] **M2.1:** Introduce a reusable engine target and select platform sources
-  explicitly. Keep Windows resource compilation, import libraries, MSVC
+  explicitly. On macOS, add it to the Xcode project. Keep Windows resource compilation, import libraries, MSVC
   flags, manifests, and debugger settings on the Windows path.
 - [ ] **M2.2:** Build the remaining pinned dependencies on ARM64: miniaudio,
   LZO, RmlUi, FreeType, and Dear ImGui. Use the existing dependency versions.

@@ -60,3 +60,7 @@ manual/data/.manual-generate-*/
 
 # Owner-local documents (untracked adjudication material)
 /docs/local/
+
+# Xcode per-user state
+xcuserdata/
+.DS_Store

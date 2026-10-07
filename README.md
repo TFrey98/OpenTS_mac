@@ -16,7 +16,7 @@ presents diagnostic frames through the desktop engine's renderer on Metal;
 ten engine tests also build on Apple Silicon. The full game executable still
 requires Windows. Track the work in the [port TODO](TODO.md). See
 [Mac port status](docs/MACOS_PORT.md) and
-[build instructions](docs/BUILDING.md#macos-desktop-window-and-frame-presenter).
+[build instructions](docs/BUILDING.md#macos-desktop-build-with-xcode).
 
 OpenTS is a community-led, open-source reconstruction of *Command & Conquer:
 Tiberian Sun*. Instead of patching or extending the retail executable, it

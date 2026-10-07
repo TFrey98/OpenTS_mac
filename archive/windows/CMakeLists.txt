@@ -2,25 +2,6 @@ cmake_minimum_required(VERSION 3.23)
 
 project(OpenTS VERSION 0.2.0 LANGUAGES C CXX)
 
-option(OPENTS_PORTABLE_TESTS_ONLY "Build portable engine tests without the game or its dependencies" OFF)
-option(OPENTS_MACOS_SHELL_ONLY "Build the desktop macOS window and engine frame presenter" OFF)
-if(OPENTS_PORTABLE_TESTS_ONLY AND OPENTS_MACOS_SHELL_ONLY)
-    message(FATAL_ERROR "Select either the engine tests or the macOS shell in one build directory.")
-endif()
-if(OPENTS_MACOS_SHELL_ONLY)
-    if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-        message(FATAL_ERROR "The macOS desktop shell requires a macOS target.")
-    endif()
-    add_subdirectory(platform/macos)
-    return()
-endif()
-if(OPENTS_PORTABLE_TESTS_ONLY)
-    message(STATUS "Building portable engine tests only; no game executable is produced")
-    enable_testing()
-    add_subdirectory(tests)
-    return()
-endif()
-
 # A SemVer prerelease label, which project() cannot carry because it takes numbers only. Set it
 # to "beta1" and the version reads 0.1.0-beta1; leave it empty outside a prerelease series. The
 # manual's release registry is checked against both this and the project version.

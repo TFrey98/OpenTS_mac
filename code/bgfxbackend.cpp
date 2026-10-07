@@ -40,6 +40,9 @@ static const bgfx::EmbeddedShader _EmbeddedShaders[] = {
 
 static bool _Initialized = false;
 
+// bgfx's default limit on frames in flight, which the renderer uses without an explicit setting.
+static int const RETIRE_FRAME_COUNT = 3;
+
 static bgfx::TextureHandle _FrameTexture = BGFX_INVALID_HANDLE;
 static bgfx::ProgramHandle _Program = BGFX_INVALID_HANDLE;
 static bgfx::UniformHandle _TextureSampler = BGFX_INVALID_HANDLE;
@@ -374,6 +377,12 @@ void Backend_Shutdown(void)
 {
 	if (!_Initialized) {
 		return;
+	}
+
+	// Empty frames retire the GPU work still using these resources. Destroying them sooner
+	// leaves their release to the command buffers that hold them.
+	for (int i = 0; i < RETIRE_FRAME_COUNT; i++) {
+		bgfx::frame();
 	}
 
 	Destroy_Prescale_Target();

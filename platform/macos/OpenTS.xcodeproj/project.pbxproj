@@ -1,0 +1,5473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		0097342E4ABBA76489EE92C2 = {
+			isa = PBXBuildFile;
+			fileRef = EF9D63BB074305640E4FF8C8;
+		};
+		00E16C2FA533B5FA708997AD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_keyboard.c;
+			path = ../../thirdparty/SDL/src/events/SDL_keyboard.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		00FA249555923D72A16D6AF2 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7736178D06F217DC1C3C0551,
+				109425291E8974B2F26BD73C,
+				24C8E71CC3266A81FE3CA53C,
+				3DE1906956127617BB7B27D9,
+				D715B2674DE7CFB113086596,
+				4D1CE318440A24B52D920BC1,
+				75EC15D625094018370CBF55,
+				3497AFB6990FCFE2FD3AB904,
+				A76A6270491F04ECEDBC72C3,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0162F86EF8763D0482B0A676 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+					NOMINMAX,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = LcwBlock;
+			};
+			name = Debug;
+		};
+		024BAA64EA78D331F592BF93 = {
+			isa = PBXBuildFile;
+			fileRef = EBBAB78D201BFED28BE01CAD;
+		};
+		02AB41CD609400E11D9840B2 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 10AD784280A82A19744987C4;
+			remoteInfo = PriorityQueue;
+		};
+		02ADDC4D3D3EA31C819858ED = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_nullvideo.c;
+			path = ../../thirdparty/SDL/src/video/dummy/SDL_nullvideo.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		03A6D81E8350784184E27832 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = AudioHandle;
+			};
+			name = Release;
+		};
+		03E78F4B0F371A32B9D7E89C = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"BX_CONFIG_DEBUG=1",
+					"BGFX_CONFIG_DEBUG_ANNOTATION=1",
+					"BGFX_CONFIG_MULTITHREADED=1",
+					"BGFX_CONFIG_VIDEO=1",
+					__STDC_CONSTANT_MACROS,
+					__STDC_FORMAT_MACROS,
+					__STDC_LIMIT_MACROS,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/3rdparty/khronos",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
+				);
+				PRODUCT_NAME = bgfx;
+			};
+			name = Debug;
+		};
+		03FFCF5DF0E3D8D7AFD2E41A = {
+			isa = PBXBuildFile;
+			fileRef = 927F1911A865B78032D58E14;
+		};
+		043F60A067D48D2B44ABB33B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_audio.c;
+			path = ../../thirdparty/SDL/src/audio/SDL_audio.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		0447560C0B0B0B0128D27EC9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = shapefacing.cpp;
+			path = ../../tests/shapefacing/shapefacing.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		0464F77BB69ED344E6E44698 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_yuv_sw.c;
+			path = ../../thirdparty/SDL/src/render/SDL_yuv_sw.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		05224D9EFE2B557B9604E6D5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = pipe.cpp;
+			path = ../../code/pipe.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		0554E8E1DD90ED19A355DF46 = {
+			isa = PBXBuildFile;
+			fileRef = 358D80E369DBA26BD1A13C62;
+		};
+		05BDE987EE10A7E3F3CC2C55 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = audiolevel.cpp;
+			path = ../../code/audio/audiolevel.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		06621DAA759E0C3864676FD0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_audiotypecvt.c;
+			path = ../../thirdparty/SDL/src/audio/SDL_audiotypecvt.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		06B9389B2D55FB418149914F = {
+			isa = PBXBuildFile;
+			fileRef = 6F6C642328223BB89C34741F;
+		};
+		06EF25D8541BF9D4F03B3B8A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_integer_sequence.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_integer_sequence.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		06EFDF368B3DB8A6DDB42D2F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_offscreenopengles.c;
+			path = ../../thirdparty/SDL/src/video/offscreen/SDL_offscreenopengles.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		0702E9CE92C43C3527290DF3 = {
+			isa = PBXBuildFile;
+			fileRef = AC770F116ABAC1530ED30F66;
+		};
+		07A0B5E08A9803B9665CDF3D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = amalgamated.cpp;
+			path = ../../thirdparty/bgfx.cmake/bx/src/amalgamated.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		07A887F6AF502C2322E785FE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_gamecube.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_gamecube.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		07F2FD4A21C0FA36D023DBC8 = {
+			isa = PBXBuildFile;
+			fileRef = 7EE2CE049228211FB8B8DA8C;
+		};
+		0865D0D99695E24C0B455304 = {
+			isa = PBXBuildFile;
+			fileRef = 16B9910EEAA37A8840A565E1;
+		};
+		08959FE9526D922B48943755 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blit.c;
+			path = ../../thirdparty/SDL/src/video/SDL_blit.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		089B3128CEA8AF7E8A8DE76C = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 7BA2E163C2E88BEE93746246;
+			remoteInfo = bimg;
+		};
+		08CE301A64C9DD47A2E4F43D = {
+			isa = PBXBuildFile;
+			fileRef = 963B3E205FFAA3F2FC5DEC5C;
+		};
+		0907B3CEB0EC1A1379D116CC = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D261D7890B39C3E21B2547FA,
+				A6D7B168F48BE1C551E90520,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0926D0BDEAA395BCFF7E42FF = {
+			isa = PBXBuildFile;
+			fileRef = 7CA99845B2F11DCD558431AE;
+		};
+		094A1C687D8D84DE10F10A72 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_8bitdo.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_8bitdo.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		0A308152FC8DFC6F12AA3B40 = {
+			isa = PBXBuildFile;
+			fileRef = FDDBBED877397E0F0F601B9B;
+		};
+		0A7A99E7B63C9BC2029BBEFE = {
+			isa = PBXBuildFile;
+			fileRef = 835A56D7BEA67D57CDFBAF96;
+		};
+		0B5182834D093E6F86C1C849 = {
+			isa = PBXBuildFile;
+			fileRef = 90767B5B567C8D2C5FB6E91E;
+		};
+		0C083D9A0AD42CB823AC73BD = {
+			isa = PBXBuildFile;
+			fileRef = BDD8071F042080710BEFD8C4;
+		};
+		0CC329EE53FE20C8FA61273B = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9B257364ECF566BFE8CFEA9D;
+			remoteInfo = AudioHandle;
+		};
+		0D4792729396D51516E403DA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitview.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitview.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		0D4D230D9687917E61D59BE6 = {
+			isa = PBXBuildFile;
+			fileRef = 8CC35F5AEDC42B905CFB806B;
+		};
+		0D83E933A59594CB8234D9CB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_steam.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_steam.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		0DF7A7570DEF6A3FCFED12D0 = {
+			isa = PBXBuildFile;
+			fileRef = F0132D2BB0582C076EEF4BAA;
+		};
+		0E1782198D55CEDD0DFC9E39 = {
+			isa = PBXFileReference;
+			explicitFileType = archive.ar;
+			includeInIndex = 0;
+			path = libbimg.a;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0E1CC3FD9765ABE320FC2097 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = bgfxbackend.cpp;
+			path = ../../code/bgfxbackend.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		0E8C56E2CC9A18CC7FBC3C97 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blendline.c;
+			path = ../../thirdparty/SDL/src/render/software/SDL_blendline.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		0F80FFC477DA4B875BE2B790 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_sysloadso.c;
+			path = ../../thirdparty/SDL/src/loadso/dlopen/SDL_sysloadso.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		109425291E8974B2F26BD73C = {
+			isa = PBXBuildFile;
+			fileRef = C3FDC18792518721D9B6197A;
+		};
+		10AD784280A82A19744987C4 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0907B3CEB0EC1A1379D116CC;
+			buildPhases = (
+				F556A35623CAA9FA186BF9FA,
+				8A8E6D5B490F5C21A204E983,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PriorityQueue;
+			productName = PriorityQueue;
+			productReference = 7D7927893403DBB5092FA126;
+			productType = "com.apple.product-type.tool";
+		};
+		10E3FC22C3612C2C02D4289E = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12477A188E2CBF96D44ED002 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56F8E044167CF3DDA06DDECB,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12CD2284FD4EC58D76BDCD0A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = lcw.cpp;
+			path = ../../code/lcw.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		12E0AADA734EDF516B2879A1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = yuv_rgb_sse.c;
+			path = ../../thirdparty/SDL/src/video/yuv2rgb/yuv_rgb_sse.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		1325F3EBE1EAE9865B424E55 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapihaptic.c;
+			path = ../../thirdparty/SDL/src/haptic/hidapi/SDL_hidapihaptic.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		134D9DE37752D8BB1A2779D9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_steam_hori.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_steam_hori.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		1352527C0DE76665835B7D98 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_posixprocess.c;
+			path = ../../thirdparty/SDL/src/process/posix/SDL_posixprocess.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		13DE66219B5B5CAAD9A3DD94 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapijoystick.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapijoystick.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		13FE90EBB0FBE18FC7209807 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_tray_utils.c;
+			path = ../../thirdparty/SDL/src/tray/SDL_tray_utils.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		140CB1B90819087CDF1D6092 = {
+			isa = PBXBuildFile;
+			fileRef = 13DE66219B5B5CAAD9A3DD94;
+		};
+		1496FD5C66DC6780807706A5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_dialog_utils.c;
+			path = ../../thirdparty/SDL/src/dialog/SDL_dialog_utils.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		14C940EF017BD2A197C0C694 = {
+			isa = PBXBuildFile;
+			fileRef = 0F80FFC477DA4B875BE2B790;
+		};
+		14D5D20971D91A0B33F00AFA = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = BlowfishContract;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		14EE86D57DFA064095F34ED6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_pen.c;
+			path = ../../thirdparty/SDL/src/events/SDL_pen.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		15047006AF243FDC74073908 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitevents.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitevents.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		15893D6B8C9F59297BE56AC4 = {
+			isa = PBXBuildFile;
+			fileRef = C4BFDDED537DA41363DAC187;
+		};
+		15C74C55084474E8A4A0AB94 = {
+			isa = PBXBuildFile;
+			fileRef = 3663729AEAFB736C5415C528;
+		};
+		166986505A24C0A19C9A3986 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_camera.c;
+			path = ../../thirdparty/SDL/src/camera/SDL_camera.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		16B9910EEAA37A8840A565E1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blit_slow.c;
+			path = ../../thirdparty/SDL/src/video/SDL_blit_slow.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		177E6BD6AA272193A9AF73B3 = {
+			isa = PBXBuildFile;
+			fileRef = 9377AB4B8B9488896F1881C1;
+		};
+		17BF71FB6B879B21169B1598 = {
+			isa = PBXBuildFile;
+			fileRef = 7FFEDD4C340419DCBA8CBFF1;
+		};
+		187A344CC4B6A60BEAE0F986 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_audiocvt.c;
+			path = ../../thirdparty/SDL/src/audio/SDL_audiocvt.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		19F2D846044D9357CD24C92D = {
+			isa = PBXBuildFile;
+			fileRef = 1DBBA8BC7A4266272A1B0201;
+		};
+		1A8E827D74777B4760A85460 = {
+			isa = PBXBuildFile;
+			fileRef = 3B0D37723E38E6D7F1BC818E;
+		};
+		1B1E54104EC1E94FCA8B12BE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_sysfsops.c;
+			path = ../../thirdparty/SDL/src/filesystem/posix/SDL_sysfsops.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		1B448693A266E2902F2ABB79 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_shaders_gles2.c;
+			path = ../../thirdparty/SDL/src/render/opengles2/SDL_shaders_gles2.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		1B482F7FB48361BA04B96B52 = {
+			isa = PBXBuildFile;
+			fileRef = 57E9FFECD15DA817BE5D0055;
+		};
+		1C0E67DE5141186FD2D70875 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoamouse.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoamouse.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		1C91129C7AC6E643218B119A = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9271537BA95887EE6870BC8E;
+			remoteInfo = bx;
+		};
+		1CD4812389531DD87A176495 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_render_gpu.c;
+			path = ../../thirdparty/SDL/src/render/gpu/SDL_render_gpu.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		1CF1FDCA875A6569EC5E3C5F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitappdelegate.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitappdelegate.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		1D0A39F8F70C207F3EF7E3CC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_asyncio.c;
+			path = ../../thirdparty/SDL/src/io/SDL_asyncio.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		1DBBA8BC7A4266272A1B0201 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_guid.c;
+			path = ../../thirdparty/SDL/src/SDL_guid.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		1DED56D3DC39C4A284428D51 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E3A372A285358AFE0E0A434 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6540AA46DD863BAB1F1B8F2A;
+			buildPhases = (
+				8CD9129BFF40A90E88EDB6AF,
+				64C23ECB18466F6BE14E5044,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5873ECEA59F485D75FBDB06C,
+				A486CFA7A42B0E7196CCC2EC,
+				E034D2FA1714ADF73F7F084E,
+				3A29844D18E6D95C62C25877,
+			);
+			name = OpenTSMacShell;
+			productName = OpenTSMacShell;
+			productReference = 27AC9EBDC0451B8919ED5650;
+			productType = "com.apple.product-type.application";
+		};
+		1E92BE03DB792BFC8D5AC0F3 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAEE286F4CEF77E4E3AE3E80,
+				48B325B72DF8B575A17D9335,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E993AE7B0693AEAE9E942CF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = blowfish.cpp;
+			path = ../../code/blowfish.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		1F232A8AFC27C61B90550B96 = {
+			isa = PBXBuildFile;
+			fileRef = 56D65F65A67A801D2EDF0FDC;
+		};
+		1FC3411BF5B952E005BFD0C3 = {
+			isa = PBXBuildFile;
+			fileRef = AB7A81CC2448404EE0534CE5;
+		};
+		1FC354E48C23BA828F9D8013 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECB3BDF523444A04311A6EB4,
+				4BE2B9943E76F5FCC13C421B,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		205506E9BBFA3A485D745551 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_spinlock.c;
+			path = ../../thirdparty/SDL/src/atomic/SDL_spinlock.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		20AEE74602D95E2F4E138B0A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoaclipboard.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoaclipboard.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		20B02964E6C461D0CC1B493C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_sysjoystick.c;
+			path = ../../thirdparty/SDL/src/joystick/dummy/SDL_sysjoystick.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		216FBB408B6372CE58BCDEC1 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = AudioRing;
+			};
+			name = Debug;
+		};
+		21A758DDB73CF31BBFCBC19E = {
+			isa = PBXBuildFile;
+			fileRef = 289988229A661261C2A8B71F;
+		};
+		21F0263A1CECE3ABDABF14E5 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"BX_CONFIG_DEBUG=1",
+					__STDC_CONSTANT_MACROS,
+					__STDC_FORMAT_MACROS,
+					__STDC_LIMIT_MACROS,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
+				);
+				PRODUCT_NAME = bx;
+			};
+			name = Debug;
+		};
+		2233BA43A172F73425991F53 = {
+			isa = PBXBuildFile;
+			fileRef = 69AC871F6073205CDEA819A9;
+		};
+		223C3CF4958D2A3E006EED39 = {
+			isa = PBXBuildFile;
+			fileRef = 72D5A0544043D6E34F51506B;
+		};
+		22C4010ECF5538B551ED910C = {
+			isa = PBXBuildFile;
+			fileRef = 6C79D3DDF7FE539D5F5C07BB;
+		};
+		22D4D152DC9A2603AEFA1D6A = {
+			isa = PBXBuildFile;
+			fileRef = A69528D966D15D0C161AB2D7;
+		};
+		242F53BEFFD7BE29AEA567BD = {
+			isa = PBXBuildFile;
+			fileRef = 9DB8F60902BE09504D8AA3DE;
+		};
+		244BF19EB8BEDABC5AFC6ED2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_diagnostic_trace.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_diagnostic_trace.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		2452ECF65078B9B0AE186B0A = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2470A7E488211FEF795BB2D8 = {
+			isa = PBXBuildFile;
+			fileRef = 4A5797900521B8EB5DDD55C2;
+		};
+		24C8E71CC3266A81FE3CA53C = {
+			isa = PBXBuildFile;
+			fileRef = 12CD2284FD4EC58D76BDCD0A;
+		};
+		255CD84A6B14C22C010614FC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_yuv.c;
+			path = ../../thirdparty/SDL/src/video/SDL_yuv.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		26E60B696E417CF4AA00A986 = {
+			isa = PBXBuildFile;
+			fileRef = FBB6E380D9C0D9783F237593;
+		};
+		26F6C22211AE12286AA4A835 = {
+			isa = PBXBuildFile;
+			fileRef = 304330300D717494FC004CCA;
+		};
+		26FD53FEC209CA0BE200F92A = {
+			isa = PBXBuildFile;
+			fileRef = B15E69D62DA758A457896C15;
+		};
+		27080F150C554543B973C8CC = {
+			isa = PBXBuildFile;
+			fileRef = 134D9DE37752D8BB1A2779D9;
+		};
+		2745113D4CD099C51F9107C2 = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = AudioHandle;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27AAFED41B1BD10A2EC7CAEA = {
+			isa = PBXBuildFile;
+			fileRef = 8699A3EDE57D5B1A607BB4D4;
+		};
+		27AC9EBDC0451B8919ED5650 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			path = OpenTSMacShell.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		284A601DF99081936A8FC3F9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_sysrwlock.c;
+			path = ../../thirdparty/SDL/src/thread/pthread/SDL_sysrwlock.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		2858DA1756367935727561FC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitmessagebox.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitmessagebox.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		289988229A661261C2A8B71F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blit_0.c;
+			path = ../../thirdparty/SDL/src/video/SDL_blit_0.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		28E5FF775B215E1C3BC8E5E8 = {
+			isa = PBXBuildFile;
+			fileRef = CFECD5516659349506D6CC93;
+		};
+		2945968A720D15C51EB4E23F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_memcpy.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_memcpy.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		297483ADB69EB5E7E604D4DB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_mouse.c;
+			path = ../../thirdparty/SDL/src/events/SDL_mouse.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		2A0B93B1BBB4D1FCC68A81F6 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0162F86EF8763D0482B0A676,
+				B8BB1CC30C38B0E77C2F9762,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A8B5EEEAC85A26B6341EDB0 = {
+			isa = PBXBuildFile;
+			fileRef = ECF4D87544AFA14F476CD74A;
+		};
+		2A9D9038B41CBC4E52564503 = {
+			isa = PBXBuildFile;
+			fileRef = 7D1D889FB2467FC3388B20D2;
+		};
+		2ABA57D89448578739D1B913 = {
+			isa = PBXBuildFile;
+			fileRef = CC9BD33AA9E70522285FED83;
+		};
+		2AC8BA37DAC32D5437812408 = {
+			isa = PBXGroup;
+			children = (
+				BF8AA552876F92F0F5BFCE30,
+				0E1782198D55CEDD0DFC9E39,
+				D1FF1478E4BC512BEFBF4413,
+				FB998105E882C137D407567B,
+				27AC9EBDC0451B8919ED5650,
+				703710B739051F7B3E50C587,
+				B2B2DB8CA6D1949041E80875,
+				BA75A028C2A014D35612F5BD,
+				F80A8872E939E784CD99146C,
+				4CE5D74C0AAA1CAC23717DB7,
+				2745113D4CD099C51F9107C2,
+				65E8EE4612B98251512A812D,
+				7D7927893403DBB5092FA126,
+				321DC39DEED11324197F747B,
+				14D5D20971D91A0B33F00AFA,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2AECF165901BD0EAB9FCE599 = {
+			isa = PBXBuildFile;
+			fileRef = 1C0E67DE5141186FD2D70875;
+		};
+		2B1B7BB65CE704E45A485C5C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_systhread.c;
+			path = ../../thirdparty/SDL/src/thread/pthread/SDL_systhread.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		2B671A857F4EA95515131DC0 = {
+			isa = PBXTargetDependency;
+			target = 49CE2392217E66D51CC1238A;
+			targetProxy = 94EE761C49C61B47DE702140;
+		};
+		2BC7C8137CD28077F20EE5AE = {
+			isa = PBXBuildFile;
+			fileRef = 8EB8455BBBEC9F93CD0808E6;
+		};
+		2C26508CFD4657CAA85D9BAD = {
+			isa = PBXBuildFile;
+			fileRef = 7D666B3C64BA36110EA7E7F3;
+		};
+		2C38D5CCFCBD7A02D774AD03 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 0.2.0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"BX_CONFIG_DEBUG=1",
+					"BGFX_CONFIG_DEBUG_ANNOTATION=1",
+					"BGFX_CONFIG_MULTITHREADED=1",
+					"BGFX_CONFIG_VIDEO=1",
+					__STDC_CONSTANT_MACROS,
+					__STDC_FORMAT_MACROS,
+					__STDC_LIMIT_MACROS,
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../thirdparty/SDL/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/examples/common/imgui",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
+				);
+				INFOPLIST_KEY_CFBundleDisplayName = "OpenTS Mac Shell";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				MARKETING_VERSION = 0.2.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					Metal,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					IOKit,
+					"-framework",
+					CoreFoundation,
+					"-framework",
+					VideoToolbox,
+					"-framework",
+					CoreMedia,
+					"-framework",
+					CoreVideo,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					Carbon,
+					"-framework",
+					CoreAudio,
+					"-framework",
+					ForceFeedback,
+					"-framework",
+					GameController,
+					"-weak_framework",
+					CoreHaptics,
+					"-weak_framework",
+					UniformTypeIdentifiers,
+					"-liconv",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tfrey.opents.mac.shell;
+				PRODUCT_NAME = OpenTSMacShell;
+			};
+			name = Debug;
+		};
+		2CC198B655DE75F8D8AD9C9B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_runapp.c;
+			path = ../../thirdparty/SDL/src/main/SDL_runapp.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		2D6A5934BC323AF3FEF1CE81 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_touch.c;
+			path = ../../thirdparty/SDL/src/events/SDL_touch.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		2D9ED00576BAB369414D502A = {
+			isa = PBXBuildFile;
+			fileRef = DB36F0BB1398CF55D2A232E5;
+		};
+		2DE1AF7401DB240A6355F114 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_wave.c;
+			path = ../../thirdparty/SDL/src/audio/SDL_wave.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		2DE7E39C6FAF2BCD13E7C1FA = {
+			isa = PBXBuildFile;
+			fileRef = CEA590CE1362D5B8A93CE3F5;
+		};
+		2E5DA846A36BCB99BB4589A0 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED57BF0792B764FA81268759,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E996BF1DD3C24770A9C8364 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_list.c;
+			path = ../../thirdparty/SDL/src/SDL_list.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		2F85DDDD4F9F38542CCF58E3 = {
+			isa = PBXTargetDependency;
+			target = 9B257364ECF566BFE8CFEA9D;
+			targetProxy = 0CC329EE53FE20C8FA61273B;
+		};
+		2FC8055F138579BC5497DA77 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = main.cpp;
+			path = main.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		301A976201CF299A332BB527 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_render_gl.c;
+			path = ../../thirdparty/SDL/src/render/opengl/SDL_render_gl.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		304330300D717494FC004CCA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_ps4.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_ps4.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		304FF6052B807E6EC2E23D84 = {
+			isa = PBXBuildFile;
+			fileRef = 7D21CDD619A456DB78874B87;
+		};
+		305D0AF9C78D5D1FA4B9F659 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_lg4ff.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_lg4ff.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		30A8E3278E5FE27361533770 = {
+			isa = PBXBuildFile;
+			fileRef = EF160DF99974B8EF8A562740;
+		};
+		3128FC1672E27887E42DEB67 = {
+			isa = PBXBuildFile;
+			fileRef = 376A96E25DB65069E507C0D3;
+		};
+		3177F197D6466DB836E7574A = {
+			isa = PBXBuildFile;
+			fileRef = AE53795B7DAC629EBD73AAD0;
+		};
+		3184AC997C8F88876EF76A8C = {
+			isa = PBXGroup;
+			children = (
+				F12CAC213A14E313E7370CE2,
+				52824C220B62C2C1EAD0800F,
+				7CA99845B2F11DCD558431AE,
+				C7435116D1BFC32ABA3BE360,
+				A6D439CB3DEA26F66929A9F1,
+				12CD2284FD4EC58D76BDCD0A,
+				DD6E72F5CFBC0C65A3853CBF,
+				C3FDC18792518721D9B6197A,
+				58F34E8DFB743A5760EEF4ED,
+				43EBF4B1B5938BF8AF8BCCD0,
+				05224D9EFE2B557B9604E6D5,
+				E6BCE8A8D7514ECE92F28EBA,
+				E135073B7C960EEFC958EE43,
+				8AFD8FF9467BA127EF2FAAAD,
+				AD18DB7B565ABB75A5A2C23F,
+				E6F8BECA1D776B96CE91EA23,
+				8B20972C4D8B774F43C5E220,
+				05BDE987EE10A7E3F3CC2C55,
+				B9939DAC039B000EF7D65CE8,
+				0447560C0B0B0B0128D27EC9,
+				B47CFCC6CC647166151F64EE,
+				1E993AE7B0693AEAE9E942CF,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		321DC39DEED11324197F747B = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = ShapeFacing;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		329E26774A5E37B9B11AC8CD = {
+			isa = PBXBuildFile;
+			fileRef = E73E35F5A2B26F691656DA84;
+		};
+		3342020D342A8B17E230AE68 = {
+			isa = PBXBuildFile;
+			fileRef = AD0E975CFE591CAB1F7108B4;
+		};
+		33CDA688DC8EF260FC4E63D9 = {
+			isa = PBXGroup;
+			children = (
+				46AD4954D70855057811E9A8,
+				82535DE0DA567F9B452D340E,
+				AD80D8C14F134FEA11762BF9,
+				A0F47E026C2FDCD72DBBAFB8,
+				ACF3FEDF10A1ABC981C52971,
+				AD0E975CFE591CAB1F7108B4,
+				EBBAB78D201BFED28BE01CAD,
+				244BF19EB8BEDABC5AFC6ED2,
+				CE519C48DCD3CD1CD90A251D,
+				57AF43E9470548456B0AA061,
+				A091914D413955B9D4FBD176,
+				CEA590CE1362D5B8A93CE3F5,
+				06EF25D8541BF9D4F03B3B8A,
+				A5FD1FA7006BF23B7DCC1BF8,
+				EF3B26E0D538B549FCBC36EA,
+				BB45F7BDE831568B1594F9A1,
+				825858CBA22F228B34452D17,
+				F348B0A622D70A9D80092E23,
+				AA0D0B4B963E011840E33D10,
+				EF160DF99974B8EF8A562740,
+				6A2D5A73146839E7882FF1E4,
+				BBE1F8A15364D0F5D6EFF6C6,
+				7D666B3C64BA36110EA7E7F3,
+				3ECDD6F1E3CFE5B1B1FA0BEF,
+			);
+			name = bimg;
+			sourceTree = "<group>";
+		};
+		3497AFB6990FCFE2FD3AB904 = {
+			isa = PBXBuildFile;
+			fileRef = E135073B7C960EEFC958EE43;
+		};
+		34E853ECE9B83BBFA345F179 = {
+			isa = PBXBuildFile;
+			fileRef = 2945968A720D15C51EB4E23F;
+		};
+		358D80E369DBA26BD1A13C62 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = diagnostics.cpp;
+			path = diagnostics.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		360454D3288A6A05693B2954 = {
+			isa = PBXGroup;
+			children = (
+				E314165168B4574168977A06,
+				4A5797900521B8EB5DDD55C2,
+				F72338CD76B33B888DAB6AD5,
+				1DBBA8BC7A4266272A1B0201,
+				A65520802E13496607D771F7,
+				DDA751BC21662D2DB0058E51,
+				2E996BF1DD3C24770A9C8364,
+				EC22345C1FAB448CD457100F,
+				BCD9E962F071AA2780A069A3,
+				D3BA29895932FA568A8A3EB0,
+				9FFAE190CE03C66BA9AC8EE9,
+				205506E9BBFA3A485D745551,
+				043F60A067D48D2B44ABB33B,
+				187A344CC4B6A60BEAE0F986,
+				4C7170BBF6F1CD9018C4229C,
+				5A4FABB61179F4257C7CE855,
+				F5AE251A5C1E31AE4AA9445B,
+				06621DAA759E0C3864676FD0,
+				5AD864699EA4DE4245F08CB0,
+				2DE1AF7401DB240A6355F114,
+				C0E2C18ACE8D38E0EF20BCFC,
+				3B0D37723E38E6D7F1BC818E,
+				6024400EA7D58263A8570136,
+				166986505A24C0A19C9A3986,
+				88A4C4A8D4D17556CAAEE197,
+				98AEEAB464D255A24C095EFE,
+				B4524944EACE1BE79D95E1FF,
+				913C6436BF29F4C53BD8297B,
+				9C7987C746A1C6CC3CA4AD5F,
+				1496FD5C66DC6780807706A5,
+				84956A451DB5EC2DF8C052BC,
+				E123068EBD11573E2CBA95EF,
+				E68A7943FF992BE0C815EE22,
+				69AC871F6073205CDEA819A9,
+				EE1B96F97C141C12412DD087,
+				6EF77F8D2E412A8C949F83AE,
+				4F20EE5227DE8F55DBED5AC2,
+				6AADD76C3A06BD3166903F09,
+				7FFEDD4C340419DCBA8CBFF1,
+				00E16C2FA533B5FA708997AD,
+				6166A70CAF4787E52B42FB50,
+				297483ADB69EB5E7E604D4DB,
+				14EE86D57DFA064095F34ED6,
+				56D65F65A67A801D2EDF0FDC,
+				2D6A5934BC323AF3FEF1CE81,
+				7AD32E971CD53336FC6D1698,
+				835A56D7BEA67D57CDFBAF96,
+				9377AB4B8B9488896F1881C1,
+				7A515DE717FD416563B4621A,
+				1B1E54104EC1E94FCA8B12BE,
+				5535198E260BF214A23BD961,
+				B8980D93FB1F8CB88245C4E2,
+				4286DA5F0A3E7E8EAC7198E7,
+				FB9EF11B01957DACC9F4E43F,
+				6F6C642328223BB89C34741F,
+				42EEB1B9B0DF477A02DCDE08,
+				1325F3EBE1EAE9865B424E55,
+				A43BC90ABEBE95A8D5456279,
+				8CC35F5AEDC42B905CFB806B,
+				376A96E25DB65069E507C0D3,
+				1D0A39F8F70C207F3EF7E3CC,
+				FF2BFEC41E94C1896CE8B522,
+				7EE2CE049228211FB8B8DA8C,
+				D84FAA0F39693CBAEB49DC25,
+				FBCC58F62C84BED1EFABAE9D,
+				CC9BD33AA9E70522285FED83,
+				D9F4D760B967DEA29BCD28C4,
+				F55853A045EC183D61276DCF,
+				A9A14787D8036563A9E7EDA1,
+				801C641F9B43E85DE0CCA6A1,
+				20B02964E6C461D0CC1B493C,
+				094A1C687D8D84DE10F10A72,
+				F8FCA6A8CC4A6AE1892A0997,
+				4C6E727ED242F85AF37E1577,
+				07A887F6AF502C2322E785FE,
+				EF9D63BB074305640E4FF8C8,
+				305D0AF9C78D5D1FA4B9F659,
+				C3A820FE6F2C04AA2D1C3264,
+				86D07D8FB5145BEB03700CEE,
+				304330300D717494FC004CCA,
+				6C3B46BF2C3083F032A6A831,
+				A6683542054D63D9282C4A11,
+				7AABE84DF3EE7D8205AEBEEE,
+				4B4AF7D810C58DFF4514F00E,
+				A258E73C02AAA01C2484D28C,
+				0D83E933A59594CB8234D9CB,
+				134D9DE37752D8BB1A2779D9,
+				9EAE799DC87E20A7A2E6D6E0,
+				F0132D2BB0582C076EEF4BAA,
+				74F1F5FB034114E005EBA06F,
+				BDD8071F042080710BEFD8C4,
+				994778096583DC0C99176CD9,
+				3663729AEAFB736C5415C528,
+				76FA52D0595993F49B78DDA6,
+				6C79D3DDF7FE539D5F5C07BB,
+				EE1580DA67DE62C11BF480C2,
+				13DE66219B5B5CAAD9A3DD94,
+				A63E061B6931408E8CEE8AEF,
+				C4BFDDED537DA41363DAC187,
+				0F80FFC477DA4B875BE2B790,
+				F92D8216ECA4BFB699369102,
+				FDDBBED877397E0F0F601B9B,
+				C256CB62E618DC44F88DF836,
+				FE56BCB2C3ADAFD69D1A23C0,
+				2CC198B655DE75F8D8AD9C9B,
+				86E82935C60AF03E6D4D0157,
+				790BFDF00397BC1AAE2FB989,
+				FAEF6EACC761B6F0FB023B53,
+				884FDB953E930E310A4B87BC,
+				836767364EB5942782031188,
+				7D0DDAF52EDA5DF7150E1114,
+				CFECD5516659349506D6CC93,
+				4BFC3EF935BEE044E2A69F64,
+				8458A6835D951DA1223B6779,
+				EBB1EA2F84698A19EEEA0D00,
+				ED2F17EEC9813ED0A5AAF0E1,
+				1352527C0DE76665835B7D98,
+				7A759089A0802E3872263CA0,
+				6A3CEC76C00FC8786BB956D6,
+				0464F77BB69ED344E6E44698,
+				A375E012A34FF21FBA10D8A6,
+				1CD4812389531DD87A176495,
+				EAEDC9A431949C2A2FB846DE,
+				68F552ADDB7B45F9D666B579,
+				301A976201CF299A332BB527,
+				C7B38269DECE968D0A613C69,
+				FC78A9DF0BA6B7F64E5D2011,
+				1B448693A266E2902F2ABB79,
+				4D2AF9D32D5A09C8C3DA5221,
+				0E8C56E2CC9A18CC7FBC3C97,
+				FA20F659853B37DD5D2DF40E,
+				767D10F1A70218D19EDB99F4,
+				743C0F9565126C89A1115961,
+				6CCFAEB61C299CFDD638FB4F,
+				650423C883A31A6A660FE66E,
+				B8087C22CC8225004EEB1181,
+				859B550515C1B35E49EE858B,
+				67968197BC7A65DE1609920A,
+				6A83A0247D9AD201D26BA3E0,
+				72D5A0544043D6E34F51506B,
+				B15E69D62DA758A457896C15,
+				E8C4D779956966C64E948E91,
+				ECF4D87544AFA14F476CD74A,
+				2945968A720D15C51EB4E23F,
+				733188106A0BA7CF738F36CD,
+				8A7E78F8B4B401DB2981EE10,
+				8EB8455BBBEC9F93CD0808E6,
+				B76109657080E5F55F352055,
+				D06473672DF413EAB37C3DFC,
+				AC770F116ABAC1530ED30F66,
+				904C861219BE0B20E666363C,
+				CBEBDDA291B9E31349A7CB97,
+				394E784195182EE148C13C76,
+				57DFCB06F1E9049E1313DA01,
+				45F544E81D116A3D1E8A3E2D,
+				5197C9E556A326643E21F81F,
+				A098992858DC43E7019F88A4,
+				284A601DF99081936A8FC3F9,
+				AE53795B7DAC629EBD73AAD0,
+				2B1B7BB65CE704E45A485C5C,
+				FBB6E380D9C0D9783F237593,
+				40FEAC7C1CFBFAF95444B40F,
+				8699A3EDE57D5B1A607BB4D4,
+				FF9F386744BA0E39DE8F47A1,
+				38C54668BE638D82CC3E129B,
+				13FE90EBB0FBE18FC7209807,
+				5C6230A7FE01DFA56E7DFD58,
+				F80312BBD00F6A9D0B858857,
+				45A1009D1D2C233619FCA1B8,
+				08959FE9526D922B48943755,
+				289988229A661261C2A8B71F,
+				63B80AF3811E51257E420543,
+				57E9FFECD15DA817BE5D0055,
+				AB7A81CC2448404EE0534CE5,
+				C82C9DAA4A427AC451D6FECF,
+				A21112609B58468E761738F2,
+				16B9910EEAA37A8840A565E1,
+				6063086773F781E0AED21D98,
+				B12E449D065FD02BF8E4D126,
+				E8C0ACEE1703A80C2FD42A29,
+				E73E35F5A2B26F691656DA84,
+				8B829590745F9F4AA39110B7,
+				B1B689B7E58409BB76C43775,
+				416FCB6743D01A10BA20B726,
+				F25D91D2AA9089363747FBA5,
+				43EA7900B0A80E8D75E71B8B,
+				92337225CC60E4087BB0A163,
+				42F6B1BD2876B9F5D8E92DFB,
+				D4B2F5583B5374461F125EEF,
+				C6276D78626F4998ECA3476E,
+				255CD84A6B14C22C010614FC,
+				20AEE74602D95E2F4E138B0A,
+				DB36F0BB1398CF55D2A232E5,
+				885D25DCBDCE605FD8471484,
+				66AF3872937BC8F10B63D5B2,
+				7D1D889FB2467FC3388B20D2,
+				90767B5B567C8D2C5FB6E91E,
+				1C0E67DE5141186FD2D70875,
+				F718E895041C14A11783998C,
+				CBED84AF374331ADB30020BD,
+				FCA5C6A113ACAB4738269766,
+				A08581E831A85805CE487E90,
+				6F3E176F20A2A8DDDC7B8EC7,
+				B098349DB945D71F75B0DA5D,
+				6D2991B03F0CE9FE0D46FB1E,
+				50B95CB150482224BD3ACE15,
+				A69528D966D15D0C161AB2D7,
+				02ADDC4D3D3EA31C819858ED,
+				4846A0B26434291F09E513FB,
+				8FB860E6EA0631006382240A,
+				06EFDF368B3DB8A6DDB42D2F,
+				B0A937B0D37E0FA31B1253C7,
+				A037B9925E1F8A88F3FC791C,
+				9682A93B83A13A89604C23B3,
+				1CF1FDCA875A6569EC5E3C5F,
+				41E127AD25983EA1DF4D224A,
+				15047006AF243FDC74073908,
+				2858DA1756367935727561FC,
+				9DB8F60902BE09504D8AA3DE,
+				D996A35893663AA066E635F1,
+				7D21CDD619A456DB78874B87,
+				963B3E205FFAA3F2FC5DEC5C,
+				927F1911A865B78032D58E14,
+				4854101AB641D02109ED8421,
+				0D4792729396D51516E403DA,
+				BC284C265017584EC37E4487,
+				3B39B1E67619D17472EB3A0B,
+				77F8D2AF4A1369010BE473A9,
+				4A1236F983976299CAF3BAD7,
+				12E0AADA734EDF516B2879A1,
+				62968BC8D32A7AE7083146D2,
+			);
+			name = SDL;
+			sourceTree = "<group>";
+		};
+		3663729AEAFB736C5415C528 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_xbox360.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_xbox360.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		36845C225F44439A24FF21D7 = {
+			isa = PBXBuildFile;
+			fileRef = E8C0ACEE1703A80C2FD42A29;
+		};
+		376A96E25DB65069E507C0D3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = hid.m;
+			path = ../../thirdparty/SDL/src/hidapi/ios/hid.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		37E147F433D4BBBE49E6EDE5 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = AudioLevel;
+			};
+			name = Debug;
+		};
+		386F22EB7C4AC84D0912906D = {
+			isa = PBXBuildFile;
+			fileRef = 76FA52D0595993F49B78DDA6;
+		};
+		38C54668BE638D82CC3E129B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_systimer.c;
+			path = ../../thirdparty/SDL/src/timer/unix/SDL_systimer.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		393F030B5D8808B590FF9698 = {
+			isa = PBXBuildFile;
+			fileRef = 0447560C0B0B0B0128D27EC9;
+		};
+		394E784195182EE148C13C76 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_storage.c;
+			path = ../../thirdparty/SDL/src/storage/SDL_storage.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		3985834F78E779CEDEA07BC3 = {
+			isa = PBXBuildFile;
+			fileRef = 6D2991B03F0CE9FE0D46FB1E;
+		};
+		3A29844D18E6D95C62C25877 = {
+			isa = PBXTargetDependency;
+			target = 9271537BA95887EE6870BC8E;
+			targetProxy = 1C91129C7AC6E643218B119A;
+		};
+		3A6ECE599175E0DE7BA3D4D8 = {
+			isa = PBXBuildFile;
+			fileRef = 0E1CC3FD9765ABE320FC2097;
+		};
+		3B0D37723E38E6D7F1BC818E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_diskaudio.c;
+			path = ../../thirdparty/SDL/src/audio/disk/SDL_diskaudio.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		3B1C3211C6B22EC1A13D4989 = {
+			isa = PBXBuildFile;
+			fileRef = 5197C9E556A326643E21F81F;
+		};
+		3B39B1E67619D17472EB3A0B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitvulkan.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitvulkan.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		3CFEEB460E442B32492DBEA2 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/shapefacing",
+				);
+				PRODUCT_NAME = ShapeFacing;
+			};
+			name = Debug;
+		};
+		3DE1906956127617BB7B27D9 = {
+			isa = PBXBuildFile;
+			fileRef = 58F34E8DFB743A5760EEF4ED;
+		};
+		3E6BD24EB1ACA1F05561071F = {
+			isa = PBXBuildFile;
+			fileRef = 4854101AB641D02109ED8421;
+		};
+		3ECBAD8F9A6B0B29D34440B5 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				393F030B5D8808B590FF9698,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ECDD6F1E3CFE5B1B1FA0BEF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = image.cpp;
+			path = ../../thirdparty/bgfx.cmake/bimg/src/image.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		4057084C7315D647288443A8 = {
+			isa = PBXBuildFile;
+			fileRef = C7B38269DECE968D0A613C69;
+		};
+		40FEAC7C1CFBFAF95444B40F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_time.c;
+			path = ../../thirdparty/SDL/src/time/SDL_time.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		416FCB6743D01A10BA20B726 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_rotate.c;
+			path = ../../thirdparty/SDL/src/video/SDL_rotate.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		41E127AD25983EA1DF4D224A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitclipboard.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitclipboard.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		4286DA5F0A3E7E8EAC7198E7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_gpu_vulkan.c;
+			path = ../../thirdparty/SDL/src/gpu/vulkan/SDL_gpu_vulkan.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		42EEB1B9B0DF477A02DCDE08 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_syshaptic.c;
+			path = ../../thirdparty/SDL/src/haptic/dummy/SDL_syshaptic.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		42F6B1BD2876B9F5D8E92DFB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_video.c;
+			path = ../../thirdparty/SDL/src/video/SDL_video.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		436413AF6C8BBAB836CD7FA5 = {
+			isa = PBXBuildFile;
+			fileRef = CE519C48DCD3CD1CD90A251D;
+		};
+		43B76BDA29FE7B81B6F6AC6C = {
+			isa = PBXBuildFile;
+			fileRef = 8A7E78F8B4B401DB2981EE10;
+		};
+		43EA7900B0A80E8D75E71B8B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_stretch.c;
+			path = ../../thirdparty/SDL/src/video/SDL_stretch.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		43EBF4B1B5938BF8AF8BCCD0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = lcwstraw.cpp;
+			path = ../../code/lcwstraw.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		4402685E11A2030757A49EF2 = {
+			isa = PBXBuildFile;
+			fileRef = 66AF3872937BC8F10B63D5B2;
+		};
+		44C05622F848D8551859680F = {
+			isa = PBXBuildFile;
+			fileRef = 255CD84A6B14C22C010614FC;
+		};
+		44E405034DEE910800FFA7A7 = {
+			isa = PBXBuildFile;
+			fileRef = 825858CBA22F228B34452D17;
+		};
+		44EFC0FE8053A6A74045A222 = {
+			isa = PBXBuildFile;
+			fileRef = 38C54668BE638D82CC3E129B;
+		};
+		44FFC5261131D97899B61EE2 = {
+			isa = PBXBuildFile;
+			fileRef = AD18DB7B565ABB75A5A2C23F;
+		};
+		45866468BCD051AA3D9AF80C = {
+			isa = PBXTargetDependency;
+			target = D3A9267205276FE3C009C811;
+			targetProxy = 834FCEBE09DF7D16E146D9A1;
+		};
+		45A1009D1D2C233619FCA1B8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_RLEaccel.c;
+			path = ../../thirdparty/SDL/src/video/SDL_RLEaccel.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		45BBFA1B3B0524279DBF2A5A = {
+			isa = PBXBuildFile;
+			fileRef = BF8AA552876F92F0F5BFCE30;
+		};
+		45CADE26DEA292D5E1E70835 = {
+			isa = PBXBuildFile;
+			fileRef = EBB1EA2F84698A19EEEA0D00;
+		};
+		45DF09164F4BE8643F782D7E = {
+			isa = PBXBuildFile;
+			fileRef = 86E82935C60AF03E6D4D0157;
+		};
+		45F544E81D116A3D1E8A3E2D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_thread.c;
+			path = ../../thirdparty/SDL/src/thread/SDL_thread.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		46AD4954D70855057811E9A8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_averages_and_directions.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_averages_and_directions.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		46F86FAA6BBF9AC94A7E4595 = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2700;
+			};
+			buildConfigurationList = B8BABB1DAD9AA91433F2C263;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4EAE695AD1F489F78EA3E1C6;
+			productRefGroup = 2AC8BA37DAC32D5437812408;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9271537BA95887EE6870BC8E,
+				7BA2E163C2E88BEE93746246,
+				66843A2D6E45AE5BC6912D51,
+				57C56DBB171A04884C25B11A,
+				1E3A372A285358AFE0E0A434,
+				D3A9267205276FE3C009C811,
+				5E6029DED72453476405C3CD,
+				DFD8E7D87EEB9D5B3951DD13,
+				49CE2392217E66D51CC1238A,
+				8DFC35615CD7E0F5EEC3867C,
+				9B257364ECF566BFE8CFEA9D,
+				DC555F60D5563C60996FE21C,
+				10AD784280A82A19744987C4,
+				7AFDD3A23DB2E04403065699,
+				AA0094472ACA88B4E68A22FA,
+				CFF1065879BE29F00BD055C3,
+			);
+		};
+		478591AC5EB368CF9772CEBD = {
+			isa = PBXBuildFile;
+			fileRef = 4D2AF9D32D5A09C8C3DA5221;
+		};
+		47CAEAD6F72400365A4BFAB1 = {
+			isa = PBXBuildFile;
+			fileRef = 2B1B7BB65CE704E45A485C5C;
+		};
+		4820C45D064E682F3292990F = {
+			isa = PBXBuildFile;
+			fileRef = 7D0DDAF52EDA5DF7150E1114;
+		};
+		4846A0B26434291F09E513FB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_offscreenevents.c;
+			path = ../../thirdparty/SDL/src/video/offscreen/SDL_offscreenevents.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		4854101AB641D02109ED8421 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitvideo.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitvideo.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		485C299D690840530FB917BF = {
+			isa = PBXBuildFile;
+			fileRef = FBCC58F62C84BED1EFABAE9D;
+		};
+		4897F70441174E9058B8EBCF = {
+			isa = PBXBuildFile;
+			fileRef = F55853A045EC183D61276DCF;
+		};
+		48AA33EF9DB35CAD62FC95CB = {
+			isa = PBXTargetDependency;
+			target = AA0094472ACA88B4E68A22FA;
+			targetProxy = B4D4513C336824AE841A17C1;
+		};
+		48B325B72DF8B575A17D9335 = {
+			isa = PBXBuildFile;
+			fileRef = 12CD2284FD4EC58D76BDCD0A;
+		};
+		49CE2392217E66D51CC1238A = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A0B93B1BBB4D1FCC68A81F6;
+			buildPhases = (
+				00FA249555923D72A16D6AF2,
+				87102F8831AE623DB5BD74AB,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LcwBlock;
+			productName = LcwBlock;
+			productReference = F80A8872E939E784CD99146C;
+			productType = "com.apple.product-type.tool";
+		};
+		49EF0559AA1A372357D5C691 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44FFC5261131D97899B61EE2,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A0F294008433501F028FEAE = {
+			isa = PBXBuildFile;
+			fileRef = 4C7170BBF6F1CD9018C4229C;
+		};
+		4A1236F983976299CAF3BAD7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = yuv_rgb_lsx.c;
+			path = ../../thirdparty/SDL/src/video/yuv2rgb/yuv_rgb_lsx.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		4A5797900521B8EB5DDD55C2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_assert.c;
+			path = ../../thirdparty/SDL/src/SDL_assert.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		4A9F416117371EFC2A92CAD4 = {
+			isa = PBXBuildFile;
+			fileRef = AA0D0B4B963E011840E33D10;
+		};
+		4B1814E3438D31E5F0860946 = {
+			isa = PBXBuildFile;
+			fileRef = 4B4AF7D810C58DFF4514F00E;
+		};
+		4B4AF7D810C58DFF4514F00E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_sinput.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_sinput.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		4B50FCB0CDEBE0AA8FBDC960 = {
+			isa = PBXBuildFile;
+			fileRef = FA20F659853B37DD5D2DF40E;
+		};
+		4BE2B9943E76F5FCC13C421B = {
+			isa = PBXBuildFile;
+			fileRef = 1E993AE7B0693AEAE9E942CF;
+		};
+		4BFC3EF935BEE044E2A69F64 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_syspower.c;
+			path = ../../thirdparty/SDL/src/power/macos/SDL_syspower.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		4C0575BD86EA82554EC4B810 = {
+			isa = PBXBuildFile;
+			fileRef = 416FCB6743D01A10BA20B726;
+		};
+		4C6E727ED242F85AF37E1577 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_flydigi.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_flydigi.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		4C7170BBF6F1CD9018C4229C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_audiodev.c;
+			path = ../../thirdparty/SDL/src/audio/SDL_audiodev.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		4CE5D74C0AAA1CAC23717DB7 = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = AudioRing;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4D1CE318440A24B52D920BC1 = {
+			isa = PBXBuildFile;
+			fileRef = 05224D9EFE2B557B9604E6D5;
+		};
+		4D2AF9D32D5A09C8C3DA5221 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blendfillrect.c;
+			path = ../../thirdparty/SDL/src/render/software/SDL_blendfillrect.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		4E26E90B5D5C71D6BD6A92D2 = {
+			isa = PBXBuildFile;
+			fileRef = 6C3B46BF2C3083F032A6A831;
+		};
+		4EAE695AD1F489F78EA3E1C6 = {
+			isa = PBXGroup;
+			children = (
+				7967104CDE5194DDB47520D6,
+				360454D3288A6A05693B2954,
+				7843610993DB0793DD4DAA36,
+				33CDA688DC8EF260FC4E63D9,
+				C4153F51D728A488A922697A,
+				3184AC997C8F88876EF76A8C,
+				2AC8BA37DAC32D5437812408,
+			);
+			sourceTree = "<group>";
+		};
+		4F20EE5227DE8F55DBED5AC2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_dropevents.c;
+			path = ../../thirdparty/SDL/src/events/SDL_dropevents.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		4F488BB6D8B018AFA7C88BDC = {
+			isa = PBXBuildFile;
+			fileRef = F718E895041C14A11783998C;
+		};
+		4FA44A2794EA938B4C7A3FA5 = {
+			isa = PBXBuildFile;
+			fileRef = B4524944EACE1BE79D95E1FF;
+		};
+		504704E4241B002C3D70471F = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/colorops",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = ColorOps;
+			};
+			name = Release;
+		};
+		5093253EA034C4BD05D49E30 = {
+			isa = PBXBuildFile;
+			fileRef = 8FB860E6EA0631006382240A;
+		};
+		50B95CB150482224BD3ACE15 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_nullevents.c;
+			path = ../../thirdparty/SDL/src/video/dummy/SDL_nullevents.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		51534648A1ABA2B57FC0FF11 = {
+			isa = PBXBuildFile;
+			fileRef = D84FAA0F39693CBAEB49DC25;
+		};
+		5197C9E556A326643E21F81F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_syscond.c;
+			path = ../../thirdparty/SDL/src/thread/pthread/SDL_syscond.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		51F2E9A419FE0A1B75E14E59 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEC08DCD9DA55F1F1F926EEE,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52190EFEB8D150FFE87944A1 = {
+			isa = PBXBuildFile;
+			fileRef = 904C861219BE0B20E666363C;
+		};
+		52824C220B62C2C1EAD0800F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = colorops.cpp;
+			path = ../../code/colorops.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		52B25B25BBB2FAB069BFEC0E = {
+			isa = PBXBuildFile;
+			fileRef = 0464F77BB69ED344E6E44698;
+		};
+		52E8024C9ABE64D317939B39 = {
+			isa = PBXBuildFile;
+			fileRef = 0D83E933A59594CB8234D9CB;
+		};
+		5307A318B47AB4E609A79078 = {
+			isa = PBXBuildFile;
+			fileRef = 3B39B1E67619D17472EB3A0B;
+		};
+		5339A914918E42A8024BC651 = {
+			isa = PBXBuildFile;
+			fileRef = A21112609B58468E761738F2;
+		};
+		5535198E260BF214A23BD961 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_gpu.c;
+			path = ../../thirdparty/SDL/src/gpu/SDL_gpu.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		56D65F65A67A801D2EDF0FDC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_quit.c;
+			path = ../../thirdparty/SDL/src/events/SDL_quit.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		56D77E5951505ED8F8A19CCF = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				OTHER_CFLAGS = (
+					"-DNDEBUG",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		56F8E044167CF3DDA06DDECB = {
+			isa = PBXBuildFile;
+			fileRef = 07A0B5E08A9803B9665CDF3D;
+		};
+		572B5E9E57285EA7A959A43B = {
+			isa = PBXBuildFile;
+			fileRef = 0E1782198D55CEDD0DFC9E39;
+		};
+		5746A6CAB0901CF84A249D0A = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 57C56DBB171A04884C25B11A;
+			remoteInfo = SDL3;
+		};
+		574DD28F8D3FDD94E56ED680 = {
+			isa = PBXBuildFile;
+			fileRef = 650423C883A31A6A660FE66E;
+		};
+		57AF43E9470548456B0AA061 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_find_best_partitioning.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_find_best_partitioning.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		57B705A26AA38144C0E07DF4 = {
+			isa = PBXBuildFile;
+			fileRef = 6024400EA7D58263A8570136;
+		};
+		57C56DBB171A04884C25B11A = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE21FDAC0235C3010F7AFADC;
+			buildPhases = (
+				DD196731C4483523053FAED2,
+				F3EAAE98DC36F55D7EB11DB6,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDL3;
+			productName = SDL3;
+			productReference = FB998105E882C137D407567B;
+			productType = "com.apple.product-type.library.static";
+		};
+		57DFCB06F1E9049E1313DA01 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_genericstorage.c;
+			path = ../../thirdparty/SDL/src/storage/generic/SDL_genericstorage.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		57E9FFECD15DA817BE5D0055 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blit_A.c;
+			path = ../../thirdparty/SDL/src/video/SDL_blit_A.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		584030E18DFEAF17F480A2C3 = {
+			isa = PBXBuildFile;
+			fileRef = 994778096583DC0C99176CD9;
+		};
+		5860A1164F016734179D0610 = {
+			isa = PBXBuildFile;
+			fileRef = D3BA29895932FA568A8A3EB0;
+		};
+		5873ECEA59F485D75FBDB06C = {
+			isa = PBXTargetDependency;
+			target = 57C56DBB171A04884C25B11A;
+			targetProxy = 5746A6CAB0901CF84A249D0A;
+		};
+		58F34E8DFB743A5760EEF4ED = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = lcwpipe.cpp;
+			path = ../../code/lcwpipe.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		58F4EE00D9A0BEB4BA0AD78A = {
+			isa = PBXBuildFile;
+			fileRef = 6A2D5A73146839E7882FF1E4;
+		};
+		59776F1FAD9DBD10E68EF682 = {
+			isa = PBXBuildFile;
+			fileRef = 043F60A067D48D2B44ABB33B;
+		};
+		59D6DA2A849342596840D50F = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run harnesses";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -u\nmkdir -p \"$DERIVED_FILE_DIR\"\nfailed=0\nfor test in ColorOps UnvqDec LcwComp LcwBlock AudioRing AudioHandle AudioLevel PriorityQueue ShapeFacing BlowfishContract; do\n  if \"$BUILT_PRODUCTS_DIR/$test\" > \"$DERIVED_FILE_DIR/$test.log\" 2>&1; then\n    echo \"PASS $test\"\n  else\n    echo \"error: $test failed; output follows\"\n    cat \"$DERIVED_FILE_DIR/$test.log\"\n    failed=1\n  fi\ndone\nexit $failed\n";
+			showEnvVarsInLog = 0;
+		};
+		5A4FABB61179F4257C7CE855 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_audioqueue.c;
+			path = ../../thirdparty/SDL/src/audio/SDL_audioqueue.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		5AD864699EA4DE4245F08CB0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_mixer.c;
+			path = ../../thirdparty/SDL/src/audio/SDL_mixer.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		5B4D7C87A51C7CF285D638A5 = {
+			isa = PBXBuildFile;
+			fileRef = FF9F386744BA0E39DE8F47A1;
+		};
+		5BEF8A6B1B95CE9A114E3C08 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				216FBB408B6372CE58BCDEC1,
+				C319F53A63E7D44ED4488E1B,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C6230A7FE01DFA56E7DFD58 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_tray.m;
+			path = ../../thirdparty/SDL/src/tray/cocoa/SDL_tray.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		5C6957070C51A991C3F21C0F = {
+			isa = PBXBuildFile;
+			fileRef = 5A4FABB61179F4257C7CE855;
+		};
+		5CA21620B1A817E5E9D40551 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"BX_CONFIG_DEBUG=1",
+					__STDC_CONSTANT_MACROS,
+					__STDC_FORMAT_MACROS,
+					__STDC_LIMIT_MACROS,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/3rdparty/tinyexr/deps",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
+				);
+				PRODUCT_NAME = bimg;
+			};
+			name = Debug;
+		};
+		5CD106D7A53413B8CDEA69EE = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37E147F433D4BBBE49E6EDE5,
+				CF153D480BE926E3F4A22ED5,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E571BA2F9F85C6ADD1E22D5 = {
+			isa = PBXBuildFile;
+			fileRef = 5535198E260BF214A23BD961;
+		};
+		5E6029DED72453476405C3CD = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89F8F06A9C70980954BE5267;
+			buildPhases = (
+				F55C0258DD0229AC8C39A6CC,
+				1DED56D3DC39C4A284428D51,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnvqDec;
+			productName = UnvqDec;
+			productReference = B2B2DB8CA6D1949041E80875;
+			productType = "com.apple.product-type.tool";
+		};
+		5E6CE897E4140F149D045A31 = {
+			isa = PBXBuildFile;
+			fileRef = A5FD1FA7006BF23B7DCC1BF8;
+		};
+		5F0DC384AEB2CEA24E020409 = {
+			isa = PBXBuildFile;
+			fileRef = 2858DA1756367935727561FC;
+		};
+		5F6DBFB482EEBA0268B8203C = {
+			isa = PBXBuildFile;
+			fileRef = AD80D8C14F134FEA11762BF9;
+		};
+		6000CBE5C4E8FA66ABDF3A07 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"BX_CONFIG_DEBUG=0",
+					__STDC_CONSTANT_MACROS,
+					__STDC_FORMAT_MACROS,
+					__STDC_LIMIT_MACROS,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/3rdparty/tinyexr/deps",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
+				);
+				PRODUCT_NAME = bimg;
+			};
+			name = Release;
+		};
+		6024400EA7D58263A8570136 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_dummyaudio.c;
+			path = ../../thirdparty/SDL/src/audio/dummy/SDL_dummyaudio.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6063086773F781E0AED21D98 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_bmp.c;
+			path = ../../thirdparty/SDL/src/video/SDL_bmp.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		613FB61C1F9B38A7D75AF236 = {
+			isa = PBXBuildFile;
+			fileRef = 42F6B1BD2876B9F5D8E92DFB;
+		};
+		6166A70CAF4787E52B42FB50 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_keymap.c;
+			path = ../../thirdparty/SDL/src/events/SDL_keymap.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		61E81DB74A1AC7BC546927B4 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6208B753E95F4C969C8069F3 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62968BC8D32A7AE7083146D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = yuv_rgb_std.c;
+			path = ../../thirdparty/SDL/src/video/yuv2rgb/yuv_rgb_std.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		62FB2FEAB0CAFF8172F8C00F = {
+			isa = PBXBuildFile;
+			fileRef = 6AADD76C3A06BD3166903F09;
+		};
+		6322034519F6C2C2BC995C58 = {
+			isa = PBXBuildFile;
+			fileRef = 9EAE799DC87E20A7A2E6D6E0;
+		};
+		63B80AF3811E51257E420543 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blit_1.c;
+			path = ../../thirdparty/SDL/src/video/SDL_blit_1.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6426F06684D46F7E363CDB7B = {
+			isa = PBXBuildFile;
+			fileRef = 02ADDC4D3D3EA31C819858ED;
+		};
+		649E37F682E39B81E66CAEAE = {
+			isa = PBXBuildFile;
+			fileRef = A037B9925E1F8A88F3FC791C;
+		};
+		64C23ECB18466F6BE14E5044 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E17FF06F913DC695A16A8A78,
+				572B5E9E57285EA7A959A43B,
+				45BBFA1B3B0524279DBF2A5A,
+				E5D4E6712E3136052D079755,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		650423C883A31A6A660FE66E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_triangle.c;
+			path = ../../thirdparty/SDL/src/render/software/SDL_triangle.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6540AA46DD863BAB1F1B8F2A = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C38D5CCFCBD7A02D774AD03,
+				70894D35FAD33D9CB2AB2340,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65E8EE4612B98251512A812D = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = AudioLevel;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		66843A2D6E45AE5BC6912D51 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B5E3506015497F7C69BE8EB;
+			buildPhases = (
+				51F2E9A419FE0A1B75E14E59,
+				A80B6AE41F61EC3CEF5BC67F,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bgfx;
+			productName = bgfx;
+			productReference = D1FF1478E4BC512BEFBF4413;
+			productType = "com.apple.product-type.library.static";
+		};
+		66AF3872937BC8F10B63D5B2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoamessagebox.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoamessagebox.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		66B0502B9C87F6DA20603CCA = {
+			isa = PBXBuildFile;
+			fileRef = 84956A451DB5EC2DF8C052BC;
+		};
+		67968197BC7A65DE1609920A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_dummysensor.c;
+			path = ../../thirdparty/SDL/src/sensor/dummy/SDL_dummysensor.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		67D398A60507C27BC853B616 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 7AFDD3A23DB2E04403065699;
+			remoteInfo = ShapeFacing;
+		};
+		68F552ADDB7B45F9D666B579 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_render_metal.m;
+			path = ../../thirdparty/SDL/src/render/metal/SDL_render_metal.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		69AC871F6073205CDEA819A9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_categories.c;
+			path = ../../thirdparty/SDL/src/events/SDL_categories.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		69E6F316B8A3ACF13A0C65EE = {
+			isa = PBXBuildFile;
+			fileRef = 0E8C56E2CC9A18CC7FBC3C97;
+		};
+		6A2D5A73146839E7882FF1E4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_weight_align.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_weight_align.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		6A3CEC76C00FC8786BB956D6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_render_unsupported.c;
+			path = ../../thirdparty/SDL/src/render/SDL_render_unsupported.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6A5034F7B568A1E6EF6DF02C = {
+			isa = PBXBuildFile;
+			fileRef = ACF3FEDF10A1ABC981C52971;
+		};
+		6A83A0247D9AD201D26BA3E0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_crc16.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_crc16.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6AADD76C3A06BD3166903F09 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_events.c;
+			path = ../../thirdparty/SDL/src/events/SDL_events.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6B1D8B17FE7F0AF42A7CDF30 = {
+			isa = PBXBuildFile;
+			fileRef = 06EFDF368B3DB8A6DDB42D2F;
+		};
+		6B599744012BC9041B89B477 = {
+			isa = PBXBuildFile;
+			fileRef = D9F4D760B967DEA29BCD28C4;
+		};
+		6BEEC051909DAD56FCADD6BF = {
+			isa = PBXBuildFile;
+			fileRef = 4BFC3EF935BEE044E2A69F64;
+		};
+		6C3B46BF2C3083F032A6A831 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_ps5.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_ps5.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6C79D3DDF7FE539D5F5C07BB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_xboxone.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_xboxone.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6CCFAEB61C299CFDD638FB4F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_render_sw.c;
+			path = ../../thirdparty/SDL/src/render/software/SDL_render_sw.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6D2976A325CF5B8F3609DCAE = {
+			isa = PBXBuildFile;
+			fileRef = 9C7987C746A1C6CC3CA4AD5F;
+		};
+		6D2991B03F0CE9FE0D46FB1E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoawindow.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoawindow.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		6D2B1EC46D969CF0C08FFF3F = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"BX_CONFIG_DEBUG=0",
+					"BGFX_CONFIG_DEBUG_ANNOTATION=0",
+					"BGFX_CONFIG_MULTITHREADED=1",
+					"BGFX_CONFIG_VIDEO=1",
+					__STDC_CONSTANT_MACROS,
+					__STDC_FORMAT_MACROS,
+					__STDC_LIMIT_MACROS,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/3rdparty/khronos",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
+				);
+				PRODUCT_NAME = bgfx;
+			};
+			name = Release;
+		};
+		6D3E2B0A26251905A5A24551 = {
+			isa = PBXBuildFile;
+			fileRef = FB9EF11B01957DACC9F4E43F;
+		};
+		6DB6608124C27FCF97CD6F5C = {
+			isa = PBXBuildFile;
+			fileRef = CBEBDDA291B9E31349A7CB97;
+		};
+		6EF77F8D2E412A8C949F83AE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_displayevents.c;
+			path = ../../thirdparty/SDL/src/events/SDL_displayevents.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		6F3E176F20A2A8DDDC7B8EC7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoavideo.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoavideo.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		6F68DA0C1E912C540136360E = {
+			isa = PBXBuildFile;
+			fileRef = 41E127AD25983EA1DF4D224A;
+		};
+		6F6C642328223BB89C34741F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_syshaptic.c;
+			path = ../../thirdparty/SDL/src/haptic/darwin/SDL_syshaptic.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		703710B739051F7B3E50C587 = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = ColorOps;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7046E027802D59A42E9B52DA = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0FCB76B81D75CC8A10E702E,
+				86B5EA7E17C22E590803BE3A,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70894D35FAD33D9CB2AB2340 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 0.2.0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"BX_CONFIG_DEBUG=0",
+					"BGFX_CONFIG_DEBUG_ANNOTATION=0",
+					"BGFX_CONFIG_MULTITHREADED=1",
+					"BGFX_CONFIG_VIDEO=1",
+					__STDC_CONSTANT_MACROS,
+					__STDC_FORMAT_MACROS,
+					__STDC_LIMIT_MACROS,
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../thirdparty/SDL/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/examples/common/imgui",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bgfx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bimg/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
+				);
+				INFOPLIST_KEY_CFBundleDisplayName = "OpenTS Mac Shell";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				MARKETING_VERSION = 0.2.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					Metal,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					IOKit,
+					"-framework",
+					CoreFoundation,
+					"-framework",
+					VideoToolbox,
+					"-framework",
+					CoreMedia,
+					"-framework",
+					CoreVideo,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					Carbon,
+					"-framework",
+					CoreAudio,
+					"-framework",
+					ForceFeedback,
+					"-framework",
+					GameController,
+					"-weak_framework",
+					CoreHaptics,
+					"-weak_framework",
+					UniformTypeIdentifiers,
+					"-liconv",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tfrey.opents.mac.shell;
+				PRODUCT_NAME = OpenTSMacShell;
+			};
+			name = Release;
+		};
+		7194BB26DE0F4F37D6DB0C51 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71DC8F94BD66B902B6BCC6B9 = {
+			isa = PBXBuildFile;
+			fileRef = BB45F7BDE831568B1594F9A1;
+		};
+		72D5A0544043D6E34F51506B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_crc32.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_crc32.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		733188106A0BA7CF738F36CD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_memmove.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_memmove.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		7364A780BDE710E36CF80085 = {
+			isa = PBXBuildFile;
+			fileRef = BBE1F8A15364D0F5D6EFF6C6;
+		};
+		743C0F9565126C89A1115961 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_drawpoint.c;
+			path = ../../thirdparty/SDL/src/render/software/SDL_drawpoint.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		743E67E299AC48F7656C8519 = {
+			isa = PBXBuildFile;
+			fileRef = 15047006AF243FDC74073908;
+		};
+		74A954FDCD23F3E63366DC13 = {
+			isa = PBXBuildFile;
+			fileRef = 08959FE9526D922B48943755;
+		};
+		74F1F5FB034114E005EBA06F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_switch.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_switch.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		7539923F9210544756787A62 = {
+			isa = PBXBuildFile;
+			fileRef = 46AD4954D70855057811E9A8;
+		};
+		755E4BFDF10AD6E4C9E4EB82 = {
+			isa = PBXBuildFile;
+			fileRef = 743C0F9565126C89A1115961;
+		};
+		75EC15D625094018370CBF55 = {
+			isa = PBXBuildFile;
+			fileRef = E6BCE8A8D7514ECE92F28EBA;
+		};
+		767D10F1A70218D19EDB99F4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_drawline.c;
+			path = ../../thirdparty/SDL/src/render/software/SDL_drawline.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		76FA52D0595993F49B78DDA6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_xbox360w.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_xbox360w.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		7736178D06F217DC1C3C0551 = {
+			isa = PBXBuildFile;
+			fileRef = DD6E72F5CFBC0C65A3853CBF;
+		};
+		7756B89581F67C65C74C9486 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					SDL_STATIC_LIB,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../thirdparty/SDL/include",
+					"$(SRCROOT)/../../thirdparty/SDL/include/build_config",
+					"$(SRCROOT)/../../thirdparty/SDL/src",
+					"$(SRCROOT)/../../thirdparty/SDL/src/hidapi/hidapi",
+					"$(SRCROOT)/../../thirdparty/SDL/src/video/khronos",
+				);
+				PRODUCT_NAME = SDL3;
+			};
+			name = Release;
+		};
+		77F8D2AF4A1369010BE473A9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitwindow.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitwindow.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		781233E4A9161F1E9CC8040C = {
+			isa = PBXBuildFile;
+			fileRef = C0E2C18ACE8D38E0EF20BCFC;
+		};
+		783AF43F080A8EDF7DCB537D = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3050DC0D6D8F6E52CF9F517,
+				D06DD74EBF6C77C6DE456ECC,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7843610993DB0793DD4DAA36 = {
+			isa = PBXGroup;
+			children = (
+				9CC5B13401B469B41FD854F5,
+			);
+			name = bgfx;
+			sourceTree = "<group>";
+		};
+		790BFDF00397BC1AAE2FB989 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_sysmain_callbacks.m;
+			path = ../../thirdparty/SDL/src/main/ios/SDL_sysmain_callbacks.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		7967104CDE5194DDB47520D6 = {
+			isa = PBXGroup;
+			children = (
+				2FC8055F138579BC5497DA77,
+				358D80E369DBA26BD1A13C62,
+				0E1CC3FD9765ABE320FC2097,
+			);
+			name = Shell;
+			sourceTree = "<group>";
+		};
+		7A2CCFE1A1A4D8EE573BF9C0 = {
+			isa = PBXBuildFile;
+			fileRef = 1352527C0DE76665835B7D98;
+		};
+		7A515DE717FD416563B4621A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_sysfilesystem.c;
+			path = ../../thirdparty/SDL/src/filesystem/dummy/SDL_sysfilesystem.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A759089A0802E3872263CA0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_render.c;
+			path = ../../thirdparty/SDL/src/render/SDL_render.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		7AABE84DF3EE7D8205AEBEEE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_shield.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_shield.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		7AB93136454F095D9EB3FE5A = {
+			isa = PBXBuildFile;
+			fileRef = B098349DB945D71F75B0DA5D;
+		};
+		7AD32E971CD53336FC6D1698 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_windowevents.c;
+			path = ../../thirdparty/SDL/src/events/SDL_windowevents.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		7AFDD3A23DB2E04403065699 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0ACB8E65FBC0D7DB5957571;
+			buildPhases = (
+				3ECBAD8F9A6B0B29D34440B5,
+				BD70E5C253702F16EB09D82B,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShapeFacing;
+			productName = ShapeFacing;
+			productReference = 321DC39DEED11324197F747B;
+			productType = "com.apple.product-type.tool";
+		};
+		7B36A74C93DBAD6404205DE0 = {
+			isa = PBXBuildFile;
+			fileRef = 1B448693A266E2902F2ABB79;
+		};
+		7BA2E163C2E88BEE93746246 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C387A1329365791F389B3B9;
+			buildPhases = (
+				94748FB0256898C7038E6393,
+				883268BCF1EB1BEEC159B82D,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bimg;
+			productName = bimg;
+			productReference = 0E1782198D55CEDD0DFC9E39;
+			productType = "com.apple.product-type.library.static";
+		};
+		7BA6DA28BF451FC7CCB672DA = {
+			isa = PBXBuildFile;
+			fileRef = 4C6E727ED242F85AF37E1577;
+		};
+		7CA99845B2F11DCD558431AE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = unvqparity.cpp;
+			path = ../../tests/unvqdec/unvqparity.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		7D0DDAF52EDA5DF7150E1114 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_sysurl.m;
+			path = ../../thirdparty/SDL/src/misc/macos/SDL_sysurl.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		7D1D889FB2467FC3388B20D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoametalview.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoametalview.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		7D21CDD619A456DB78874B87 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitopengles.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitopengles.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		7D666B3C64BA36110EA7E7F3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = miniz.c;
+			path = ../../thirdparty/bgfx.cmake/bimg/3rdparty/tinyexr/deps/miniz/miniz.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		7D7927893403DBB5092FA126 = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = PriorityQueue;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D935DADFC0FCCFE5490DC45 = {
+			isa = PBXBuildFile;
+			fileRef = 1B1E54104EC1E94FCA8B12BE;
+		};
+		7E4989DA40749292874D2D78 = {
+			isa = PBXBuildFile;
+			fileRef = BC284C265017584EC37E4487;
+		};
+		7EB98912A2881FD13811ECB2 = {
+			isa = PBXBuildFile;
+			fileRef = 52824C220B62C2C1EAD0800F;
+		};
+		7EE2CE049228211FB8B8DA8C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_asyncio_generic.c;
+			path = ../../thirdparty/SDL/src/io/generic/SDL_asyncio_generic.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		7F09F95518A388596197C5E8 = {
+			isa = PBXBuildFile;
+			fileRef = 8B829590745F9F4AA39110B7;
+		};
+		7F424E0394A2EB9E887F8DF8 = {
+			isa = PBXBuildFile;
+			fileRef = C256CB62E618DC44F88DF836;
+		};
+		7F7705830FC11B568F6F2E46 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 8DFC35615CD7E0F5EEC3867C;
+			remoteInfo = AudioRing;
+		};
+		7F92CEDAE51327B52E24AEF1 = {
+			isa = PBXBuildFile;
+			fileRef = 7A759089A0802E3872263CA0;
+		};
+		7FFEDD4C340419DCBA8CBFF1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_eventwatch.c;
+			path = ../../thirdparty/SDL/src/events/SDL_eventwatch.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		8010D51966AF00B3354C8F9D = {
+			isa = PBXBuildFile;
+			fileRef = ED2F17EEC9813ED0A5AAF0E1;
+		};
+		801C641F9B43E85DE0CCA6A1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_iokitjoystick.c;
+			path = ../../thirdparty/SDL/src/joystick/darwin/SDL_iokitjoystick.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		82535DE0DA567F9B452D340E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_block_sizes.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_block_sizes.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		825858CBA22F228B34452D17 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_percentile_tables.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_percentile_tables.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		82DB96D893D2987C67D57F6C = {
+			isa = PBXBuildFile;
+			fileRef = 394E784195182EE148C13C76;
+		};
+		834FCEBE09DF7D16E146D9A1 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = D3A9267205276FE3C009C811;
+			remoteInfo = ColorOps;
+		};
+		835A56D7BEA67D57CDFBAF96 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_filesystem.c;
+			path = ../../thirdparty/SDL/src/filesystem/SDL_filesystem.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		8362E62E6CF63E59D3EAA004 = {
+			isa = PBXBuildFile;
+			fileRef = 40FEAC7C1CFBFAF95444B40F;
+		};
+		836767364EB5942782031188 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_sysurl.m;
+			path = ../../thirdparty/SDL/src/misc/ios/SDL_sysurl.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		841DFE0934FB1974EC6B9BF6 = {
+			isa = PBXBuildFile;
+			fileRef = 8458A6835D951DA1223B6779;
+		};
+		842EA188850537F917F248D7 = {
+			isa = PBXBuildFile;
+			fileRef = A0F47E026C2FDCD72DBBAFB8;
+		};
+		8455EDD58619D554ACE0675B = {
+			isa = PBXBuildFile;
+			fileRef = 20AEE74602D95E2F4E138B0A;
+		};
+		8458A6835D951DA1223B6779 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_syspower.m;
+			path = ../../thirdparty/SDL/src/power/uikit/SDL_syspower.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		84956A451DB5EC2DF8C052BC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoadialog.m;
+			path = ../../thirdparty/SDL/src/dialog/cocoa/SDL_cocoadialog.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		84AC30C17916371B28DFEFC2 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = PortableTests;
+			};
+			name = Release;
+		};
+		84C66A3F8C64453C295F0B4F = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 5E6029DED72453476405C3CD;
+			remoteInfo = UnvqDec;
+		};
+		859B550515C1B35E49EE858B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_coremotionsensor.m;
+			path = ../../thirdparty/SDL/src/sensor/coremotion/SDL_coremotionsensor.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		8646D2C49D2922BEBF15B6F5 = {
+			isa = PBXBuildFile;
+			fileRef = 885D25DCBDCE605FD8471484;
+		};
+		8699A3EDE57D5B1A607BB4D4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_systime.c;
+			path = ../../thirdparty/SDL/src/time/unix/SDL_systime.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		86B5EA7E17C22E590803BE3A = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+					NOMINMAX,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				PRODUCT_NAME = BlowfishContract;
+			};
+			name = Release;
+		};
+		86D07D8FB5145BEB03700CEE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_ps3.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_ps3.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		86E82935C60AF03E6D4D0157 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_sysmain_callbacks.c;
+			path = ../../thirdparty/SDL/src/main/generic/SDL_sysmain_callbacks.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		86FE3D85875494E0F5B1FA58 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					SDL_STATIC_LIB,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../thirdparty/SDL/include",
+					"$(SRCROOT)/../../thirdparty/SDL/include/build_config",
+					"$(SRCROOT)/../../thirdparty/SDL/src",
+					"$(SRCROOT)/../../thirdparty/SDL/src/hidapi/hidapi",
+					"$(SRCROOT)/../../thirdparty/SDL/src/video/khronos",
+				);
+				PRODUCT_NAME = SDL3;
+			};
+			name = Debug;
+		};
+		87102F8831AE623DB5BD74AB = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		880BCFE4D2687EEDC6F10F70 = {
+			isa = PBXBuildFile;
+			fileRef = 244BF19EB8BEDABC5AFC6ED2;
+		};
+		883268BCF1EB1BEEC159B82D = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		884FDB953E930E310A4B87BC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_url.c;
+			path = ../../thirdparty/SDL/src/misc/SDL_url.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		885D25DCBDCE605FD8471484 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoakeyboard.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoakeyboard.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		88A4C4A8D4D17556CAAEE197 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_camera_coremedia.m;
+			path = ../../thirdparty/SDL/src/camera/coremedia/SDL_camera_coremedia.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		88BAAF0BACD33DE20B0D663A = {
+			isa = PBXBuildFile;
+			fileRef = D06473672DF413EAB37C3DFC;
+		};
+		89F8F06A9C70980954BE5267 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4720EBF69CBC7E9833F4EB2,
+				C89700D2B11B210BCB2ECB56,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A7E78F8B4B401DB2981EE10 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_memset.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_memset.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		8A8E6D5B490F5C21A204E983 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8AFD8FF9467BA127EF2FAAAD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = xstraw.cpp;
+			path = ../../code/xstraw.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		8B20972C4D8B774F43C5E220 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = audiolevel.cpp;
+			path = ../../tests/audiolevel/audiolevel.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		8B5865DC41F2D9D801115836 = {
+			isa = PBXBuildFile;
+			fileRef = 82535DE0DA567F9B452D340E;
+		};
+		8B5E3506015497F7C69BE8EB = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03E78F4B0F371A32B9D7E89C,
+				6D2B1EC46D969CF0C08FFF3F,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B829590745F9F4AA39110B7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_pixels.c;
+			path = ../../thirdparty/SDL/src/video/SDL_pixels.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		8BC5BAF0BFA5F14AAB26C70F = {
+			isa = PBXBuildFile;
+			fileRef = DDA751BC21662D2DB0058E51;
+		};
+		8CC35F5AEDC42B905CFB806B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi.c;
+			path = ../../thirdparty/SDL/src/hidapi/SDL_hidapi.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		8CD9129BFF40A90E88EDB6AF = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6CB1D8356127A67C8C72A52,
+				0554E8E1DD90ED19A355DF46,
+				3A6ECE599175E0DE7BA3D4D8,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DB05F32049F19D9216DAFDE = {
+			isa = PBXBuildFile;
+			fileRef = 859B550515C1B35E49EE858B;
+		};
+		8DFC35615CD7E0F5EEC3867C = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BEF8A6B1B95CE9A114E3C08;
+			buildPhases = (
+				49EF0559AA1A372357D5C691,
+				6208B753E95F4C969C8069F3,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioRing;
+			productName = AudioRing;
+			productReference = 4CE5D74C0AAA1CAC23717DB7;
+			productType = "com.apple.product-type.tool";
+		};
+		8E1F922D82B5A5C93C4B1761 = {
+			isa = PBXBuildFile;
+			fileRef = 801C641F9B43E85DE0CCA6A1;
+		};
+		8EB8455BBBEC9F93CD0808E6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_murmur3.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_murmur3.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		8F9D2720E9B5F8D7E2F10583 = {
+			isa = PBXTargetDependency;
+			target = 10AD784280A82A19744987C4;
+			targetProxy = 02AB41CD609400E11D9840B2;
+		};
+		8FB860E6EA0631006382240A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_offscreenframebuffer.c;
+			path = ../../thirdparty/SDL/src/video/offscreen/SDL_offscreenframebuffer.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		904C861219BE0B20E666363C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_string.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_string.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		90767B5B567C8D2C5FB6E91E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoamodes.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoamodes.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		910BCB9F065A456CF56E4723 = {
+			isa = PBXBuildFile;
+			fileRef = 77F8D2AF4A1369010BE473A9;
+		};
+		913C6436BF29F4C53BD8297B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_cpuinfo.c;
+			path = ../../thirdparty/SDL/src/cpuinfo/SDL_cpuinfo.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		91E531BC0405DDA0C72CA892 = {
+			isa = PBXBuildFile;
+			fileRef = E68A7943FF992BE0C815EE22;
+		};
+		92337225CC60E4087BB0A163 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_surface.c;
+			path = ../../thirdparty/SDL/src/video/SDL_surface.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		9271537BA95887EE6870BC8E = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4D8450138137A79BC9CAD16;
+			buildPhases = (
+				12477A188E2CBF96D44ED002,
+				2452ECF65078B9B0AE186B0A,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bx;
+			productName = bx;
+			productReference = BF8AA552876F92F0F5BFCE30;
+			productType = "com.apple.product-type.library.static";
+		};
+		927F1911A865B78032D58E14 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitpen.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitpen.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		93717171666786BAF3954F89 = {
+			isa = PBXBuildFile;
+			fileRef = F80312BBD00F6A9D0B858857;
+		};
+		9377AB4B8B9488896F1881C1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_sysfilesystem.m;
+			path = ../../thirdparty/SDL/src/filesystem/cocoa/SDL_sysfilesystem.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		93DC7C8FA0265890B916CA20 = {
+			isa = PBXBuildFile;
+			fileRef = A375E012A34FF21FBA10D8A6;
+		};
+		93F00A0ADA0062CF098CA7AB = {
+			isa = PBXBuildFile;
+			fileRef = 301A976201CF299A332BB527;
+		};
+		94117075C20A2F59A8B48272 = {
+			isa = PBXBuildFile;
+			fileRef = 98AEEAB464D255A24C095EFE;
+		};
+		94748FB0256898C7038E6393 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7539923F9210544756787A62,
+				8B5865DC41F2D9D801115836,
+				5F6DBFB482EEBA0268B8203C,
+				842EA188850537F917F248D7,
+				6A5034F7B568A1E6EF6DF02C,
+				3342020D342A8B17E230AE68,
+				024BAA64EA78D331F592BF93,
+				880BCFE4D2687EEDC6F10F70,
+				436413AF6C8BBAB836CD7FA5,
+				9E6F3EE1C782A496BA25A2D5,
+				E1C7BC6EBC2748DD7A1E577C,
+				2DE7E39C6FAF2BCD13E7C1FA,
+				CC11BC2466770AE476EDD5A8,
+				5E6CE897E4140F149D045A31,
+				E9FFB7FC9DD96B6211DF1757,
+				71DC8F94BD66B902B6BCC6B9,
+				44E405034DEE910800FFA7A7,
+				DC79EFA635323A06C4E53232,
+				4A9F416117371EFC2A92CAD4,
+				30A8E3278E5FE27361533770,
+				58F4EE00D9A0BEB4BA0AD78A,
+				7364A780BDE710E36CF80085,
+				2C26508CFD4657CAA85D9BAD,
+				BC2612ACDC202F138F5050D7,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94EE761C49C61B47DE702140 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 49CE2392217E66D51CC1238A;
+			remoteInfo = LcwBlock;
+		};
+		963B3E205FFAA3F2FC5DEC5C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitopenglview.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitopenglview.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		966E8CDE017C866C251AC6CF = {
+			isa = PBXBuildFile;
+			fileRef = 43EA7900B0A80E8D75E71B8B;
+		};
+		967D68D755A96D5303687A2A = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9682A93B83A13A89604C23B3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_offscreenwindow.c;
+			path = ../../thirdparty/SDL/src/video/offscreen/SDL_offscreenwindow.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		97D75E560C2278A5C5FB2B82 = {
+			isa = PBXBuildFile;
+			fileRef = A098992858DC43E7019F88A4;
+		};
+		98AEEAB464D255A24C095EFE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_camera_dummy.c;
+			path = ../../thirdparty/SDL/src/camera/dummy/SDL_camera_dummy.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		994778096583DC0C99176CD9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_wii.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_wii.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		9988B0312D015B0F94FBE780 = {
+			isa = PBXBuildFile;
+			fileRef = 00E16C2FA533B5FA708997AD;
+		};
+		99DA2B0517FEE7E7229A0B4F = {
+			isa = PBXBuildFile;
+			fileRef = 6EF77F8D2E412A8C949F83AE;
+		};
+		9A84F9B36E42190780F3E46A = {
+			isa = PBXBuildFile;
+			fileRef = 4F20EE5227DE8F55DBED5AC2;
+		};
+		9B257364ECF566BFE8CFEA9D = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD97D7EA7E3BEA9EEAA09080;
+			buildPhases = (
+				2E5DA846A36BCB99BB4589A0,
+				7194BB26DE0F4F37D6DB0C51,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioHandle;
+			productName = AudioHandle;
+			productReference = 2745113D4CD099C51F9107C2;
+			productType = "com.apple.product-type.tool";
+		};
+		9C386442167D4180AB290DC8 = {
+			isa = PBXBuildFile;
+			fileRef = F8FCA6A8CC4A6AE1892A0997;
+		};
+		9C387A1329365791F389B3B9 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5CA21620B1A817E5E9D40551,
+				6000CBE5C4E8FA66ABDF3A07,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C7987C746A1C6CC3CA4AD5F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_dialog.c;
+			path = ../../thirdparty/SDL/src/dialog/SDL_dialog.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		9CC5B13401B469B41FD854F5 = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.cpp.objcpp;
+			name = amalgamated.cpp;
+			path = ../../thirdparty/bgfx.cmake/bgfx/src/amalgamated.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		9D7B4AA8256B22AFF5F30A60 = {
+			isa = PBXBuildFile;
+			fileRef = EAEDC9A431949C2A2FB846DE;
+		};
+		9DB8F60902BE09504D8AA3DE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitmetalview.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitmetalview.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		9E4669AD7457849C706343B7 = {
+			isa = PBXBuildFile;
+			fileRef = 57DFCB06F1E9049E1313DA01;
+		};
+		9E6F3EE1C782A496BA25A2D5 = {
+			isa = PBXBuildFile;
+			fileRef = 57AF43E9470548456B0AA061;
+		};
+		9E72313C0974F0F6B85C7231 = {
+			isa = PBXBuildFile;
+			fileRef = 88A4C4A8D4D17556CAAEE197;
+		};
+		9EAE799DC87E20A7A2E6D6E0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_steam_triton.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_steam_triton.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		9FD9876FE3967AD72070B4C4 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FE48313A94BC6298E43885E = {
+			isa = PBXBuildFile;
+			fileRef = F12CAC213A14E313E7370CE2;
+		};
+		9FFAE190CE03C66BA9AC8EE9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_atomic.c;
+			path = ../../thirdparty/SDL/src/atomic/SDL_atomic.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A037B9925E1F8A88F3FC791C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_offscreenvulkan.c;
+			path = ../../thirdparty/SDL/src/video/offscreen/SDL_offscreenvulkan.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A037CFCF39DA87B03A837C04 = {
+			isa = PBXBuildFile;
+			fileRef = 45A1009D1D2C233619FCA1B8;
+		};
+		A08581E831A85805CE487E90 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoashape.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoashape.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		A091914D413955B9D4FBD176 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_ideal_endpoints_and_weights.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_ideal_endpoints_and_weights.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		A098992858DC43E7019F88A4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_sysmutex.c;
+			path = ../../thirdparty/SDL/src/thread/pthread/SDL_sysmutex.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A0F47E026C2FDCD72DBBAFB8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_color_unquantize.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_color_unquantize.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		A172ED29A7514ECEDE4D3FAA = {
+			isa = PBXBuildFile;
+			fileRef = 20B02964E6C461D0CC1B493C;
+		};
+		A21112609B58468E761738F2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blit_copy.c;
+			path = ../../thirdparty/SDL/src/video/SDL_blit_copy.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A258E73C02AAA01C2484D28C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_stadia.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_stadia.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A290365C9CFC1EEBBA6F5C64 = {
+			isa = PBXBuildFile;
+			fileRef = 63B80AF3811E51257E420543;
+		};
+		A2BA69167B655540152C9B30 = {
+			isa = PBXBuildFile;
+			fileRef = 884FDB953E930E310A4B87BC;
+		};
+		A2C8EAD47E7DEA7B465034D9 = {
+			isa = PBXBuildFile;
+			fileRef = 187A344CC4B6A60BEAE0F986;
+		};
+		A375E012A34FF21FBA10D8A6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_pipeline_gpu.c;
+			path = ../../thirdparty/SDL/src/render/gpu/SDL_pipeline_gpu.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A3AF41A993389E88F537FF94 = {
+			isa = PBXBuildFile;
+			fileRef = 284A601DF99081936A8FC3F9;
+		};
+		A43BC90ABEBE95A8D5456279 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapihaptic_lg4ff.c;
+			path = ../../thirdparty/SDL/src/haptic/hidapi/SDL_hidapihaptic_lg4ff.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A486CFA7A42B0E7196CCC2EC = {
+			isa = PBXTargetDependency;
+			target = 66843A2D6E45AE5BC6912D51;
+			targetProxy = B4AF9838F0336E058FBD06F0;
+		};
+		A50E9C971C94B8E72FBDF307 = {
+			isa = PBXBuildFile;
+			fileRef = 0D4792729396D51516E403DA;
+		};
+		A5E4B25C4B7B42052F915199 = {
+			isa = PBXBuildFile;
+			fileRef = B9939DAC039B000EF7D65CE8;
+		};
+		A5FD1FA7006BF23B7DCC1BF8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_mathlib.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_mathlib.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		A61B1EBB225D313C61628AAD = {
+			isa = PBXBuildFile;
+			fileRef = 2E996BF1DD3C24770A9C8364;
+		};
+		A63E061B6931408E8CEE8AEF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_report_descriptor.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_report_descriptor.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A65520802E13496607D771F7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hashtable.c;
+			path = ../../thirdparty/SDL/src/SDL_hashtable.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A6683542054D63D9282C4A11 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_rumble.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_rumble.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A69528D966D15D0C161AB2D7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_nullframebuffer.c;
+			path = ../../thirdparty/SDL/src/video/dummy/SDL_nullframebuffer.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		A6CB1D8356127A67C8C72A52 = {
+			isa = PBXBuildFile;
+			fileRef = 2FC8055F138579BC5497DA77;
+		};
+		A6D439CB3DEA26F66929A9F1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = lcwcomp.cpp;
+			path = ../../tests/lcwcomp/lcwcomp.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		A6D7B168F48BE1C551E90520 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+					NOMINMAX,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/priorityqueue",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = PriorityQueue;
+			};
+			name = Release;
+		};
+		A76A6270491F04ECEDBC72C3 = {
+			isa = PBXBuildFile;
+			fileRef = 8AFD8FF9467BA127EF2FAAAD;
+		};
+		A80B6AE41F61EC3CEF5BC67F = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8C3757E5F3702D31DE46A6C = {
+			isa = PBXBuildFile;
+			fileRef = A43BC90ABEBE95A8D5456279;
+		};
+		A8D5E3AD52D1D589942474A3 = {
+			isa = PBXBuildFile;
+			fileRef = A9A14787D8036563A9E7EDA1;
+		};
+		A91CFBA2EFA75A1EBF69EE02 = {
+			isa = PBXBuildFile;
+			fileRef = 4286DA5F0A3E7E8EAC7198E7;
+		};
+		A97052F3E2ECCBC180D8314E = {
+			isa = PBXBuildFile;
+			fileRef = 5C6230A7FE01DFA56E7DFD58;
+		};
+		A9A14787D8036563A9E7EDA1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = controller_type.c;
+			path = ../../thirdparty/SDL/src/joystick/controller_type.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		AA0094472ACA88B4E68A22FA = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7046E027802D59A42E9B52DA;
+			buildPhases = (
+				1FC354E48C23BA828F9D8013,
+				9FD9876FE3967AD72070B4C4,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BlowfishContract;
+			productName = BlowfishContract;
+			productReference = 14D5D20971D91A0B33F00AFA;
+			productType = "com.apple.product-type.tool";
+		};
+		AA0D0B4B963E011840E33D10 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_quantization.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_quantization.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		AA26715DABB286CEB6094F84 = {
+			isa = PBXBuildFile;
+			fileRef = 836767364EB5942782031188;
+		};
+		AAE5F1A6EDECB3975B35B90B = {
+			isa = PBXBuildFile;
+			fileRef = 05BDE987EE10A7E3F3CC2C55;
+		};
+		AB7A81CC2448404EE0534CE5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blit_N.c;
+			path = ../../thirdparty/SDL/src/video/SDL_blit_N.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		AB87F6BD42AEE4E219BFB7CF = {
+			isa = PBXBuildFile;
+			fileRef = 6063086773F781E0AED21D98;
+		};
+		AC770F116ABAC1530ED30F66 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_stdlib.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_stdlib.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		ACC64019A3E074D02DB9D141 = {
+			isa = PBXBuildFile;
+			fileRef = F72338CD76B33B888DAB6AD5;
+		};
+		ACC692D6DD65652C551FA993 = {
+			isa = PBXBuildFile;
+			fileRef = 094A1C687D8D84DE10F10A72;
+		};
+		ACF3FEDF10A1ABC981C52971 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_compress_symbolic.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_compress_symbolic.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		AD0E975CFE591CAB1F7108B4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_compute_variance.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_compute_variance.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		AD18DB7B565ABB75A5A2C23F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = audioring.cpp;
+			path = ../../tests/audioring/audioring.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		AD80D8C14F134FEA11762BF9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_color_quantize.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_color_quantize.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		ADAC4E57F90ECF34DBDCA2A6 = {
+			isa = PBXBuildFile;
+			fileRef = 14EE86D57DFA064095F34ED6;
+		};
+		ADE96A47120643362704C1AD = {
+			isa = PBXBuildFile;
+			fileRef = 205506E9BBFA3A485D745551;
+		};
+		AE53795B7DAC629EBD73AAD0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_syssem.c;
+			path = ../../thirdparty/SDL/src/thread/pthread/SDL_syssem.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		AEC782238ADDF04878212B89 = {
+			isa = PBXBuildFile;
+			fileRef = 6166A70CAF4787E52B42FB50;
+		};
+		AF776E1AF0998E521948EF96 = {
+			isa = PBXBuildFile;
+			fileRef = A63E061B6931408E8CEE8AEF;
+		};
+		B098349DB945D71F75B0DA5D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoavulkan.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoavulkan.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		B0A937B0D37E0FA31B1253C7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_offscreenvideo.c;
+			path = ../../thirdparty/SDL/src/video/offscreen/SDL_offscreenvideo.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		B0CC87D4992EC2A835B38EE5 = {
+			isa = PBXBuildFile;
+			fileRef = B76109657080E5F55F352055;
+		};
+		B12E449D065FD02BF8E4D126 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_clipboard.c;
+			path = ../../thirdparty/SDL/src/video/SDL_clipboard.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		B15E69D62DA758A457896C15 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_getenv.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_getenv.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		B19F2324EA0DBFE80FD9719B = {
+			isa = PBXBuildFile;
+			fileRef = 166986505A24C0A19C9A3986;
+		};
+		B1B689B7E58409BB76C43775 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_rect.c;
+			path = ../../thirdparty/SDL/src/video/SDL_rect.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		B29348EF477A988E515C6CC1 = {
+			isa = PBXBuildFile;
+			fileRef = 733188106A0BA7CF738F36CD;
+		};
+		B29649F552268BF0B1DBB216 = {
+			isa = PBXBuildFile;
+			fileRef = F5AE251A5C1E31AE4AA9445B;
+		};
+		B2B2DB8CA6D1949041E80875 = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = UnvqDec;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B3050DC0D6D8F6E52CF9F517 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/lcwcomp",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = LcwComp;
+			};
+			name = Debug;
+		};
+		B33770D19783C77F56F1064B = {
+			isa = PBXBuildFile;
+			fileRef = EC22345C1FAB448CD457100F;
+		};
+		B4524944EACE1BE79D95E1FF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_core_unsupported.c;
+			path = ../../thirdparty/SDL/src/core/SDL_core_unsupported.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		B47CFCC6CC647166151F64EE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = blowfish.cpp;
+			path = ../../tests/blowfish/blowfish.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		B4AF9838F0336E058FBD06F0 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 66843A2D6E45AE5BC6912D51;
+			remoteInfo = bgfx;
+		};
+		B4D4513C336824AE841A17C1 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = AA0094472ACA88B4E68A22FA;
+			remoteInfo = BlowfishContract;
+		};
+		B581BC8174F0ED298DD6FBB0 = {
+			isa = PBXBuildFile;
+			fileRef = C82C9DAA4A427AC451D6FECF;
+		};
+		B6F8962F439B1932EEB5C685 = {
+			isa = PBXBuildFile;
+			fileRef = D4B2F5583B5374461F125EEF;
+		};
+		B76109657080E5F55F352055 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_qsort.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_qsort.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		B78923F177BA0E4B48EB6939 = {
+			isa = PBXBuildFile;
+			fileRef = 42EEB1B9B0DF477A02DCDE08;
+		};
+		B8087C22CC8225004EEB1181 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_sensor.c;
+			path = ../../thirdparty/SDL/src/sensor/SDL_sensor.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		B8980D93FB1F8CB88245C4E2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_gpu_metal.m;
+			path = ../../thirdparty/SDL/src/gpu/metal/SDL_gpu_metal.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		B8BABB1DAD9AA91433F2C263 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDD47DF609F6B6EE5BADE2EE,
+				56D77E5951505ED8F8A19CCF,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8BB1CC30C38B0E77C2F9762 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+					NOMINMAX,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = LcwBlock;
+			};
+			name = Release;
+		};
+		B9939DAC039B000EF7D65CE8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = priorityqueuetest.cpp;
+			path = ../../tests/priorityqueue/priorityqueuetest.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		BA356475E2B5A6E75CECCF72 = {
+			isa = PBXBuildFile;
+			fileRef = 1D0A39F8F70C207F3EF7E3CC;
+		};
+		BA75A028C2A014D35612F5BD = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = LcwComp;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BAACB1A7F64F18EE97FE89FC = {
+			isa = PBXTargetDependency;
+			target = 5E6029DED72453476405C3CD;
+			targetProxy = 84C66A3F8C64453C295F0B4F;
+		};
+		BB45F7BDE831568B1594F9A1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_partition_tables.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_partition_tables.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		BB963A6071706F5C45702FBA = {
+			isa = PBXBuildFile;
+			fileRef = FC78A9DF0BA6B7F64E5D2011;
+		};
+		BBE1F8A15364D0F5D6EFF6C6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_weight_quant_xfer_tables.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_weight_quant_xfer_tables.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		BC2612ACDC202F138F5050D7 = {
+			isa = PBXBuildFile;
+			fileRef = 3ECDD6F1E3CFE5B1B1FA0BEF;
+		};
+		BC284C265017584EC37E4487 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitviewcontroller.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitviewcontroller.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		BCB9EA68E41CE3AAA07CB314 = {
+			isa = PBXBuildFile;
+			fileRef = F25D91D2AA9089363747FBA5;
+		};
+		BCD9E962F071AA2780A069A3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_properties.c;
+			path = ../../thirdparty/SDL/src/SDL_properties.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		BD70E5C253702F16EB09D82B = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDD8071F042080710BEFD8C4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_switch2.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_switch2.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		BDFBA13B6520FFCE776AA5CA = {
+			isa = PBXBuildFile;
+			fileRef = 45F544E81D116A3D1E8A3E2D;
+		};
+		BE84480FE680AC2AE3C5DD67 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9A5DC644BAFA7951DE5AAC0,
+				AAE5F1A6EDECB3975B35B90B,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF0984F9ED19FCEB535DFBC9 = {
+			isa = PBXBuildFile;
+			fileRef = 6CCFAEB61C299CFDD638FB4F;
+		};
+		BF52AEDBA6F4FBC9EEB591E4 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68FE184FE0A7E19DBC37E38,
+				84AC30C17916371B28DFEFC2,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF8AA552876F92F0F5BFCE30 = {
+			isa = PBXFileReference;
+			explicitFileType = archive.ar;
+			includeInIndex = 0;
+			path = libbx.a;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C01CE3B0F62B0EB419A74443 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/shapefacing",
+				);
+				PRODUCT_NAME = ShapeFacing;
+			};
+			name = Release;
+		};
+		C086AB92D43BB0978E976764 = {
+			isa = PBXBuildFile;
+			fileRef = 4846A0B26434291F09E513FB;
+		};
+		C0ACB8E65FBC0D7DB5957571 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CFEEB460E442B32492DBEA2,
+				C01CE3B0F62B0EB419A74443,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0D4FCBC19A03FF4CF4BA20C = {
+			isa = PBXBuildFile;
+			fileRef = C3A820FE6F2C04AA2D1C3264;
+		};
+		C0E2C18ACE8D38E0EF20BCFC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_coreaudio.m;
+			path = ../../thirdparty/SDL/src/audio/coreaudio/SDL_coreaudio.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		C0EA85C3B97528D37DECB6B3 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/colorops",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = ColorOps;
+			};
+			name = Debug;
+		};
+		C256CB62E618DC44F88DF836 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_syslocale.m;
+			path = ../../thirdparty/SDL/src/locale/macos/SDL_syslocale.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		C319F53A63E7D44ED4488E1B = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = AudioRing;
+			};
+			name = Release;
+		};
+		C3A820FE6F2C04AA2D1C3264 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_luna.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_luna.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		C3FDC18792518721D9B6197A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = buff.cpp;
+			path = ../../code/buff.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		C4153F51D728A488A922697A = {
+			isa = PBXGroup;
+			children = (
+				07A0B5E08A9803B9665CDF3D,
+			);
+			name = bx;
+			sourceTree = "<group>";
+		};
+		C4BFDDED537DA41363DAC187 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_virtualjoystick.c;
+			path = ../../thirdparty/SDL/src/joystick/virtual/SDL_virtualjoystick.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		C4D2DEF4E0F80E0AFC790212 = {
+			isa = PBXBuildFile;
+			fileRef = A65520802E13496607D771F7;
+		};
+		C6276D78626F4998ECA3476E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_vulkan_utils.c;
+			path = ../../thirdparty/SDL/src/video/SDL_vulkan_utils.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		C65B50B19D0EDA337AA30BE7 = {
+			isa = PBXBuildFile;
+			fileRef = 9FFAE190CE03C66BA9AC8EE9;
+		};
+		C680CA25A91B929F818898B5 = {
+			isa = PBXBuildFile;
+			fileRef = C6276D78626F4998ECA3476E;
+		};
+		C7435116D1BFC32ABA3BE360 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = unvqdec.cpp;
+			path = ../../code/unvqdec.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		C777F9477110B90D4D893789 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FE48313A94BC6298E43885E,
+				7EB98912A2881FD13811ECB2,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7B38269DECE968D0A613C69 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_shaders_gl.c;
+			path = ../../thirdparty/SDL/src/render/opengl/SDL_shaders_gl.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		C82C9DAA4A427AC451D6FECF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blit_auto.c;
+			path = ../../thirdparty/SDL/src/video/SDL_blit_auto.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		C82DD30C506947D002B91B6E = {
+			isa = PBXBuildFile;
+			fileRef = FF2BFEC41E94C1896CE8B522;
+		};
+		C86F8CB70A411B914A2F018B = {
+			isa = PBXBuildFile;
+			fileRef = EE1580DA67DE62C11BF480C2;
+		};
+		C89700D2B11B210BCB2ECB56 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/unvqdec",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = UnvqDec;
+			};
+			name = Release;
+		};
+		CAC1A0A9ED1B113F8E87AAAC = {
+			isa = PBXBuildFile;
+			fileRef = B8980D93FB1F8CB88245C4E2;
+		};
+		CBA43C07A7D5FA03E17116B1 = {
+			isa = PBXBuildFile;
+			fileRef = 86D07D8FB5145BEB03700CEE;
+		};
+		CBC42407441D5CA2CE93BAE9 = {
+			isa = PBXBuildFile;
+			fileRef = 6F3E176F20A2A8DDDC7B8EC7;
+		};
+		CBEBDDA291B9E31349A7CB97 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_strtokr.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_strtokr.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		CBED84AF374331ADB30020BD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoaopengles.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoaopengles.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		CC11BC2466770AE476EDD5A8 = {
+			isa = PBXBuildFile;
+			fileRef = 06EF25D8541BF9D4F03B3B8A;
+		};
+		CC24DFC541903286DB786FE9 = {
+			isa = PBXBuildFile;
+			fileRef = 1496FD5C66DC6780807706A5;
+		};
+		CC9BD33AA9E70522285FED83 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_joystick.c;
+			path = ../../thirdparty/SDL/src/joystick/SDL_joystick.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		CD00AEC24E9E12601881E1BF = {
+			isa = PBXBuildFile;
+			fileRef = B1B689B7E58409BB76C43775;
+		};
+		CD3BD919079FE0D7D74798E8 = {
+			isa = PBXBuildFile;
+			fileRef = 1325F3EBE1EAE9865B424E55;
+		};
+		CD97D7EA7E3BEA9EEAA09080 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE7CDE9E0AE904EA5205058F,
+				03A6D81E8350784184E27832,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE08133C3680F2B90C4E44AC = {
+			isa = PBXBuildFile;
+			fileRef = EE1B96F97C141C12412DD087;
+		};
+		CE3B720D421C3E464D8B7C12 = {
+			isa = PBXBuildFile;
+			fileRef = 07A887F6AF502C2322E785FE;
+		};
+		CE519C48DCD3CD1CD90A251D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_entry.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_entry.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		CEA590CE1362D5B8A93CE3F5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_image.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_image.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		CF153D480BE926E3F4A22ED5 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = AudioLevel;
+			};
+			name = Release;
+		};
+		CF7E3A5A78D665B6BEE7F7BE = {
+			isa = PBXBuildFile;
+			fileRef = E314165168B4574168977A06;
+		};
+		CFE1281075689C6C6551326E = {
+			isa = PBXTargetDependency;
+			target = 7AFDD3A23DB2E04403065699;
+			targetProxy = 67D398A60507C27BC853B616;
+		};
+		CFECD5516659349506D6CC93 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_power.c;
+			path = ../../thirdparty/SDL/src/power/SDL_power.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		CFF1065879BE29F00BD055C3 = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BF52AEDBA6F4FBC9EEB591E4;
+			buildPhases = (
+				59D6DA2A849342596840D50F,
+			);
+			dependencies = (
+				45866468BCD051AA3D9AF80C,
+				BAACB1A7F64F18EE97FE89FC,
+				D5DAA372018938ADC6FEAC82,
+				2B671A857F4EA95515131DC0,
+				E6A2DAB5F278F4EA5C3D4CDC,
+				2F85DDDD4F9F38542CCF58E3,
+				EC39DF56C5217710C11656C4,
+				8F9D2720E9B5F8D7E2F10583,
+				CFE1281075689C6C6551326E,
+				48AA33EF9DB35CAD62FC95CB,
+			);
+			name = PortableTests;
+			productName = PortableTests;
+		};
+		D06473672DF413EAB37C3DFC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_random.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_random.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		D06DD74EBF6C77C6DE456ECC = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/lcwcomp",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = LcwComp;
+			};
+			name = Release;
+		};
+		D0E616EC5D542DA047F59CE6 = {
+			isa = PBXBuildFile;
+			fileRef = 767D10F1A70218D19EDB99F4;
+		};
+		D0FCB76B81D75CC8A10E702E = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+					NOMINMAX,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				PRODUCT_NAME = BlowfishContract;
+			};
+			name = Debug;
+		};
+		D1FF1478E4BC512BEFBF4413 = {
+			isa = PBXFileReference;
+			explicitFileType = archive.ar;
+			includeInIndex = 0;
+			path = libbgfx.a;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D2246702A634F52D1C8CDEDA = {
+			isa = PBXBuildFile;
+			fileRef = 7AD32E971CD53336FC6D1698;
+		};
+		D261D7890B39C3E21B2547FA = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+					NOMINMAX,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/priorityqueue",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = PriorityQueue;
+			};
+			name = Debug;
+		};
+		D29198592E71D0325AEEECBA = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"BX_CONFIG_DEBUG=0",
+					__STDC_CONSTANT_MACROS,
+					__STDC_FORMAT_MACROS,
+					__STDC_LIMIT_MACROS,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/3rdparty",
+					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
+				);
+				PRODUCT_NAME = bx;
+			};
+			name = Release;
+		};
+		D3A9267205276FE3C009C811 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F62F3DCC91E529DA0B62D4A4;
+			buildPhases = (
+				C777F9477110B90D4D893789,
+				967D68D755A96D5303687A2A,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColorOps;
+			productName = ColorOps;
+			productReference = 703710B739051F7B3E50C587;
+			productType = "com.apple.product-type.tool";
+		};
+		D3BA29895932FA568A8A3EB0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_utils.c;
+			path = ../../thirdparty/SDL/src/SDL_utils.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		D4B2F5583B5374461F125EEF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_video_unsupported.c;
+			path = ../../thirdparty/SDL/src/video/SDL_video_unsupported.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		D4CDAA9F952EE19422BA3BCE = {
+			isa = PBXBuildFile;
+			fileRef = 12E0AADA734EDF516B2879A1;
+		};
+		D4F3F8B200A3741A9DC59319 = {
+			isa = PBXBuildFile;
+			fileRef = FCA5C6A113ACAB4738269766;
+		};
+		D5455A3F9CADF02D968BD968 = {
+			isa = PBXBuildFile;
+			fileRef = 2DE1AF7401DB240A6355F114;
+		};
+		D5DAA372018938ADC6FEAC82 = {
+			isa = PBXTargetDependency;
+			target = DFD8E7D87EEB9D5B3951DD13;
+			targetProxy = E38B1F50FFBCB82ED796FC41;
+		};
+		D5EC40D854B0804B45ACDE7D = {
+			isa = PBXBuildFile;
+			fileRef = 67968197BC7A65DE1609920A;
+		};
+		D64905EC9E6F51E9CAB9B57E = {
+			isa = PBXBuildFile;
+			fileRef = F92D8216ECA4BFB699369102;
+		};
+		D68FE184FE0A7E19DBC37E38 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = PortableTests;
+			};
+			name = Debug;
+		};
+		D715B2674DE7CFB113086596 = {
+			isa = PBXBuildFile;
+			fileRef = 43EBF4B1B5938BF8AF8BCCD0;
+		};
+		D7241DF0E141A18DE8664F22 = {
+			isa = PBXBuildFile;
+			fileRef = FE56BCB2C3ADAFD69D1A23C0;
+		};
+		D7481E86862F5DF5DEF749A3 = {
+			isa = PBXBuildFile;
+			fileRef = E123068EBD11573E2CBA95EF;
+		};
+		D7B5D2863F4E98E7C0F4A9F6 = {
+			isa = PBXBuildFile;
+			fileRef = A6683542054D63D9282C4A11;
+		};
+		D84FAA0F39693CBAEB49DC25 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_asyncio_windows_ioring.c;
+			path = ../../thirdparty/SDL/src/io/windows/SDL_asyncio_windows_ioring.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		D996A35893663AA066E635F1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_uikitmodes.m;
+			path = ../../thirdparty/SDL/src/video/uikit/SDL_uikitmodes.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		D9F4D760B967DEA29BCD28C4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_steam_virtual_gamepad.c;
+			path = ../../thirdparty/SDL/src/joystick/SDL_steam_virtual_gamepad.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		DA79F69C2EE354B668983B0D = {
+			isa = PBXBuildFile;
+			fileRef = B8087C22CC8225004EEB1181;
+		};
+		DA9A083044B4A21ACA20D55E = {
+			isa = PBXBuildFile;
+			fileRef = 2D6A5934BC323AF3FEF1CE81;
+		};
+		DB36F0BB1398CF55D2A232E5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoaevents.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoaevents.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		DC555F60D5563C60996FE21C = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5CD106D7A53413B8CDEA69EE;
+			buildPhases = (
+				BE84480FE680AC2AE3C5DD67,
+				10E3FC22C3612C2C02D4289E,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioLevel;
+			productName = AudioLevel;
+			productReference = 65E8EE4612B98251512A812D;
+			productType = "com.apple.product-type.tool";
+		};
+		DC79EFA635323A06C4E53232 = {
+			isa = PBXBuildFile;
+			fileRef = F348B0A622D70A9D80092E23;
+		};
+		DC8026856F667E40A442BD27 = {
+			isa = PBXBuildFile;
+			fileRef = E8C4D779956966C64E948E91;
+		};
+		DC8BA8D02BD0F96FAE6C0006 = {
+			isa = PBXBuildFile;
+			fileRef = 297483ADB69EB5E7E604D4DB;
+		};
+		DC9D8F41D4B2B3CE90222492 = {
+			isa = PBXBuildFile;
+			fileRef = 305D0AF9C78D5D1FA4B9F659;
+		};
+		DD196731C4483523053FAED2 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF7E3A5A78D665B6BEE7F7BE,
+				2470A7E488211FEF795BB2D8,
+				ACC64019A3E074D02DB9D141,
+				19F2D846044D9357CD24C92D,
+				C4D2DEF4E0F80E0AFC790212,
+				8BC5BAF0BFA5F14AAB26C70F,
+				A61B1EBB225D313C61628AAD,
+				B33770D19783C77F56F1064B,
+				F0588679062D51B4711474E1,
+				5860A1164F016734179D0610,
+				C65B50B19D0EDA337AA30BE7,
+				ADE96A47120643362704C1AD,
+				59776F1FAD9DBD10E68EF682,
+				A2C8EAD47E7DEA7B465034D9,
+				4A0F294008433501F028FEAE,
+				5C6957070C51A991C3F21C0F,
+				B29649F552268BF0B1DBB216,
+				FDE4BE1CEE5B79043D6D8F96,
+				E13922A7DB97A230B21A389A,
+				D5455A3F9CADF02D968BD968,
+				781233E4A9161F1E9CC8040C,
+				1A8E827D74777B4760A85460,
+				57B705A26AA38144C0E07DF4,
+				B19F2324EA0DBFE80FD9719B,
+				9E72313C0974F0F6B85C7231,
+				94117075C20A2F59A8B48272,
+				4FA44A2794EA938B4C7A3FA5,
+				F1CF2CF1F95DACE9119F78B0,
+				6D2976A325CF5B8F3609DCAE,
+				CC24DFC541903286DB786FE9,
+				66B0502B9C87F6DA20603CCA,
+				D7481E86862F5DF5DEF749A3,
+				91E531BC0405DDA0C72CA892,
+				2233BA43A172F73425991F53,
+				CE08133C3680F2B90C4E44AC,
+				99DA2B0517FEE7E7229A0B4F,
+				9A84F9B36E42190780F3E46A,
+				62FB2FEAB0CAFF8172F8C00F,
+				17BF71FB6B879B21169B1598,
+				9988B0312D015B0F94FBE780,
+				AEC782238ADDF04878212B89,
+				DC8BA8D02BD0F96FAE6C0006,
+				ADAC4E57F90ECF34DBDCA2A6,
+				1F232A8AFC27C61B90550B96,
+				DA9A083044B4A21ACA20D55E,
+				D2246702A634F52D1C8CDEDA,
+				0A7A99E7B63C9BC2029BBEFE,
+				177E6BD6AA272193A9AF73B3,
+				F3326DE8B910D51141038C54,
+				7D935DADFC0FCCFE5490DC45,
+				5E571BA2F9F85C6ADD1E22D5,
+				CAC1A0A9ED1B113F8E87AAAC,
+				A91CFBA2EFA75A1EBF69EE02,
+				6D3E2B0A26251905A5A24551,
+				06B9389B2D55FB418149914F,
+				B78923F177BA0E4B48EB6939,
+				CD3BD919079FE0D7D74798E8,
+				A8C3757E5F3702D31DE46A6C,
+				0D4D230D9687917E61D59BE6,
+				3128FC1672E27887E42DEB67,
+				BA356475E2B5A6E75CECCF72,
+				C82DD30C506947D002B91B6E,
+				07F2FD4A21C0FA36D023DBC8,
+				51534648A1ABA2B57FC0FF11,
+				485C299D690840530FB917BF,
+				2ABA57D89448578739D1B913,
+				6B599744012BC9041B89B477,
+				4897F70441174E9058B8EBCF,
+				A8D5E3AD52D1D589942474A3,
+				8E1F922D82B5A5C93C4B1761,
+				A172ED29A7514ECEDE4D3FAA,
+				ACC692D6DD65652C551FA993,
+				9C386442167D4180AB290DC8,
+				7BA6DA28BF451FC7CCB672DA,
+				CE3B720D421C3E464D8B7C12,
+				0097342E4ABBA76489EE92C2,
+				DC9D8F41D4B2B3CE90222492,
+				C0D4FCBC19A03FF4CF4BA20C,
+				CBA43C07A7D5FA03E17116B1,
+				26F6C22211AE12286AA4A835,
+				4E26E90B5D5C71D6BD6A92D2,
+				D7B5D2863F4E98E7C0F4A9F6,
+				F3F8E9992E61F811A357AAC9,
+				4B1814E3438D31E5F0860946,
+				EC5B37671B1E12DCD8352BFB,
+				52E8024C9ABE64D317939B39,
+				27080F150C554543B973C8CC,
+				6322034519F6C2C2BC995C58,
+				0DF7A7570DEF6A3FCFED12D0,
+				F867176A2282617BAD5F1DFE,
+				0C083D9A0AD42CB823AC73BD,
+				584030E18DFEAF17F480A2C3,
+				15C74C55084474E8A4A0AB94,
+				386F22EB7C4AC84D0912906D,
+				22C4010ECF5538B551ED910C,
+				C86F8CB70A411B914A2F018B,
+				140CB1B90819087CDF1D6092,
+				AF776E1AF0998E521948EF96,
+				15893D6B8C9F59297BE56AC4,
+				14C940EF017BD2A197C0C694,
+				D64905EC9E6F51E9CAB9B57E,
+				0A308152FC8DFC6F12AA3B40,
+				7F424E0394A2EB9E887F8DF8,
+				D7241DF0E141A18DE8664F22,
+				EB1C4CADFD4D2F85168D56FA,
+				45DF09164F4BE8643F782D7E,
+				FB412D36DA144C0CD125FD96,
+				FCA9E9A69138651E0E85984B,
+				A2BA69167B655540152C9B30,
+				AA26715DABB286CEB6094F84,
+				4820C45D064E682F3292990F,
+				28E5FF775B215E1C3BC8E5E8,
+				6BEEC051909DAD56FCADD6BF,
+				841DFE0934FB1974EC6B9BF6,
+				45CADE26DEA292D5E1E70835,
+				8010D51966AF00B3354C8F9D,
+				7A2CCFE1A1A4D8EE573BF9C0,
+				7F92CEDAE51327B52E24AEF1,
+				E00C9AA123EE279B8B8E9E5F,
+				52B25B25BBB2FAB069BFEC0E,
+				93DC7C8FA0265890B916CA20,
+				F8CA5A12383BFA369999F60B,
+				9D7B4AA8256B22AFF5F30A60,
+				FF6EB5ADBFE5E675896B9D3A,
+				93F00A0ADA0062CF098CA7AB,
+				4057084C7315D647288443A8,
+				BB963A6071706F5C45702FBA,
+				7B36A74C93DBAD6404205DE0,
+				478591AC5EB368CF9772CEBD,
+				69E6F316B8A3ACF13A0C65EE,
+				4B50FCB0CDEBE0AA8FBDC960,
+				D0E616EC5D542DA047F59CE6,
+				755E4BFDF10AD6E4C9E4EB82,
+				BF0984F9ED19FCEB535DFBC9,
+				574DD28F8D3FDD94E56ED680,
+				DA79F69C2EE354B668983B0D,
+				8DB05F32049F19D9216DAFDE,
+				D5EC40D854B0804B45ACDE7D,
+				EB4CADE7F54F75F65532908D,
+				223C3CF4958D2A3E006EED39,
+				26FD53FEC209CA0BE200F92A,
+				DC8026856F667E40A442BD27,
+				2A8B5EEEAC85A26B6341EDB0,
+				34E853ECE9B83BBFA345F179,
+				B29348EF477A988E515C6CC1,
+				43B76BDA29FE7B81B6F6AC6C,
+				2BC7C8137CD28077F20EE5AE,
+				B0CC87D4992EC2A835B38EE5,
+				88BAAF0BACD33DE20B0D663A,
+				0702E9CE92C43C3527290DF3,
+				52190EFEB8D150FFE87944A1,
+				6DB6608124C27FCF97CD6F5C,
+				82DB96D893D2987C67D57F6C,
+				9E4669AD7457849C706343B7,
+				BDFBA13B6520FFCE776AA5CA,
+				3B1C3211C6B22EC1A13D4989,
+				97D75E560C2278A5C5FB2B82,
+				A3AF41A993389E88F537FF94,
+				3177F197D6466DB836E7574A,
+				47CAEAD6F72400365A4BFAB1,
+				26E60B696E417CF4AA00A986,
+				8362E62E6CF63E59D3EAA004,
+				27AAFED41B1BD10A2EC7CAEA,
+				5B4D7C87A51C7CF285D638A5,
+				44EFC0FE8053A6A74045A222,
+				DD296A8308734970857BE02A,
+				A97052F3E2ECCBC180D8314E,
+				93717171666786BAF3954F89,
+				A037CFCF39DA87B03A837C04,
+				74A954FDCD23F3E63366DC13,
+				21A758DDB73CF31BBFCBC19E,
+				A290365C9CFC1EEBBA6F5C64,
+				1B482F7FB48361BA04B96B52,
+				1FC3411BF5B952E005BFD0C3,
+				B581BC8174F0ED298DD6FBB0,
+				5339A914918E42A8024BC651,
+				0865D0D99695E24C0B455304,
+				AB87F6BD42AEE4E219BFB7CF,
+				E1AB736CCEA139D1B349231F,
+				36845C225F44439A24FF21D7,
+				329E26774A5E37B9B11AC8CD,
+				7F09F95518A388596197C5E8,
+				CD00AEC24E9E12601881E1BF,
+				4C0575BD86EA82554EC4B810,
+				BCB9EA68E41CE3AAA07CB314,
+				966E8CDE017C866C251AC6CF,
+				E1F5F87D76B1B564D3CBAB5E,
+				613FB61C1F9B38A7D75AF236,
+				B6F8962F439B1932EEB5C685,
+				C680CA25A91B929F818898B5,
+				44C05622F848D8551859680F,
+				8455EDD58619D554ACE0675B,
+				2D9ED00576BAB369414D502A,
+				8646D2C49D2922BEBF15B6F5,
+				4402685E11A2030757A49EF2,
+				2A9D9038B41CBC4E52564503,
+				0B5182834D093E6F86C1C849,
+				2AECF165901BD0EAB9FCE599,
+				4F488BB6D8B018AFA7C88BDC,
+				ED862CF4BE3D196AE03B5C01,
+				D4F3F8B200A3741A9DC59319,
+				FD4D297AE8158478D151B062,
+				CBC42407441D5CA2CE93BAE9,
+				7AB93136454F095D9EB3FE5A,
+				3985834F78E779CEDEA07BC3,
+				EBC029C0DC3A1B766166473E,
+				22D4D152DC9A2603AEFA1D6A,
+				6426F06684D46F7E363CDB7B,
+				C086AB92D43BB0978E976764,
+				5093253EA034C4BD05D49E30,
+				6B1D8B17FE7F0AF42A7CDF30,
+				FB32BDEF91F9075FB434909B,
+				649E37F682E39B81E66CAEAE,
+				FE5566F4DA7E21BABA269692,
+				FA44A69CBF85996983BD134A,
+				6F68DA0C1E912C540136360E,
+				743E67E299AC48F7656C8519,
+				5F0DC384AEB2CEA24E020409,
+				242F53BEFFD7BE29AEA567BD,
+				EB0B95F2650A83AE90068A10,
+				304FF6052B807E6EC2E23D84,
+				08CE301A64C9DD47A2E4F43D,
+				03FFCF5DF0E3D8D7AFD2E41A,
+				3E6BD24EB1ACA1F05561071F,
+				A50E9C971C94B8E72FBDF307,
+				7E4989DA40749292874D2D78,
+				5307A318B47AB4E609A79078,
+				910BCB9F065A456CF56E4723,
+				DDCEFC8C09B8A58330C08660,
+				D4CDAA9F952EE19422BA3BCE,
+				FCC4EF8A38EB335F356D5A20,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD296A8308734970857BE02A = {
+			isa = PBXBuildFile;
+			fileRef = 13FE90EBB0FBE18FC7209807;
+		};
+		DD6E72F5CFBC0C65A3853CBF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = lcwblock.cpp;
+			path = ../../tests/lcwblock/lcwblock.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		DDA751BC21662D2DB0058E51 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hints.c;
+			path = ../../thirdparty/SDL/src/SDL_hints.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		DDCEFC8C09B8A58330C08660 = {
+			isa = PBXBuildFile;
+			fileRef = 4A1236F983976299CAF3BAD7;
+		};
+		DDD47DF609F6B6EE5BADE2EE = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DFD8E7D87EEB9D5B3951DD13 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 783AF43F080A8EDF7DCB537D;
+			buildPhases = (
+				1E92BE03DB792BFC8D5AC0F3,
+				61E81DB74A1AC7BC546927B4,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LcwComp;
+			productName = LcwComp;
+			productReference = BA75A028C2A014D35612F5BD;
+			productType = "com.apple.product-type.tool";
+		};
+		E00C9AA123EE279B8B8E9E5F = {
+			isa = PBXBuildFile;
+			fileRef = 6A3CEC76C00FC8786BB956D6;
+		};
+		E034D2FA1714ADF73F7F084E = {
+			isa = PBXTargetDependency;
+			target = 7BA2E163C2E88BEE93746246;
+			targetProxy = 089B3128CEA8AF7E8A8DE76C;
+		};
+		E123068EBD11573E2CBA95EF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_dummydialog.c;
+			path = ../../thirdparty/SDL/src/dialog/dummy/SDL_dummydialog.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		E135073B7C960EEFC958EE43 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = xpipe.cpp;
+			path = ../../code/xpipe.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		E13922A7DB97A230B21A389A = {
+			isa = PBXBuildFile;
+			fileRef = 5AD864699EA4DE4245F08CB0;
+		};
+		E17FF06F913DC695A16A8A78 = {
+			isa = PBXBuildFile;
+			fileRef = D1FF1478E4BC512BEFBF4413;
+		};
+		E1AB736CCEA139D1B349231F = {
+			isa = PBXBuildFile;
+			fileRef = B12E449D065FD02BF8E4D126;
+		};
+		E1C7BC6EBC2748DD7A1E577C = {
+			isa = PBXBuildFile;
+			fileRef = A091914D413955B9D4FBD176;
+		};
+		E1F5F87D76B1B564D3CBAB5E = {
+			isa = PBXBuildFile;
+			fileRef = 92337225CC60E4087BB0A163;
+		};
+		E314165168B4574168977A06 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL.c;
+			path = ../../thirdparty/SDL/src/SDL.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		E38B1F50FFBCB82ED796FC41 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = DFD8E7D87EEB9D5B3951DD13;
+			remoteInfo = LcwComp;
+		};
+		E4D8450138137A79BC9CAD16 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21F0263A1CECE3ABDABF14E5,
+				D29198592E71D0325AEEECBA,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5D4E6712E3136052D079755 = {
+			isa = PBXBuildFile;
+			fileRef = FB998105E882C137D407567B;
+		};
+		E68A7943FF992BE0C815EE22 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_dynapi.c;
+			path = ../../thirdparty/SDL/src/dynapi/SDL_dynapi.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		E6A2DAB5F278F4EA5C3D4CDC = {
+			isa = PBXTargetDependency;
+			target = 8DFC35615CD7E0F5EEC3867C;
+			targetProxy = 7F7705830FC11B568F6F2E46;
+		};
+		E6BCE8A8D7514ECE92F28EBA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = straw.cpp;
+			path = ../../code/straw.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		E6F8BECA1D776B96CE91EA23 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = audiohandle.cpp;
+			path = ../../tests/audiohandle/audiohandle.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		E73E35F5A2B26F691656DA84 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_fillrect.c;
+			path = ../../thirdparty/SDL/src/video/SDL_fillrect.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		E8C0ACEE1703A80C2FD42A29 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_egl.c;
+			path = ../../thirdparty/SDL/src/video/SDL_egl.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		E8C4D779956966C64E948E91 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_iconv.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_iconv.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		E9FFB7FC9DD96B6211DF1757 = {
+			isa = PBXBuildFile;
+			fileRef = EF3B26E0D538B549FCBC36EA;
+		};
+		EA118656173E024BA6D61B5C = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = DC555F60D5563C60996FE21C;
+			remoteInfo = AudioLevel;
+		};
+		EAEDC9A431949C2A2FB846DE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_shaders_gpu.c;
+			path = ../../thirdparty/SDL/src/render/gpu/SDL_shaders_gpu.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		EB0B95F2650A83AE90068A10 = {
+			isa = PBXBuildFile;
+			fileRef = D996A35893663AA066E635F1;
+		};
+		EB1C4CADFD4D2F85168D56FA = {
+			isa = PBXBuildFile;
+			fileRef = 2CC198B655DE75F8D8AD9C9B;
+		};
+		EB4CADE7F54F75F65532908D = {
+			isa = PBXBuildFile;
+			fileRef = 6A83A0247D9AD201D26BA3E0;
+		};
+		EB96E592B5BD67623478021C = {
+			isa = PBXBuildFile;
+			fileRef = C7435116D1BFC32ABA3BE360;
+		};
+		EBB1EA2F84698A19EEEA0D00 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_process.c;
+			path = ../../thirdparty/SDL/src/process/SDL_process.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		EBBAB78D201BFED28BE01CAD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_decompress_symbolic.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_decompress_symbolic.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		EBC029C0DC3A1B766166473E = {
+			isa = PBXBuildFile;
+			fileRef = 50B95CB150482224BD3ACE15;
+		};
+		EC22345C1FAB448CD457100F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_log.c;
+			path = ../../thirdparty/SDL/src/SDL_log.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		EC39DF56C5217710C11656C4 = {
+			isa = PBXTargetDependency;
+			target = DC555F60D5563C60996FE21C;
+			targetProxy = EA118656173E024BA6D61B5C;
+		};
+		EC5B37671B1E12DCD8352BFB = {
+			isa = PBXBuildFile;
+			fileRef = A258E73C02AAA01C2484D28C;
+		};
+		ECB3BDF523444A04311A6EB4 = {
+			isa = PBXBuildFile;
+			fileRef = B47CFCC6CC647166151F64EE;
+		};
+		ECF4D87544AFA14F476CD74A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_malloc.c;
+			path = ../../thirdparty/SDL/src/stdlib/SDL_malloc.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		ED2F17EEC9813ED0A5AAF0E1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_dummyprocess.c;
+			path = ../../thirdparty/SDL/src/process/dummy/SDL_dummyprocess.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		ED57BF0792B764FA81268759 = {
+			isa = PBXBuildFile;
+			fileRef = E6F8BECA1D776B96CE91EA23;
+		};
+		ED862CF4BE3D196AE03B5C01 = {
+			isa = PBXBuildFile;
+			fileRef = CBED84AF374331ADB30020BD;
+		};
+		EE1580DA67DE62C11BF480C2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_zuiki.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_zuiki.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		EE1B96F97C141C12412DD087 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_clipboardevents.c;
+			path = ../../thirdparty/SDL/src/events/SDL_clipboardevents.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		EE21FDAC0235C3010F7AFADC = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86FE3D85875494E0F5B1FA58,
+				7756B89581F67C65C74C9486,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEC08DCD9DA55F1F1F926EEE = {
+			isa = PBXBuildFile;
+			fileRef = 9CC5B13401B469B41FD854F5;
+		};
+		EF160DF99974B8EF8A562740 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_symbolic_physical.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_symbolic_physical.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		EF3B26E0D538B549FCBC36EA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_mathlib_softfloat.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_mathlib_softfloat.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		EF9D63BB074305640E4FF8C8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_gip.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_gip.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		F0132D2BB0582C076EEF4BAA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_steamdeck.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_steamdeck.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		F0588679062D51B4711474E1 = {
+			isa = PBXBuildFile;
+			fileRef = BCD9E962F071AA2780A069A3;
+		};
+		F12CAC213A14E313E7370CE2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = coloropstest.cpp;
+			path = ../../tests/colorops/coloropstest.cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		F1CF2CF1F95DACE9119F78B0 = {
+			isa = PBXBuildFile;
+			fileRef = 913C6436BF29F4C53BD8297B;
+		};
+		F25D91D2AA9089363747FBA5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_stb.c;
+			path = ../../thirdparty/SDL/src/video/SDL_stb.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		F3326DE8B910D51141038C54 = {
+			isa = PBXBuildFile;
+			fileRef = 7A515DE717FD416563B4621A;
+		};
+		F348B0A622D70A9D80092E23 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = astcenc_pick_best_endpoint_format.cpp;
+			path = "../../thirdparty/bgfx.cmake/bimg/3rdparty/astc-encoder/source/astcenc_pick_best_endpoint_format.cpp";
+			sourceTree = SOURCE_ROOT;
+		};
+		F3EAAE98DC36F55D7EB11DB6 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3F8E9992E61F811A357AAC9 = {
+			isa = PBXBuildFile;
+			fileRef = 7AABE84DF3EE7D8205AEBEEE;
+		};
+		F4720EBF69CBC7E9833F4EB2 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+					"$(SRCROOT)/../../tests/unvqdec",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = UnvqDec;
+			};
+			name = Debug;
+		};
+		F556A35623CAA9FA186BF9FA = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5E4B25C4B7B42052F915199,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F55853A045EC183D61276DCF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_mfijoystick.m;
+			path = ../../thirdparty/SDL/src/joystick/apple/SDL_mfijoystick.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		F55C0258DD0229AC8C39A6CC = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0926D0BDEAA395BCFF7E42FF,
+				EB96E592B5BD67623478021C,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5AE251A5C1E31AE4AA9445B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_audioresample.c;
+			path = ../../thirdparty/SDL/src/audio/SDL_audioresample.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		F62F3DCC91E529DA0B62D4A4 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0EA85C3B97528D37DECB6B3,
+				504704E4241B002C3D70471F,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F718E895041C14A11783998C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoaopengl.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoaopengl.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		F72338CD76B33B888DAB6AD5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_error.c;
+			path = ../../thirdparty/SDL/src/SDL_error.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		F80312BBD00F6A9D0B858857 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_tray.c;
+			path = ../../thirdparty/SDL/src/tray/dummy/SDL_tray.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		F80A8872E939E784CD99146C = {
+			isa = PBXFileReference;
+			explicitFileType = "compiled.mach-o.executable";
+			includeInIndex = 0;
+			path = LcwBlock;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F867176A2282617BAD5F1DFE = {
+			isa = PBXBuildFile;
+			fileRef = 74F1F5FB034114E005EBA06F;
+		};
+		F8CA5A12383BFA369999F60B = {
+			isa = PBXBuildFile;
+			fileRef = 1CD4812389531DD87A176495;
+		};
+		F8FCA6A8CC4A6AE1892A0997 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_hidapi_combined.c;
+			path = ../../thirdparty/SDL/src/joystick/hidapi/SDL_hidapi_combined.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		F92D8216ECA4BFB699369102 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_sysloadso.c;
+			path = ../../thirdparty/SDL/src/loadso/dummy/SDL_sysloadso.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		F9A5DC644BAFA7951DE5AAC0 = {
+			isa = PBXBuildFile;
+			fileRef = 8B20972C4D8B774F43C5E220;
+		};
+		FA20F659853B37DD5D2DF40E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_blendpoint.c;
+			path = ../../thirdparty/SDL/src/render/software/SDL_blendpoint.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		FA44A69CBF85996983BD134A = {
+			isa = PBXBuildFile;
+			fileRef = 1CF1FDCA875A6569EC5E3C5F;
+		};
+		FAEE286F4CEF77E4E3AE3E80 = {
+			isa = PBXBuildFile;
+			fileRef = A6D439CB3DEA26F66929A9F1;
+		};
+		FAEF6EACC761B6F0FB023B53 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_libusb.c;
+			path = ../../thirdparty/SDL/src/misc/SDL_libusb.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		FB32BDEF91F9075FB434909B = {
+			isa = PBXBuildFile;
+			fileRef = B0A937B0D37E0FA31B1253C7;
+		};
+		FB412D36DA144C0CD125FD96 = {
+			isa = PBXBuildFile;
+			fileRef = 790BFDF00397BC1AAE2FB989;
+		};
+		FB998105E882C137D407567B = {
+			isa = PBXFileReference;
+			explicitFileType = archive.ar;
+			includeInIndex = 0;
+			path = libSDL3.a;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FB9EF11B01957DACC9F4E43F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_haptic.c;
+			path = ../../thirdparty/SDL/src/haptic/SDL_haptic.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		FBB6E380D9C0D9783F237593 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_systls.c;
+			path = ../../thirdparty/SDL/src/thread/pthread/SDL_systls.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		FBCC58F62C84BED1EFABAE9D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_gamepad.c;
+			path = ../../thirdparty/SDL/src/joystick/SDL_gamepad.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		FC78A9DF0BA6B7F64E5D2011 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_render_gles2.c;
+			path = ../../thirdparty/SDL/src/render/opengles2/SDL_render_gles2.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		FCA5C6A113ACAB4738269766 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SDL_cocoapen.m;
+			path = ../../thirdparty/SDL/src/video/cocoa/SDL_cocoapen.m;
+			sourceTree = SOURCE_ROOT;
+		};
+		FCA9E9A69138651E0E85984B = {
+			isa = PBXBuildFile;
+			fileRef = FAEF6EACC761B6F0FB023B53;
+		};
+		FCC4EF8A38EB335F356D5A20 = {
+			isa = PBXBuildFile;
+			fileRef = 62968BC8D32A7AE7083146D2;
+		};
+		FD4D297AE8158478D151B062 = {
+			isa = PBXBuildFile;
+			fileRef = A08581E831A85805CE487E90;
+		};
+		FDDBBED877397E0F0F601B9B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_locale.c;
+			path = ../../thirdparty/SDL/src/locale/SDL_locale.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		FDE4BE1CEE5B79043D6D8F96 = {
+			isa = PBXBuildFile;
+			fileRef = 06621DAA759E0C3864676FD0;
+		};
+		FE5566F4DA7E21BABA269692 = {
+			isa = PBXBuildFile;
+			fileRef = 9682A93B83A13A89604C23B3;
+		};
+		FE56BCB2C3ADAFD69D1A23C0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_main_callbacks.c;
+			path = ../../thirdparty/SDL/src/main/SDL_main_callbacks.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		FE7CDE9E0AE904EA5205058F = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"__cdecl=",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../code",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-fno-fast-math",
+					"-ffp-contract=off",
+				);
+				PRODUCT_NAME = AudioHandle;
+			};
+			name = Debug;
+		};
+		FF2BFEC41E94C1896CE8B522 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_iostream.c;
+			path = ../../thirdparty/SDL/src/io/SDL_iostream.c;
+			sourceTree = SOURCE_ROOT;
+		};
+		FF6EB5ADBFE5E675896B9D3A = {
+			isa = PBXBuildFile;
+			fileRef = 68F552ADDB7B45F9D666B579;
+		};
+		FF9F386744BA0E39DE8F47A1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = SDL_timer.c;
+			path = ../../thirdparty/SDL/src/timer/SDL_timer.c;
+			sourceTree = SOURCE_ROOT;
+		};
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595;
+}
