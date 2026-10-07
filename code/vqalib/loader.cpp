@@ -187,7 +187,7 @@ long VQA_LoadFrame(VQAHandleP *vqap, long flags)
 	int scan_frame;
 	int tocache;
 	VQA_H_FUNC handler;
-	unsigned int rc;
+	long rc;
 	int val4;
 	int fsize;
 	VQA_H_FUNC oldhandler;
@@ -1269,7 +1269,7 @@ long VQA_SeekGroup(VQAHandleP *vqap, long framenum, long groupsize, VQABool prel
 	int bytes_per_frame;
 	int preload_frames;
 	int covered_bytes;
-	unsigned int rc;
+	long rc;
 	bool bool2;
 	int loadflags;
 	long group_end;

@@ -189,13 +189,21 @@ match the 2.03 Firestorm baseline is still M3.1's question.
 Disc images and archives are ignored anywhere in the repository (`*.iso`,
 `*.mix`), and none were ever committed.
 
-Two faults were fixed on the way:
+Several faults were fixed on the way:
 
 - The SHA-1 digest union declared its five words as `unsigned long`, so on
   macOS the digest was 40 bytes with its bytes misplaced, and every digest
   check failed. `CACHE.MIX` carries a digest, so startup reported it could not
   load. The words are now `uint32_t`, and a `static_assert` holds the size at
   20 bytes.
+- Movies did not play. The VQA player declared its on-disk records with
+  `long`: the IFF form and chunk headers, the loop, palette, MFC, and MSC
+  chunk headers and tables, and the frame offset table. On macOS each record
+  grew, so every chunk was misread. The player also returned its "no error"
+  code, -1, through an `unsigned int`, which a 64-bit `long` widened to
+  4294967295, so a frame that loaded counted as a failure. The records now use
+  32-bit fields with `static_assert`s on their on-disk sizes, the return codes
+  are `long`, and the user confirmed the cinematics play.
 - The player's files now default to `~/Library/Application Support/OpenTS`.
   They went to the working directory, which is the executable's folder inside
   the application bundle, and writing `sun.ini` there broke the bundle's code

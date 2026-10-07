@@ -57,7 +57,6 @@
 #include <string.h>
 #include "vqaplay.h"
 #include "vqaplayp.h"
-#include "../dbgprint.h"
 #include "video.h"
 #include "audio/audiomovie.h"
 #include "lcw.h"
@@ -268,7 +267,6 @@ long VQA_Open(char const *filename, VQAConfig *_config, VQAHandle **handle)
 		}
 
 		chunk.size = REVERSE_LONG(chunk.size);
-		DebugString("DIAGCHUNK %.4s size %u\n", (char const *)&chunk.id, (unsigned)chunk.size);
 
 		switch (chunk.id) {
 

@@ -36,7 +36,8 @@ Full engine startup, real assets, and gameplay remain unverified on macOS.
 2. **M2.4:** Audit integer widths and packed layouts. The build's 99
    `-Wshorten-64-to-32` warnings are the starting list, along with the
    `unsigned long` fields in `vqa.h`, `wspudp.h`, `ipxmgr.h`, and
-   `sosdefs.h`. The SHA-1 digest was one such fault.
+   `sosdefs.h`. The SHA-1 digest and the VQA player's records were such
+   faults.
 3. **M1.2:** Interactively validate the window and input handling.
 
 Work through the milestones in order. The asset inventory in M3.1 can proceed
