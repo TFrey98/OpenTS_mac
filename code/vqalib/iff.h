@@ -13,6 +13,8 @@
 
 #ifndef VQMIFF_H
 #define VQMIFF_H
+
+#include <stdint.h>
 /****************************************************************************
 *
 *         C O N F I D E N T I A L --- W E S T W O O D   S T U D I O S
@@ -41,10 +43,11 @@
  * type - Form type (IE: "ILBM")
  */
 typedef struct _FormHeader {
-	long id;
-	long size;
-	long type;
+	int32_t id;
+	int32_t size;
+	int32_t type;
 } FormHeader;
+static_assert(sizeof(FormHeader) == 12, "an IFF form header is 12 bytes on disk");
 
 /* Context - Structure associated with chunks.
  *
@@ -53,9 +56,9 @@ typedef struct _FormHeader {
  * scan - Bytes read/written.
  */
 typedef struct _Context {
-	long id;
-	long size;
-	long scan;
+	int32_t id;
+	int32_t size;
+	int32_t scan;
 } Context;
 
 /* IFFHandle - Structure associated with an active IFF read\write session.

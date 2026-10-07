@@ -79,6 +79,7 @@ void Play_Movie(char const * name, ThemeType theme, bool clrscrn_after, bool str
 {
 	// Outside a campaign, movies play only when the launch file asked for them.
 	if (Session.Type != GAME_NORMAL && !Session.PlayMovies) {
+		DebugString("DIAGMOV %s skipped: session %d\n", name, (int)Session.Type);
 		return;
 	}
 
@@ -86,12 +87,14 @@ void Play_Movie(char const * name, ThemeType theme, bool clrscrn_after, bool str
 	MovieSkip::Playback playback(name);
 
 	if (!CCFileClass(name).Is_Available()) {
+		DebugString("DIAGMOV %s not available\n", name);
 		return;
 	}
 
 	Keyboard->Clear();
 
 	VQHandle * vqa = Movie_Create(name, HiddenSurface, Rect(0,0,0,0), Rect(0,0,0,0), 255, 1);
+	DebugString("DIAGMOV %s create %p\n", name, (void *)vqa);
 
 	if (vqa != NULL) {
 

@@ -175,9 +175,19 @@ It read the rules, sides, sound, and theme files, started the title music,
 and opened `menu.rml`. From the menu, the first GDI mission, `GDI1A.MAP`,
 loaded with its briefing and in-game music, and the log recorded no errors.
 The user confirmed the mission opened on screen. Rendering, input, and
-gameplay have not yet been checked against the original. The Nod disc and the
-Firestorm expansion are not present, and whether this disc's archives match
-the 2.03 Firestorm baseline is still M3.1's question.
+gameplay have not yet been checked against the original. The Nod disc,
+`CD2_Nod.iso`, and the Firestorm disc, `CD_3-Firestorm.iso`, were added later.
+`Run/` now also holds the Nod disc's `MAPS02.MIX` and `MOVIES02.MIX`. From the
+Firestorm disc it takes `EXPAND01.MIX`, `WDTVOX.MIX`, and `MULTI.MIX` from
+`Install/`, and `MAPS03.MIX`, `MOVIES03.MIX`, `E01SCD01.MIX`, `E01SCD02.MIX`,
+`SCORES01.MIX`, `WDT.MIX`, `SIDECD01.MIX`, and `SIDECD02.MIX` from its root.
+Where the Firestorm disc carries a file that also exists on the 1999 discs,
+its copy is used. The Nod disc's `TIBSUN.MIX` and `MULTI.MIX` match the GDI
+disc's. The game has not yet been run with these files, and whether they
+match the 2.03 Firestorm baseline is still M3.1's question.
+
+Disc images and archives are ignored anywhere in the repository (`*.iso`,
+`*.mix`), and none were ever committed.
 
 Two faults were fixed on the way:
 

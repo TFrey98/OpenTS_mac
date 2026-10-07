@@ -64,3 +64,9 @@ manual/data/.manual-generate-*/
 # Xcode per-user state
 xcuserdata/
 .DS_Store
+
+# Game data. The original disc images and archives are kept locally, never in Git.
+*.iso
+*.ISO
+*.mix
+*.MIX

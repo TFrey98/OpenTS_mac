@@ -439,7 +439,7 @@ STATIC long AllocBuffers(VQAHandleP *vqap)
 	/*-------------------------------------------------------------------------
 	 * ALLOCATE THE FRAME INFORMATION TABLE IF REQUESTED.
 	 *-----------------------------------------------------------------------*/
-	vqap->Foff = (long *)config->MemoryHandler((VQAHandle *)vqap, VQAMEM_ALLOC, NULL, header->Frames * sizeof(*vqap->Foff));
+	vqap->Foff = (int32_t *)config->MemoryHandler((VQAHandle *)vqap, VQAMEM_ALLOC, NULL, header->Frames * sizeof(*vqap->Foff));
 
 	if (vqap->Foff == NULL) {
 		FreeBuffers(vqap);
@@ -450,7 +450,7 @@ STATIC long AllocBuffers(VQAHandleP *vqap)
 	config->MemoryHandler((VQAHandle *)vqap, VQAMEM_LOCK, vqap->Foff, header->Frames * sizeof(*vqap->Foff));
 
 	/* Keep a running total of memory usage. */
-	vqap->MemUsed += (header->Frames * sizeof(long));
+	vqap->MemUsed += (header->Frames * sizeof(*vqap->Foff));
 
 	return(VQAERR_NONE);
 }

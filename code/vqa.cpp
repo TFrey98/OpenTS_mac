@@ -340,7 +340,9 @@ bool VQAClass::Open_And_Load_Buffers(void)
 	// Open the VQA file, allocate the buffers for this VQ instance, and pre-
 	// load the buffers.
 	//
-	if (VQA_Open(Filename, &Config, &Handle) != VQAERR_NONE) {
+	long const diag = VQA_Open(Filename, &Config, &Handle);
+	DebugString("DIAGVQA open %s -> %ld (header %d)\n", Filename, diag, (int)sizeof(VQAHeader));
+	if (diag != VQAERR_NONE) {
 		IsOpen = false;
 		return(false);
 	}
@@ -820,6 +822,7 @@ long VQAClass::CCFileHandler(long action, void * buffer, long nbytes)
 		*/
 		case VQACMD_READ:
 			if (FileHandle.Read(buffer, nbytes) != nbytes) {
+				DebugString("DIAGVQA read %ld failed at %d of %d\n", nbytes, FileHandle.Seek(0, SEEK_CUR), FileHandle.Size());
 				error = 1;
 			} else {
 				error = 0;
@@ -932,6 +935,7 @@ long VQAClass::MixFileHandler(long action, void * buffer, long nbytes)
 			if (MixFileClass::Offset(Filename, NULL, &mixfile, &offset)) {
 				IsFileOpen = FileHandle.Open(mixfile->Filename, FileClass::READ) != 0;
 				error = FileHandle.Seek(offset, SEEK_CUR) == 0;
+				DebugString("DIAGVQA mixopen %s in %s open=%d offset=%d pos=%d size=%d\n", Filename, mixfile->Filename, IsFileOpen, offset, FileHandle.Seek(0, SEEK_CUR), FileHandle.Size());
 			} else {
 				error = 1;
 			}
@@ -947,6 +951,7 @@ long VQAClass::MixFileHandler(long action, void * buffer, long nbytes)
 		*/
 		case VQACMD_READ:
 			if (FileHandle.Read(buffer, nbytes) != nbytes) {
+				DebugString("DIAGVQA mixread %ld failed at %d\n", nbytes, FileHandle.Seek(0, SEEK_CUR));
 				error = 1;
 			} else {
 				error = 0;

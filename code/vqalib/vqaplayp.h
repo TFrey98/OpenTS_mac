@@ -13,6 +13,8 @@
 
 #ifndef VQAPLAYP_H
 #define VQAPLAYP_H
+
+#include <stdint.h>
 /****************************************************************************
 *
 *         C O N F I D E N T I A L -- W E S T W O O D  S T U D I O S
@@ -108,9 +110,10 @@ extern char ReqTag[];
  * size - Size of chunk.
  */
 typedef struct _ChunkHeader {
-	unsigned long id;
-	unsigned long size;
+	uint32_t id;
+	uint32_t size;
 } ChunkHeader;
+static_assert(sizeof(ChunkHeader) == 8, "an IFF chunk header is 8 bytes on disk");
 
 
 /* ZAPHeader: ZAP audio compression header. NOTE: If the uncompressed size
@@ -457,9 +460,10 @@ struct VQA_Array_Data {
 struct VQALoopInfo {
 	struct HEADER {
 		unsigned short Count;
-		unsigned long Flags;
+		uint32_t Flags;
 		unsigned short Pad;
 	};
+	static_assert(sizeof(HEADER) == 8, "the loop header is 8 bytes on disk");
 	HEADER Header;
 
 	struct DATA {
@@ -476,9 +480,10 @@ struct VQALoopInfo {
 struct VQAPaletteInfo {
 	struct HEADER {
 		unsigned short Count;
-		unsigned long Flags;
+		uint32_t Flags;
 		unsigned short Pad;
 	};
+	static_assert(sizeof(HEADER) == 8, "the palette header is 8 bytes on disk");
 	HEADER Header;
 
 	struct DATA {
@@ -506,8 +511,8 @@ struct VQACodebookInfo {
 
 struct VQAMFCInfo {
 	struct HEADER {
-		unsigned long StaticCount;
-		unsigned long Count;
+		uint32_t StaticCount;
+		uint32_t Count;
 
 		/// Unused
 		int     field_8;
@@ -522,13 +527,13 @@ struct VQAMFCInfo {
 		 */
 		int     KeyFrame;
 
-		unsigned long ChunkID;
+		uint32_t ChunkID;
 		char    Pad[0x10];
 	};
 	DATA *StaticData;
 
 	struct TABLE {
-		unsigned long ChunkID;
+		uint32_t ChunkID;
 
 		/*
 		 * The period of this chunk type, in frames. It divides the frame buffer
@@ -565,18 +570,20 @@ struct VQAMFCInfo {
 	};
 	DATA2 *Data2;
 };
+static_assert(sizeof(VQAMFCInfo::DATA) == 24 && sizeof(VQAMFCInfo::TABLE) == 16, "MFC entries are 24 and 16 bytes on disk");
 
 struct VQAMSCInfo {
 	struct HEADER {
-		unsigned long Count;
+		uint32_t Count;
 
 		/// Unused
 		int     field_4;
 	};
+	static_assert(sizeof(HEADER) == 8, "the MSC header is 8 bytes on disk");
 	HEADER Header;
 
 	struct TABLE {
-		unsigned long ChunkID;
+		uint32_t ChunkID;
 
 		/*
 		 * The size in bytes of one entry's buffer. Note that this sits one slot
@@ -608,6 +615,7 @@ struct VQAMSCInfo {
 	};
 	DATA2 *Data2;
 };
+static_assert(sizeof(VQAMSCInfo::TABLE) == 16, "an MSC table entry is 16 bytes on disk");
 
 
 struct VQALoopCache {
@@ -722,7 +730,7 @@ typedef struct _VQAHandleP {
 	VQAMSCInfo		MSCInfo;
 	VQACodebookInfo CodebookInfo;
 	VQAPaletteInfo	PaletteInfo;
-	long			*Foff;
+	int32_t			*Foff;
 	long			Max_CB_Size;
 	long			Max_Ptr_Size;
 	long			Max_Pal_Size;

@@ -198,7 +198,7 @@ long VQA_LoadFrame(VQAHandleP *vqap, long flags)
 
 	config = &vqap->Config;
 	loader = &vqap->Loader;
-	long *foff = vqap->Foff;
+	int32_t *foff = vqap->Foff;
 	frame = loader->CurFrameNum;
 
 
@@ -1066,7 +1066,7 @@ long VQA_SeekLoop(VQAHandleP *vqap, long framenum, long flags)
 	VQAConfig *config;
 	VQALoopCache *cache;
 	bool needs_seek = false;
-	long *foff;
+	int32_t *foff;
 
 	cache = &vqap->LoopCache;
 	foff = vqap->Foff;
