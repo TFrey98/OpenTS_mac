@@ -40,9 +40,12 @@
 #include "sdl/sdlwindow.h"
 #include "utf8.h"
 
-#include <new>
+#include "opents_build.h"
+#include "opents_language.h"
 
-HINSTANCE LanguageResources;
+#include <algorithm>
+#include <cstdio>
+#include <new>
 
 /***********************************************************************************************
  * Load_Alloc_Data -- Allocates a buffer and loads the file into it.                           *
@@ -249,20 +252,15 @@ char const * Fetch_String(int id)
 	_buffers[oldest].ID = id;
 	_buffers[oldest].TimeStamp = _time;
 
-	if (LanguageResources == NULL) {
-		Init_Language_Resources(false);
-	}
-
-	if (LoadString(LanguageResources, id, stringptr, sizeof(_buffers[oldest].String)) == 0) {
+	OpenTSLanguageString const * const end = OpenTSLanguageStrings + OpenTSLanguageStringCount;
+	OpenTSLanguageString const * const entry = std::lower_bound(OpenTSLanguageStrings, end, id,
+		[](OpenTSLanguageString const & string, int wanted) { return(string.Id < wanted); });
+	if (entry == end || entry->Id != id) {
+		_buffers[oldest].ID = -1;
 		return("");
 	}
-	stringptr[sizeof(_buffers[oldest].String)-1] = '\0';
 
-	// Windows before 10 version 1903 ignores the manifest and narrows to its own code page.
-	if (GetACP() != CP_UTF8) {
-		std::string text = UTF8::From_Windows_1252(stringptr);
-		UTF8::Copy(stringptr, sizeof(_buffers[oldest].String), text.c_str());
-	}
+	UTF8::Copy(stringptr, sizeof(_buffers[oldest].String), entry->Text);
 	return(stringptr);
 }
 
@@ -315,100 +313,25 @@ void * Hires_Load(FileClass & file)
 
 
 /// <summary>
-/// Loads the language resource library.
-/// This routine brings in the library that every localized string and resource is fetched
-/// from. It may be called as often as convenient -- the library is only loaded the first
-/// time. If asked to, it will tell the player to reinstall when the library is missing.
+/// Reports whether the language strings are available. They are compiled into the game from
+/// language.rc, so they always are.
 /// </summary>
-/// <param name="show_error">Should the player be told when the library cannot be loaded?</param>
 /// <returns>bool; Are the language resources available?</returns>
-bool Init_Language_Resources(bool show_error)
+bool Init_Language_Resources(bool)
 {
-	if (LanguageResources == NULL) {
-
-		LanguageResources = LoadLibrary("Language.dll");
-
-		if (LanguageResources == NULL) {
-
-			if (show_error == true) {
-				Main_Window_Error_Box("Tiberian Sun",
-					"Unable to initialize Language.dll, please reinstall Tiberian Sun.\n"
-					"Keine Initialisierung von Language.DLL m\xC3\xB6glich. Bitte installieren Sie Tiberian Sun erneut.\n"
-					"Initialisation de Language.DLL impossible. Veuillez r\xC3\xA9installer Tiberian Sun.");
-
-			}
-
-			return(false);
-		}
-	}
-
 	return(true);
 }
 
 
 /// <summary>
-/// Fetches a description of the language pack in use.
-/// This routine composes a readable line naming the localized data set and its version,
-/// taken from the version resource of the language library. It is used when reporting the
-/// build the player is running. The string is left empty if the library is absent or
-/// carries no version information of its own.
+/// Fetches a description of the language strings in use, naming the data set and the version
+/// they were built with.
 /// </summary>
 /// <param name="version_string">Buffer to fill in with the description.</param>
 /// <remarks>Be sure that the destination buffer is big enough to hold the composed text.</remarks>
 void Get_Language_Version(char *version_string)
 {
-	INT dwSize;
-	LPVOID pFileInfo;
-	UINT puInfoLen;
-	LPCTSTR pcData;
-	DWORD dwHandle;
-
-	struct LANGANDCODEPAGE {
-		WORD wLanguage;
-		WORD wCodePage;
-	} *pvInfo;
-
-	char szQuery[128];
-	char szFile[MAX_PATH];
-
 	if (version_string != NULL) {
-		version_string[0] = '\0';
-
-		if (LanguageResources != NULL && GetModuleFileName(LanguageResources, szFile, sizeof(szFile)) > 0) {
-
-			dwHandle = 1;
-			dwSize = GetFileVersionInfoSize(szFile, &dwHandle);
-
-			if (dwSize > 0) {
-				pFileInfo = new char[dwSize];
-
-				if (pFileInfo != NULL) {
-					if (GetFileVersionInfo(szFile, dwHandle, dwSize, pFileInfo)) {
-
-						VerQueryValue(pFileInfo, TEXT("\\VarFileInfo\\Translation"), (LPVOID *)&pvInfo, &puInfoLen);
-
-						if (puInfoLen > 0) {
-
-							sprintf(szQuery, TEXT("\\StringFileInfo\\%04X%04X\\InternalName"), pvInfo->wLanguage, pvInfo->wCodePage);
-							VerQueryValue(pFileInfo, szQuery, (LPVOID *)&pcData, &puInfoLen);
-
-							if (puInfoLen > 0) {
-
-								sprintf(version_string, "Language: %s ", pcData);
-								sprintf(szQuery, TEXT("\\StringFileInfo\\%04X%04X\\FileVersion"), pvInfo->wLanguage, pvInfo->wCodePage);
-
-								VerQueryValue(pFileInfo, szQuery, (LPVOID *)&pcData, &puInfoLen);
-
-								if (puInfoLen > 0) {
-									strcat(version_string, pcData);
-								}
-							}
-						}
-					}
-
-					delete [] pFileInfo;
-				}
-			}
-		}
+		sprintf(version_string, "Language: English Resources %s", OPENTS_VERSION);
 	}
 }

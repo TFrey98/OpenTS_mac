@@ -31,6 +31,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "palette.h"
 #include "win.h"
 #include "xsurface.h"
@@ -45,9 +47,7 @@ enum DSurfaceColorMode {
 };
 
 
-// A concrete surface whose pixels are a GDI device independent bitmap in system memory.
-// The bitmap is permanently selected into a memory device context, so the surface can be
-// drawn to either as raw 16 bit pixels through Lock or with GDI through GetDC.
+// A concrete surface whose 16-bit pixels are held in system memory and drawn to through Lock.
 class DSurface : public XSurface
 {
 		typedef XSurface BASECLASS;
@@ -59,12 +59,6 @@ class DSurface : public XSurface
 		**	Constructs a working surface (not visible).
 		*/
 		DSurface(int width, int height);
-
-		/*
-		**	Get/Release a windows device context for the surface pixels.
-		*/
-		HDC GetDC(void);
-		int ReleaseDC(HDC hdc);
 
 		/*
 		**	Create a surface object that represents the currently visible screen.
@@ -104,7 +98,7 @@ class DSurface : public XSurface
 		 * The pixels, reachable without the lock bookkeeping. The presenter reads the
 		 * frame this way, since a locked surface refuses to be blitted from.
 		 */
-		void * Get_Buffer(void) const {return(GDIBuffer);}
+		void * Get_Buffer(void) const {return(Pixels.get());}
 
 		/*
 		**	Queries information about the surface.
@@ -113,10 +107,9 @@ class DSurface : public XSurface
 		virtual int Stride(void) const override;
 
 		/*
-		 * This surface owns a device context, so GetDC yields one that draws on these
-		 * same pixels.
+		 * A copy between two of these surfaces can change size; Blit_From scales it.
 		 */
-		virtual bool Is_GDI_Backed(void) const override {return(true);}
+		virtual bool Can_Stretch_Blit(void) const override {return(true);}
 
 		virtual bool Can_Blit(void) const;
 
@@ -158,26 +151,17 @@ class DSurface : public XSurface
 		mutable int BytesPerPixel;
 
 		/*
-		**	If this surface object represents the one that is visible and associated
-		**	with the system GDI, then this flag will be true.
+		**	If this surface object represents the one that is visible, then this flag will
+		**	be true.
 		*/
 		bool IsPrimary;
 
 		/*
-		 * The bitmap holding the pixels, the context it is selected into, and the object
-		 * that context held beforehand. GDI will not free a bitmap that is still
-		 * selected, so the original has to go back before this one can be destroyed.
+		 * The pixels, and the bytes from one row of them to the next. Rows are rounded up
+		 * to a multiple of four bytes, as the Windows bitmaps these replaced were, so the
+		 * pitch is not always the width times the pixel size.
 		 */
-		HBITMAP GDIBitmap;
-		mutable HDC GDIDC;
-		HGDIOBJ GDIOldBitmap;
-
-		/*
-		 * The pixels themselves, owned by the bitmap, and the bytes from one row of them
-		 * to the next. GDI rounds that up to a multiple of four, so it is not always the
-		 * width times the pixel size.
-		 */
-		void * GDIBuffer;
+		std::unique_ptr<unsigned short[]> Pixels;
 		int Pitch;
 
 	public:

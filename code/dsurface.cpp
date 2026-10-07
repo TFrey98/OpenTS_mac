@@ -55,6 +55,7 @@
 #include "video.h"
 
 #include <algorithm>
+#include <new>
 #include <math.h>
 #include <utility>
 
@@ -105,60 +106,9 @@ DSurface::DSurface(int width, int height) :
 	BASECLASS(width, height),
 	BytesPerPixel(2),
 	IsPrimary(false),
-	GDIBitmap(NULL),
-	GDIDC(NULL),
-	GDIOldBitmap(NULL),
-	GDIBuffer(NULL),
-	Pitch(0)
+	Pitch(((width * 2) + 3) & ~3)
 {
-	/*
-	 * BITMAPINFO carries room for a single color entry, but a bitfields bitmap is
-	 * described by three masks following the header, so the header is declared with
-	 * room for them rather than written past its end.
-	 */
-	struct {
-		BITMAPINFOHEADER Header;
-		unsigned long Masks[3];
-	} info;
-
-	memset(&info, 0, sizeof(info));
-
-	/*
-	 * A negative height asks for the rows in the order the engine expects, with the top
-	 * one first. The masks spell out the 565 layout.
-	 */
-	info.Header.biSize = sizeof(BITMAPINFOHEADER);
-	info.Header.biWidth = width;
-	info.Header.biHeight = -height;
-	info.Header.biPlanes = 1;
-	info.Header.biBitCount = 16;
-	info.Header.biCompression = BI_BITFIELDS;
-
-	info.Masks[0] = 0xF800;
-	info.Masks[1] = 0x07E0;
-	info.Masks[2] = 0x001F;
-
-	GDIDC = CreateCompatibleDC(NULL);
-	if (GDIDC == NULL) {
-		return;
-	}
-
-	GDIBitmap = CreateDIBSection(GDIDC, (BITMAPINFO *)&info, DIB_RGB_COLORS, &GDIBuffer, NULL, 0);
-	if (GDIBitmap == NULL) {
-		DeleteDC(GDIDC);
-		GDIDC = NULL;
-		GDIBuffer = NULL;
-		return;
-	}
-
-	GDIOldBitmap = SelectObject(GDIDC, GDIBitmap);
-
-	DIBSECTION section;
-	if (GetObject(GDIBitmap, sizeof(section), &section) == sizeof(section)) {
-		Pitch = section.dsBm.bmWidthBytes;
-	} else {
-		Pitch = width * 2;
-	}
+	Pixels.reset(new (std::nothrow) unsigned short[(size_t)Pitch / 2 * height]());
 }
 
 
@@ -178,25 +128,6 @@ DSurface::DSurface(int width, int height) :
  *=============================================================================================*/
 DSurface::~DSurface(void)
 {
-	/*
-	 * GDI will not free a bitmap that is still selected into a context, so the one the
-	 * context started with has to go back first.
-	 */
-	if (GDIDC != NULL) {
-		if (GDIOldBitmap != NULL) {
-			SelectObject(GDIDC, GDIOldBitmap);
-			GDIOldBitmap = NULL;
-		}
-		DeleteDC(GDIDC);
-		GDIDC = NULL;
-	}
-
-	if (GDIBitmap != NULL) {
-		DeleteObject(GDIBitmap);
-		GDIBitmap = NULL;
-	}
-
-	GDIBuffer = NULL;
 }
 
 
@@ -205,7 +136,7 @@ DSurface::~DSurface(void)
  *                                                                                             *
  *    This routine is used to create the surface object that represents the currently          *
  *    visible display. The surface is not allocated, it is merely linked to the preexisting    *
- *    surface that the Windows GDI is also currently using.                                    *
+ *    surface that the presenter shows.                                                        *
  *                                                                                             *
  * INPUT:   backsurface -- Optional pointer to specify where the backpage (flip enabled)       *
  *                         pointer will be placed. If this parameter is NULL, then no          *
@@ -236,58 +167,6 @@ DSurface * DSurface::Create_Primary(void)
 	EighthbrightMask = (unsigned short)Build_Hicolor_Pixel(31, 31, 31);
 
 	return(surface);
-}
-
-
-/***********************************************************************************************
- * DSurface::GetDC -- Get the windows device context from our surface                          *
- *                                                                                             *
- * INPUT:   none                                                                               *
- *                                                                                             *
- * OUTPUT:  none                                                                               *
- *                                                                                             *
- * WARNINGS: Any current locks will get unlocked while the DC is held                          *
- *                                                                                             *
- * HISTORY:                                                                                    *
- *   06/21/2000 NAK : Created.                                                                 *
- *=============================================================================================*/
-HDC DSurface::GetDC(void)
-{
-	if (GDIDC == NULL) {
-		return(NULL);
-	}
-
-	/*
-	 * The count is raised so the software blitter keeps off the pixels while GDI is
-	 * drawing on them, which is what it did when this context came from DirectDraw.
-	 */
-	LockCount++;
-	return(GDIDC);
-}
-
-
-/// <summary>
-/// Releases a device context obtained from GetDC.
-/// </summary>
-/// <param name="hdc">The context to release.</param>
-/// <returns>int; Always one. The context outlives the call and is reused.</returns>
-int DSurface::ReleaseDC(HDC hdc)
-{
-	/*
-	 * GDI batches its drawing, so the pixels are not all there until it is flushed.
-	 * Everything else reads them directly.
-	 */
-	GdiFlush();
-
-	if (LockCount > 0) {
-		LockCount--;
-	}
-
-	if (IsPrimary && LockCount == 0) {
-		Video_Mark_Dirty();
-	}
-
-	return(1);
 }
 
 
@@ -357,11 +236,11 @@ int DSurface::Stride(void) const
  *=============================================================================================*/
 void * DSurface::Lock(Point2D point) const
 {
-	if (GDIBuffer == NULL) return(NULL);
+	if (Pixels == nullptr) return(NULL);
 	if (point.X < 0 || point.Y < 0) return(NULL);
 
 	BASECLASS::Lock();
-	return(((char *)GDIBuffer) + point.Y * Stride() + point.X * Bytes_Per_Pixel());
+	return(((char *)Pixels.get()) + point.Y * Stride() + point.X * Bytes_Per_Pixel());
 }
 
 
@@ -371,7 +250,7 @@ void * DSurface::Lock(Point2D point) const
 /// <returns>bool; Can the surface be locked?</returns>
 bool DSurface::Can_Lock(int x, int y) const
 {
-	return(GDIBuffer != NULL);
+	return(Pixels != nullptr);
 }
 
 
@@ -478,9 +357,9 @@ bool DSurface::Blit_From(Rect const & dcliprect, Rect const & destrect, Surface 
 
 	/*
 	 * The software blitter handles everything except a size change between two of these
-	 * surfaces, which GDI stretches instead.
+	 * surfaces, which is scaled here.
 	 */
-	if (trans || !ssource.Is_GDI_Backed() || samesize) {
+	if (trans || !ssource.Can_Stretch_Blit() || samesize) {
 		bool result = BASECLASS::Blit_From(dcliprect, destrect, ssource, scliprect, sourcerect, trans, unknown);
 		if (result && IsPrimary) {
 			Video_Mark_Dirty();
@@ -490,27 +369,35 @@ bool DSurface::Blit_From(Rect const & dcliprect, Rect const & destrect, Surface 
 
 	DSurface const & source = (DSurface const &)ssource;
 
-	if (GDIDC == NULL || source.GDIDC == NULL) {
+	if (Pixels == nullptr || source.Pixels == nullptr) {
 		return(false);
 	}
 
-	Rect drect = destrect.Bias_To(dcliprect);
-	Rect srect = sourcerect.Bias_To(scliprect);
-
-	drect = Intersect(drect, Intersect(dcliprect, Get_Rect()));
-	if (!drect.Is_Valid()) return(false);
+	Rect const drect = destrect.Bias_To(dcliprect);
+	Rect const srect = sourcerect.Bias_To(scliprect);
+	Rect const visible = Intersect(drect, Intersect(dcliprect, Get_Rect()));
+	if (!visible.Is_Valid()) return(false);
 
 	/*
-	 * Both sets of pixels are read and written directly elsewhere, so any drawing GDI
-	 * still holds has to land first.
+	 * Nearest-neighbour scaling, as Windows' COLORONCOLOR stretch did: each destination pixel
+	 * takes the source pixel its centre falls on. The source is clipped to its own surface.
 	 */
-	GdiFlush();
-
-	SetStretchBltMode(GDIDC, COLORONCOLOR);
-	bool result = StretchBlt(GDIDC, drect.X, drect.Y, drect.Width, drect.Height,
-		source.GDIDC, srect.X, srect.Y, srect.Width, srect.Height, SRCCOPY) != 0;
-
-	GdiFlush();
+	Rect const sourcebounds = Intersect(scliprect, source.Get_Rect());
+	int const sourcestride = source.Stride() / 2;
+	int const deststride = Stride() / 2;
+	for (int y = visible.Y; y < visible.Y + visible.Height; y++) {
+		int const sy = srect.Y + (int)(((long long)(y - drect.Y) * 2 + 1) * srect.Height / (drect.Height * 2));
+		if (sy < sourcebounds.Y || sy >= sourcebounds.Y + sourcebounds.Height) continue;
+		unsigned short const * sourcerow = source.Pixels.get() + (size_t)sy * sourcestride;
+		unsigned short * destrow = Pixels.get() + (size_t)y * deststride;
+		for (int x = visible.X; x < visible.X + visible.Width; x++) {
+			int const sx = srect.X + (int)(((long long)(x - drect.X) * 2 + 1) * srect.Width / (drect.Width * 2));
+			if (sx >= sourcebounds.X && sx < sourcebounds.X + sourcebounds.Width) {
+				destrow[x] = sourcerow[sx];
+			}
+		}
+	}
+	bool const result = true;
 
 	if (result && IsPrimary) {
 		Video_Mark_Dirty();
@@ -566,7 +453,7 @@ bool DSurface::Fill_Rect(Rect const & fillrect, int color)
  *=============================================================================================*/
 bool DSurface::Fill_Rect(Rect const & cliprect, Rect const & fillrect, int color)
 {
-	if (GDIBuffer == NULL || !fillrect.Is_Valid()) return(false);
+	if (Pixels == nullptr || !fillrect.Is_Valid()) return(false);
 
 	bool result = BASECLASS::Fill_Rect(cliprect, fillrect, color);
 

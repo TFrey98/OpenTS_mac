@@ -30,11 +30,12 @@ Full engine startup, real assets, and gameplay remain unverified on macOS.
 
 ## Next tasks
 
-1. **M1.2:** Interactively validate the shell's window and input handling.
-2. **M2.1:** Add an engine target to the Xcode project so the remaining
-   compilation and link gaps surface in a real build.
-3. **M3.1:** Define the required asset version and validate the supplied GDI
-   disc against it before connecting asset loading to game startup.
+1. **M3.1:** Define the required asset version and validate the supplied GDI
+   disc against it. The game now starts and stops at the first archive it
+   cannot find, so real assets are the next thing it needs.
+2. **M2.4:** Audit integer widths and packed layouts. The build's 99
+   `-Wshorten-64-to-32` warnings are the starting list.
+3. **M1.2:** Interactively validate the window and input handling.
 
 Work through the milestones in order. The asset inventory in M3.1 can proceed
 alongside the build work. Multiplayer and distribution follow local gameplay
@@ -64,15 +65,14 @@ Capture an image to verify the displayed result in addition to frame submission.
 Review [the Xcode project](platform/macos/OpenTS.xcodeproj),
 [the Win32 names the engine uses](code/win.h), and [startup](code/startup.cpp).
 
-- [ ] **M2.1:** Add an engine target to the Xcode project with an explicit
+- [x] **M2.1:** Add an engine target to the Xcode project with an explicit
   source list. Leave out Windows-only sources, resources, and manifests, and
   generate the version and build-stamp headers.
-- [ ] **M2.2:** Build the remaining pinned dependencies on ARM64: miniaudio,
+- [x] **M2.2:** Build the remaining pinned dependencies on ARM64: miniaudio,
   LZO, RmlUi, FreeType, and Dear ImGui. Use the existing dependency versions.
-- [ ] **M2.3:** Inventory Windows headers, handle types, calling conventions,
+- [x] **M2.3:** Inventory Windows headers, handle types, calling conventions,
   intrinsics, and x86 assumptions. Replace each required dependency with a
-  defined platform interface or an equivalent implementation. In progress:
-  487 of 499 sources compile; the status document lists the rest.
+  defined platform interface or an equivalent implementation.
 - [ ] **M2.4:** Audit integer widths, pointer conversions, packing, and class
   layouts. Preserve required 32-bit values where macOS's 64-bit `long` would
   change asset, save, or packet representations.
@@ -120,12 +120,14 @@ Review [startup](code/startup.cpp), [initialization](code/init.cpp),
 
 - [ ] **M4.1:** Connect the Mac application to real engine initialization,
   the main loop, and shutdown, replacing the generated diagnostic frame.
+  `OpenTS.app` now runs the engine's own startup as far as the first archive.
 - [ ] **M4.2:** Port the engine's SDL window and input layer. Map keyboard
   modifiers and mouse coordinates consistently; verify hotkeys, selection
   dragging, cursor behavior, edge scrolling, capture, and focus recovery.
 - [ ] **M4.3:** Make language strings and required dialog resources available
   without `Language.dll`. Package and load the existing UI documents, fonts,
-  and textures in the application bundle.
+  and textures in the application bundle. The strings are compiled in and the
+  `ui/` folder is bundled; textures await a main menu to check them against.
 - [ ] **M4.4:** Validate the main menu, options, campaign selection, and
   skirmish setup with keyboard and mouse at multiple window sizes.
 

@@ -151,7 +151,7 @@ AnimClass::AnimClass(AnimTypeClass const * type, Coord const & coord, int timede
 	ShapeFlags(flags)
 {
 	Create_ID();
-	Sync_Record_Anim(*this, coord, (unsigned)(uintptr_t)_ReturnAddress());
+	Sync_Record_Anim(*this, coord, (uintptr_t)_ReturnAddress());
 	Anims.Add(this);
 	IsActive = true;
 

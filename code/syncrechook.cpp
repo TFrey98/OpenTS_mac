@@ -25,7 +25,9 @@
 #include "scenario.h"
 #include "except.h"
 #include "session.h"
-#include "win.h"
+
+#include <mach-o/dyld.h>
+#include <mach-o/getsect.h>
 
 
 static uintptr_t ModuleBase = 0;
@@ -33,7 +35,7 @@ static uint32_t ModuleSize = 0;
 static uint32_t MapImageBase = 0;
 
 
-static uint32_t Sync_Caller_RVA(unsigned caller)
+static uint32_t Sync_Caller_RVA(uintptr_t caller)
 {
 	uintptr_t const address = caller;
 	if (ModuleBase != 0 && address >= ModuleBase && address < ModuleBase + ModuleSize) {
@@ -44,8 +46,8 @@ static uint32_t Sync_Caller_RVA(unsigned caller)
 			return(rva);
 		}
 	}
-	// The image is large address aware, so an address outside it can carry the flag bit itself
-	// and loses it here. Such an address only says the call came from elsewhere.
+	// An address outside the image only says the call came from elsewhere; its low bits are kept
+	// to tell such callers apart.
 	return(SYNC_CALLER_EXTERN | ((uint32_t)address & ~SYNC_CALLER_EXTERN));
 }
 
@@ -61,48 +63,6 @@ namespace {
 
 	CallerTextType CallerTexts[256];
 	unsigned CallerTextCount = 0;
-}
-
-
-/// <summary>
-/// Reads the image base the linker wrote this build's map file against. The loader rewrites that
-/// field in the mapped header whenever it relocates the image, which address space layout
-/// randomization makes the normal case, so the answer only survives in the file itself.
-/// </summary>
-/// <returns>The preferred base, or zero when the header could not be read.</returns>
-static uint32_t Sync_Preferred_Image_Base(void)
-{
-	char path[MAX_PATH];
-	if (GetModuleFileName(GetModuleHandle(nullptr), path, sizeof(path)) == 0) {
-		return(0);
-	}
-
-	HANDLE const file = CreateFile(path, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE,
-					nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-	if (file == INVALID_HANDLE_VALUE) {
-		return(0);
-	}
-
-	uint32_t base = 0;
-	IMAGE_DOS_HEADER dos = {};
-	DWORD read = 0;
-
-	if (ReadFile(file, &dos, sizeof(dos), &read, nullptr) && read == sizeof(dos)
-		&& dos.e_magic == IMAGE_DOS_SIGNATURE
-		&& SetFilePointer(file, dos.e_lfanew, nullptr, FILE_BEGIN) != INVALID_SET_FILE_POINTER) {
-
-		IMAGE_NT_HEADERS32 nt = {};
-		if (ReadFile(file, &nt, sizeof(nt), &read, nullptr) && read == sizeof(nt)
-			&& nt.Signature == IMAGE_NT_SIGNATURE
-			&& nt.OptionalHeader.Magic == IMAGE_NT_OPTIONAL_HDR32_MAGIC) {
-
-			base = nt.OptionalHeader.ImageBase;
-		}
-	}
-
-	CloseHandle(file);
-
-	return(base);
 }
 
 
@@ -133,7 +93,7 @@ static char const * Sync_Describe_Caller(uint32_t rva)
 }
 
 
-void Sync_Record_Random_Impl(Random2Class const & gen, int value, int minval, int maxval, bool ranged, unsigned caller)
+void Sync_Record_Random_Impl(Random2Class const & gen, int value, int minval, int maxval, bool ranged, uintptr_t caller)
 {
 	SyncRandomEntryType entry {};
 	entry.Frame = Frame;
@@ -149,7 +109,7 @@ void Sync_Record_Random_Impl(Random2Class const & gen, int value, int minval, in
 }
 
 
-void Sync_Record_Facing_Impl(DirType const & facing, unsigned caller)
+void Sync_Record_Facing_Impl(DirType const & facing, uintptr_t caller)
 {
 	SyncFacingEntryType entry {};
 	entry.Frame = Frame;
@@ -160,7 +120,7 @@ void Sync_Record_Facing_Impl(DirType const & facing, unsigned caller)
 }
 
 
-void Sync_Record_Target_Impl(AbstractClass const & subject, AbstractClass const * target, unsigned caller)
+void Sync_Record_Target_Impl(AbstractClass const & subject, AbstractClass const * target, uintptr_t caller)
 {
 	SyncTargetEntryType entry {};
 	entry.Frame = Frame;
@@ -173,7 +133,7 @@ void Sync_Record_Target_Impl(AbstractClass const & subject, AbstractClass const 
 }
 
 
-void Sync_Record_Mission_Impl(ObjectClass const & subject, int before, int after, int kind, unsigned caller)
+void Sync_Record_Mission_Impl(ObjectClass const & subject, int before, int after, int kind, uintptr_t caller)
 {
 	SyncMissionEntryType entry {};
 	entry.Frame = Frame;
@@ -187,7 +147,7 @@ void Sync_Record_Mission_Impl(ObjectClass const & subject, int before, int after
 }
 
 
-void Sync_Record_Anim_Impl(AnimClass const & anim, Coord const & coord, unsigned caller)
+void Sync_Record_Anim_Impl(AnimClass const & anim, Coord const & coord, uintptr_t caller)
 {
 	SyncAnimEntryType entry {};
 	entry.Frame = Frame;
@@ -246,20 +206,13 @@ void Sync_Recorder_Arm(void)
 	bool const network = (Session.Type == GAME_IPX || Session.Type == GAME_INTERNET);
 	SyncRecorder.Set_Recording(network || Session.Record || Session.Play);
 
-	ModuleBase = (uintptr_t)GetModuleHandle(nullptr);
-	ModuleSize = 0;
+	// Offsets are taken from the executable's Mach-O header, where __TEXT begins. The linker's
+	// preferred base for __TEXT, 0x100000000, does not fit the report's 32-bit field, so
+	// MapImageBase stays zero and reports give image offsets alone.
+	ModuleBase = (uintptr_t)_dyld_get_image_header(0);
+	segment_command_64 const * text = getsegbyname("__TEXT");
+	ModuleSize = (text != nullptr && text->vmsize < SYNC_CALLER_EXTERN) ? (uint32_t)text->vmsize : 0;
 	MapImageBase = 0;
-	if (ModuleBase != 0) {
-		IMAGE_DOS_HEADER const * dos = (IMAGE_DOS_HEADER const *)ModuleBase;
-		if (dos->e_magic == IMAGE_DOS_SIGNATURE) {
-			IMAGE_NT_HEADERS const * nt = (IMAGE_NT_HEADERS const *)(ModuleBase + dos->e_lfanew);
-			if (nt->Signature == IMAGE_NT_SIGNATURE) {
-				ModuleSize = nt->OptionalHeader.SizeOfImage;
-			}
-		}
-	}
-
-	MapImageBase = Sync_Preferred_Image_Base();
 
 	SyncCallerContextType context;
 	context.MapImageBase = MapImageBase;

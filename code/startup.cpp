@@ -161,20 +161,25 @@
 #include "wwmouse.h"
 #include "zbuffer.h"
 
+#include <cerrno>
 #include <cfloat>
 #include <lzo/lzoconf.h>
-#include <shellapi.h>
 #include <string>
 #include <vector>
 
-extern	HINSTANCE LanguageResources;
+#include <cstdlib>
+#include <fcntl.h>
+#include <filesystem>
+#include <limits.h>
+#include <mach-o/dyld.h>
+#include <sys/file.h>
+#include <unistd.h>
 
+// The original's single-instance mutex name, kept for the lock file that replaces it.
 #define APP_GUID "29e3bb2a-2f36-11d3-a72c-0090272fa661"
-#define AUTOPLAY_GUID "b350c6d2-2f36-11d3-a72c-0090272fa661"
 
-
-HANDLE AppMutex;
-HANDLE AutoPlayMutex;
+// Held open, and locked, for as long as this copy of the game runs.
+static int InstanceLock = -1;
 
 //WinTimerClass * WinTimer;
 
@@ -306,9 +311,11 @@ static void RegisterClasses(void)
 /// </summary>
 /// <param name="path_to_exe">Full path to the running executable, which becomes the first
 /// argument the way a DOS program received it.</param>
+/// <param name="count">The number of arguments main received.</param>
+/// <param name="given">The arguments main received.</param>
 /// <param name="argv">Receives the argument array, which lasts as long as the process.</param>
 /// <returns>The number of arguments, which is never less than one.</returns>
-static int Build_Arguments(char const * path_to_exe, char ** & argv)
+static int Build_Arguments(char const * path_to_exe, int count, char ** given, char ** & argv)
 {
 	static std::vector<std::string> arguments;
 	static std::vector<char *> pointers;
@@ -317,21 +324,12 @@ static int Build_Arguments(char const * path_to_exe, char ** & argv)
 	pointers.clear();
 	arguments.push_back(path_to_exe);
 
-	int wide_count = 0;
-	LPWSTR * wide_argv = CommandLineToArgvW(GetCommandLineW(), &wide_count);
-
-	if (wide_argv != NULL) {
-		// Index zero names the executable, which the caller has already established.
-		for (int index = 1; index < wide_count; index++) {
-			int length = WideCharToMultiByte(CP_ACP, 0, wide_argv[index], -1, NULL, 0, NULL, NULL);
-			if (length <= 1) continue;
-
-			std::string argument(length - 1, '\0');
-			WideCharToMultiByte(CP_ACP, 0, wide_argv[index], -1, argument.data(), length, NULL, NULL);
-			arguments.push_back(argument);
+	// Index zero names the executable, which the caller has already established. An empty
+	// argument is dropped, as the Windows build dropped one.
+	for (int index = 1; index < count; index++) {
+		if (given[index][0] != '\0') {
+			arguments.push_back(given[index]);
 		}
-
-		LocalFree(wide_argv);
 	}
 
 	for (std::string & argument : arguments) {
@@ -344,82 +342,33 @@ static int Build_Arguments(char const * path_to_exe, char ** & argv)
 
 
 /// <summary>
-/// Claims the mutexes that keep a second copy of the game from running.
-/// When another copy already holds them, its window is brought to the front instead.
+/// Locks the file that keeps a second copy of the game from running. The lock is released when
+/// the process exits, however it exits.
 /// </summary>
-/// <returns>bool; Were the mutexes claimed? False means another copy is running.</returns>
+/// <returns>bool; Was the lock claimed? False means another copy is running.</returns>
 static bool Claim_Single_Instance(void)
 {
-	/*
-	 * Create a mutex with a unique name to TibSun in order to determine if
-	 * our app is already running.
-	 *
-	 * WARNING: DO NOT use this number for any other application except TibSun
-	 */
-	AppMutex = ::CreateMutex (NULL, FALSE, APP_GUID);
+	char const * temporary = getenv("TMPDIR");
+	std::string path = std::string(temporary != NULL && temporary[0] != '\0' ? temporary : "/tmp/");
+	if (path.back() != '/') {
+		path += '/';
+	}
+	path += "OpenTS-" APP_GUID ".lock";
 
-	//
-	// Is there already an instance of this app somewhere?
-	//
-	if (::GetLastError () == ERROR_ALREADY_EXISTS) {
-		//
-		// Find the previous instance
-		//
-		HWND main_wnd = ::FindWindow (APP_GUID, NULL);
-		if (main_wnd != NULL) {
-			::SetForegroundWindow (main_wnd);
-			::ShowWindow (main_wnd, SW_RESTORE);
-		}
-		if (AppMutex != NULL) {
-			CloseHandle(AppMutex);
-			AppMutex = NULL;
-		}
-		DebugString("TibSun is already running...Bail!\n");
-		return(false);
-	} else {
-
-		DebugString("Create AppMutex okay.\n");
-
-		//
-		// Obtain the mutex unique to the Renegade AutoPlay application.
-		//
-		// WARNING: DO NOT use this number for any other application except Renegade AutoPlay
-		//
-		do
-		{
-			//
-			// Attempt to open the mutex
-			//
-			AutoPlayMutex = ::OpenMutex (MUTEX_ALL_ACCESS, FALSE, AUTOPLAY_GUID);
-			if (AutoPlayMutex != NULL) {
-				DebugString( "Waiting for Autoplay to quit!\n");
-				if (::WaitForSingleObject (AutoPlayMutex, 30000) == WAIT_FAILED) {
-					DebugString ("Failed waiting for AutoPlayMutex\n");
-					::CloseHandle (AutoPlayMutex);
-					AutoPlayMutex = NULL;
-				}
-			}
-
-			/*
-			 * Create a mutex with a name unique to the TibSun AutoPlay application.
-			 * This prevents the autoplay from running since it cannot get the mutex.
-			 * TibSun needs both of these mutexs before it is allowed to run.
-			 */
-			if (AutoPlayMutex == NULL) {
-				AutoPlayMutex = CreateMutex (NULL, FALSE, AUTOPLAY_GUID);
-				if (GetLastError () == ERROR_ALREADY_EXISTS) {
-					CloseHandle (AutoPlayMutex);
-					AutoPlayMutex = NULL;
-					Sleep (2500);
-				} else {
-					DebugString("Create AutoPlayMutex.\n");
-				}
-			}
-		} while (AutoPlayMutex == NULL);
-
-		DebugString ("Got AutoPlayMutex okay.\n");
+	InstanceLock = open(path.c_str(), O_RDWR | O_CREAT | O_CLOEXEC, 0600);
+	if (InstanceLock < 0) {
+		DebugString("The single-instance lock %s could not be opened: %s\n", path.c_str(), Last_Error_Text(errno));
+		return(true);
 	}
 
+	if (flock(InstanceLock, LOCK_EX | LOCK_NB) != 0) {
+		close(InstanceLock);
+		InstanceLock = -1;
+		DebugString("TibSun is already running...Bail!\n");
+		return(false);
+	}
+
+	DebugString("Claimed the single-instance lock.\n");
 	return(true);
 }
 
@@ -441,17 +390,15 @@ static bool Claim_Single_Instance(void)
  * HISTORY:                                                                                    *
  *   03/20/1995 JLB : Created.                                                                 *
  *=============================================================================================*/
-int CALLBACK WinMain ( HINSTANCE instance , HINSTANCE , char * , int )
+int main(int given_count, char ** given_arguments)
 {
 	int		argc;       //Command line argument count
 	char **	argv;       //Pointers to command line arguments
-	char	path_to_exe[MAX_PATH];
+	char	path_to_exe[PATH_MAX];
 	char	buffer[512];
 
 	// First, so that everything after it is covered, including the rest of this function.
 	Install_Exception_Handler();
-
-	ProgramInstance = instance;
 
 	Debug_Init();
 
@@ -480,13 +427,17 @@ int CALLBACK WinMain ( HINSTANCE instance , HINSTANCE , char * , int )
 	/*
 	**	Get the full path to the .EXE
 	*/
-	GetModuleFileName (instance, &path_to_exe[0], sizeof(path_to_exe));
+	uint32_t path_size = sizeof(path_to_exe);
+	char unresolved[PATH_MAX];
+	if (_NSGetExecutablePath(unresolved, &path_size) != 0 || realpath(unresolved, path_to_exe) == NULL) {
+		snprintf(path_to_exe, sizeof(path_to_exe), "%s", given_arguments[0]);
+	}
 
 	/*
 	**	Get pointers to command line arguments just like if we were in DOS
 	**
 	*/
-	argc = Build_Arguments(path_to_exe, argv);
+	argc = Build_Arguments(path_to_exe, given_count, given_arguments, argv);
 
 	/*
 	**	Change directory to the where the executable is located. Handle the
@@ -497,7 +448,9 @@ int CALLBACK WinMain ( HINSTANCE instance , HINSTANCE , char * , int )
 	char dir[_MAX_DIR];
 	_splitpath(argv[0], drive, dir, NULL, NULL);
 	_makepath(path, drive, dir, NULL, NULL);
-	SetCurrentDirectory(path);
+	if (chdir(path) != 0) {
+		DebugString("Could not change to the executable's directory %s: %s\n", path, Last_Error_Text(errno));
+	}
 
 	int error_code = EXIT_FAILURE;
 
@@ -517,11 +470,18 @@ int CALLBACK WinMain ( HINSTANCE instance , HINSTANCE , char * , int )
 		DeploymentConfig.Read_File(Data_Directory().c_str());
 		Init_Search_Folders(DeploymentConfig.SearchPaths.c_str());
 
+		// An application bundle keeps the UI documents in its Resources folder, beside the
+		// MacOS folder that holds the executable; a bare executable keeps them beside itself.
 		std::string uidirectory = path;
-		if (!uidirectory.empty() && uidirectory.back() != '\\' && uidirectory.back() != '/') {
-			uidirectory += '\\';
+		if (!uidirectory.empty() && uidirectory.back() != '/') {
+			uidirectory += '/';
 		}
-		uidirectory += "ui\\";
+		std::error_code missing;
+		if (std::filesystem::is_directory(uidirectory + "../Resources/ui", missing)) {
+			uidirectory += "../Resources/ui/";
+		} else {
+			uidirectory += "ui/";
+		}
 		CDFileClass::Add_Search_Drive(uidirectory.c_str());
 
 		// The recording's name was settled during static initialization, before there was
@@ -999,17 +959,9 @@ void __cdecl Prog_End(void)
 
 	Unregister_Classes();
 
-	if (LanguageResources) {
-		FreeLibrary(LanguageResources);
-	}
-
-	if (AutoPlayMutex != NULL) {
-		CloseHandle(AutoPlayMutex);
-		AutoPlayMutex = NULL;
-	}
-	if (AppMutex != NULL) {
-		CloseHandle(AppMutex);
-		AppMutex = NULL;
+	if (InstanceLock >= 0) {
+		close(InstanceLock);
+		InstanceLock = -1;
 	}
 
 	// The renderer let go of the window when the surfaces were reset above.

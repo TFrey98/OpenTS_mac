@@ -22,38 +22,38 @@ class EventClass;
 // Each wrapper is a guard around an out-of-line body, so a non-recording game pays only a branch.
 // The caller is the raw return address captured at the hooked call site.
 
-void Sync_Record_Random_Impl(Random2Class const & gen, int value, int minval, int maxval, bool ranged, unsigned caller);
-void Sync_Record_Facing_Impl(DirType const & facing, unsigned caller);
-void Sync_Record_Target_Impl(AbstractClass const & subject, AbstractClass const * target, unsigned caller);
-void Sync_Record_Mission_Impl(ObjectClass const & subject, int before, int after, int kind, unsigned caller);
-void Sync_Record_Anim_Impl(AnimClass const & anim, Coord const & coord, unsigned caller);
+void Sync_Record_Random_Impl(Random2Class const & gen, int value, int minval, int maxval, bool ranged, uintptr_t caller);
+void Sync_Record_Facing_Impl(DirType const & facing, uintptr_t caller);
+void Sync_Record_Target_Impl(AbstractClass const & subject, AbstractClass const * target, uintptr_t caller);
+void Sync_Record_Mission_Impl(ObjectClass const & subject, int before, int after, int kind, uintptr_t caller);
+void Sync_Record_Anim_Impl(AnimClass const & anim, Coord const & coord, uintptr_t caller);
 void Sync_Record_Event_Impl(EventClass const & event, int source);
 
-inline void Sync_Record_Random(Random2Class const & gen, int value, int minval, int maxval, bool ranged, unsigned caller)
+inline void Sync_Record_Random(Random2Class const & gen, int value, int minval, int maxval, bool ranged, uintptr_t caller)
 {
 	if (!SyncRecorder.Is_Recording()) return;
 	Sync_Record_Random_Impl(gen, value, minval, maxval, ranged, caller);
 }
 
-inline void Sync_Record_Facing(DirType const & facing, unsigned caller)
+inline void Sync_Record_Facing(DirType const & facing, uintptr_t caller)
 {
 	if (!SyncRecorder.Is_Recording()) return;
 	Sync_Record_Facing_Impl(facing, caller);
 }
 
-inline void Sync_Record_Target(AbstractClass const & subject, AbstractClass const * target, unsigned caller)
+inline void Sync_Record_Target(AbstractClass const & subject, AbstractClass const * target, uintptr_t caller)
 {
 	if (!SyncRecorder.Is_Recording()) return;
 	Sync_Record_Target_Impl(subject, target, caller);
 }
 
-inline void Sync_Record_Mission(ObjectClass const & subject, int before, int after, int kind, unsigned caller)
+inline void Sync_Record_Mission(ObjectClass const & subject, int before, int after, int kind, uintptr_t caller)
 {
 	if (!SyncRecorder.Is_Recording()) return;
 	Sync_Record_Mission_Impl(subject, before, after, kind, caller);
 }
 
-inline void Sync_Record_Anim(AnimClass const & anim, Coord const & coord, unsigned caller)
+inline void Sync_Record_Anim(AnimClass const & anim, Coord const & coord, uintptr_t caller)
 {
 	if (!SyncRecorder.Is_Recording()) return;
 	Sync_Record_Anim_Impl(anim, coord, caller);

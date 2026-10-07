@@ -1,9 +1,9 @@
 # Building OpenTS
 
 > [!IMPORTANT]
-> OpenTS targets macOS on Apple silicon only. The Xcode project currently
-> builds a development shell and ten engine test harnesses; the full game does
-> not yet compile or link. [Mac port status](MACOS_PORT.md) records what has
+> OpenTS targets macOS on Apple silicon only. The Xcode project builds the
+> game, a development shell, and ten engine test harnesses. The game starts but
+> needs the original game data to go further. [Mac port status](MACOS_PORT.md) records what has
 > been verified, and the [port TODO](../TODO.md) tracks the remaining work.
 
 ## Supported target
@@ -57,9 +57,11 @@ as a submodule. It holds only the LZO1X-1 sources the engine calls; take a
 later release by extracting it over the files already there, in a separate
 change.
 
-miniaudio, RmlUi, FreeType, Dear ImGui, and LZO are not yet built by the Xcode
-project; [M2.2](../TODO.md#m2-native-engine-build-and-platform-services) adds
-them. Update a pinned tag in a separate change.
+The Xcode project builds every dependency as a static library with the options
+the engine expects: miniaudio without its engine, node graph, resource
+manager, generation, or encoding; FreeType with its stock options; RmlUi's
+core with the FreeType font engine; and Dear ImGui's core without obsolete
+functions. Update a pinned tag in a separate change.
 
 ## Build with Xcode
 
@@ -67,6 +69,8 @@ Open `platform/macos/OpenTS.xcodeproj` in Xcode and choose a scheme:
 
 | Scheme | Result |
 | --- | --- |
+| `OpenTS` | `OpenTS.app`, the game |
+| `OpenTSEngine` | The engine library alone |
 | `OpenTSMacShell` | `OpenTSMacShell.app`, the desktop window and frame presenter |
 | `PortableTests` | Builds the ten engine harnesses and runs them; the build fails if one fails |
 
@@ -81,7 +85,26 @@ xcodebuild -project platform/macos/OpenTS.xcodeproj -scheme PortableTests \
 
 Use `-configuration Release` for an optimized build. Products are written to
 `build/xcode/Build/Products/<configuration>/`. Builds are signed to run
-locally. The application depends only on system libraries.
+locally. The applications depend only on system libraries.
+
+### Game
+
+The engine compiles with C++20, `-fms-extensions` for its
+`__declspec(property)` declarations, and `-fno-fast-math -ffp-contract=off`
+so its floating-point results match in every configuration. Debug defines
+`_DEBUG`. `OpenTS.app` force-loads the engine and VQA libraries, because the
+engine's classes register themselves from static initializers that nothing
+else refers to. The `ui/` folder is copied into the bundle's `Resources`.
+
+Start the game with `open`, so it becomes the active application and its
+window receives focus:
+
+```sh
+open build/xcode/Build/Products/Debug/OpenTS.app --args -XC
+```
+
+`-XC` mirrors the debug log to standard error. The log itself is written to
+`~/Library/Logs/OpenTS`.
 
 ### Desktop shell
 
@@ -131,8 +154,11 @@ repository state:
 | `opents_version.h` | The version components, the version string, a prerelease flag, and the packed version number |
 | `opents_build.h` | The commit, branch, commit date, whether tracked files were modified, and the version as it is displayed |
 
-The Xcode project does not generate them yet; the engine target will. The
-archived generators in `archive/windows/cmake/` show what they contain.
+`platform/macos/generate_headers.py` writes them before the engine compiles,
+together with `opents_strings.h`, the string-name table, and
+`opents_language.h`, the text of the string tables in
+`code/language/language.rc`. A header is rewritten only when its contents
+change.
 
 The packed version stores the major, minor, and patch components in one byte
 each. Saves and network peers reject a different number. Builds within one

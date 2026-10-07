@@ -83,21 +83,50 @@ submodule. Unlike the earlier CMake build, this SDL build includes its audio,
 GPU, joystick, haptic, and other subsystems; the shell does not initialize
 them.
 
-## Engine compilation
+## Engine build
 
-A syntax-only pass compiles each of the 499 engine and VQA sources with Apple
+The `OpenTSEngine` target compiles all of the engine except the Windows
+string DLL's entry point, and `OpenTS.app` links it with the VQA library and
+every third-party dependency. Debug and Release both build and link with Apple
 Clang, C++20, and `-fms-extensions`, which accepts the engine's
-`__declspec(property)` declarations. Before porting, 168 compiled; 487 do
-now. No engine library is linked yet.
+`__declspec(property)` declarations. The engine is compiled with
+`-fno-fast-math -ffp-contract=off`, matching the Windows build's
+floating-point model. The application links only system libraries.
 
-`code/win.h` now defines the Win32 names the engine still uses for macOS:
+Run with no game data, the Debug application logged its startup: the
+single-instance lock, the game directories, Core Audio output, the Metal
+renderer, the RmlUi shell and its fonts, surface allocation, and encryption
+key setup. It then reported that it could not open `CACHE.MIX`. A bare
+executable started from a background terminal waits for window focus that
+never comes; launch the bundle with `open` instead.
+
+The build reports 22 warnings in the application and several hundred in the
+engine. They include 99 `-Wshorten-64-to-32` truncations for the M2.4 audit,
+and 33 `-Wformat` mismatches in log calls, which `DebugString`'s format
+checking now reveals.
+
+### Win32 replacements
+
+`code/win.h` defines the Win32 names the engine still uses for macOS:
 fixed-width types, so `DWORD` and `LONG` stay 32-bit; `FILETIME`, which save
 files store in its Windows representation; the system time functions;
 millisecond timing; and the drag threshold. `code/vkey.h` holds the
 virtual-key table with Windows values, which saved hotkeys store. Other Win32
-calls were replaced with POSIX or macOS equivalents in the files that used
-them:
+calls were replaced in the files that used them:
 
+- `main` replaces `WinMain`. A `flock` lock file in `$TMPDIR` replaces the
+  single-instance mutexes; the Westwood AutoPlay mutex has no counterpart.
+- The SDL window layer creates a Metal window and hands the renderer its Cocoa
+  window. Mouse capture uses SDL's own state, and the window takes focus only
+  from the game's other windows, never from another application.
+- The language strings are compiled in. `platform/macos/generate_headers.py`
+  turns the string tables in `code/language/language.rc` into
+  `opents_language.h`, with all 750 strings.
+- Game surfaces hold their pixels in memory, and a size-changing copy between
+  them is scaled nearest-neighbour, as Windows' `COLORONCOLOR` stretch did.
+  `code/surftext.cpp` draws the remaining TrueType text, the end credits and
+  the tactical caption, with FreeType and macOS's Arial. It follows Win32
+  `CreateFont` sizing, using the OS/2 table's Windows ascent and descent.
 - The load, save, and random-map dialogs, game directories, and save files use
   the portable file search and POSIX I/O. Save files are flushed with
   `F_FULLFSYNC`.
@@ -108,21 +137,27 @@ them:
   is `mach_absolute_time`, with its rate taken from the timebase.
 - Best-fit code page lookup uses `iconv` transliteration. Its close matches can
   differ from Windows' best-fit tables.
-- The VQA `SN2J` record uses `int32_t`; with `long` it was 20 bytes instead of
-  12.
+- The sync recorder takes call-site offsets from the executable's Mach-O
+  header. `Describe_Code_Address` names exported functions through `dladdr`.
+- The UI asks for macOS's Microsoft Sans Serif and Arial font files. The
+  Windows bitmap fonts it also tries do not exist on macOS, so the TrueType
+  faces answer for them.
 
-Fixed while porting: the random-map cache cleanup deleted the wrong path, so it
-never removed old previews. The POSIX file search kept a pointer to its
-caller's pattern string.
+Fixed while porting:
 
-Nine files still need macOS implementations. GDI text and DIB surfaces in
-`ownrdraw.cpp`, `tactical.cpp`, `egos.cpp`, and `dsurface.cpp` need a FreeType
-text renderer. `data.cpp` loads strings from `Language.dll` (M4.3).
-`gamewindow.cpp`, `sdlwindow.cpp`, and `startup.cpp` hold Win32 window and
-startup code. `syncrechook.cpp` reads the Windows executable's headers. The
-`sdlkeys` contract test loads Windows keyboard layouts and must be rewritten
-for macOS. Packed structures that use `long` and lack size assertions remain
-for the M2.4 audit.
+- The VQA `SN2J` record used `long` and was 20 bytes instead of 12.
+- The sync recorder truncated 64-bit return addresses to 32 bits before
+  taking their offsets.
+- The random-map cache cleanup deleted the wrong path, so it never removed old
+  previews.
+- The POSIX file search kept a pointer to its caller's pattern string.
+
+Behavior that differs from Windows: a key already held when the window regains
+focus is not reported as held until it is pressed again, and the Westwood
+Online serial lookup finds no serial. The crash handler is a stub; macOS writes
+its own crash reports. The `sdlkeys` contract test loads Windows keyboard
+layouts and must be rewritten for macOS, and the 40 harnesses not yet in the
+Xcode project still need porting.
 
 ## Remaining work
 

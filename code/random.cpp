@@ -198,7 +198,7 @@ int Random2Class::operator() (void)
 	if (Index1 >= TABLE_SIZE) Index1 = 0;
 	if (Index2 >= TABLE_SIZE) Index2 = 0;
 
-	Sync_Record_Random(*this, val, 0, 0, false, (unsigned)(uintptr_t)_ReturnAddress());
+	Sync_Record_Random(*this, val, 0, 0, false, (uintptr_t)_ReturnAddress());
 	return(val);
 }
 
@@ -225,7 +225,7 @@ int Random2Class::operator() (int minval, int maxval)
 	SyncRecorder.Begin_Ranged_Draw();
 	int val = Pick_Random_Number(*this, minval, maxval);
 	SyncRecorder.End_Ranged_Draw();
-	Sync_Record_Random(*this, val, minval, maxval, true, (unsigned)(uintptr_t)_ReturnAddress());
+	Sync_Record_Random(*this, val, minval, maxval, true, (uintptr_t)_ReturnAddress());
 	return(val);
 }
 

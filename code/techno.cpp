@@ -3683,7 +3683,7 @@ void TechnoClass::Assign_Target(AbstractClass * target)
 	// Infantry record their own assignment before calling here, and buildings are not recorded.
 	RTTIType const rtti = Fetch_RTTI();
 	if (rtti != RTTI_INFANTRY && rtti != RTTI_BUILDING) {
-		Sync_Record_Target(*this, target, (unsigned)(uintptr_t)_ReturnAddress());
+		Sync_Record_Target(*this, target, (uintptr_t)_ReturnAddress());
 	}
 
 	AbstractClass * old_target = TarCom;
@@ -4776,7 +4776,7 @@ void TechnoClass::Override_Mission(MissionType mission, AbstractClass * tarcom, 
 {
 	// Foot units record their own override before calling here.
 	if (Fetch_RTTI() == RTTI_BUILDING) {
-		Sync_Record_Mission(*this, CurrentMission, mission, SYNC_MISSION_OVERRIDE, (unsigned)(uintptr_t)_ReturnAddress());
+		Sync_Record_Mission(*this, CurrentMission, mission, SYNC_MISSION_OVERRIDE, (uintptr_t)_ReturnAddress());
 	}
 
 	SuspendedTarCom = TarCom;

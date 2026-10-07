@@ -67,6 +67,7 @@
 
 #include "ramp.hh"
 #include "scrspeed.hh"
+#include "surftext.h"
 
 #include <utility>
 
@@ -1356,10 +1357,8 @@ void Tactical::Clear_Caption_Text(void)
 
 
 /// <summary>
-/// Draws a line of text across the middle of the tactical view.
-/// This routine paints straight onto the composite surface with GDI, so it does nothing
-/// unless that surface can hand out a device context. It also stays quiet while the map
-/// editor is running.
+/// Draws a line of text across the middle of the tactical view, centered on it, in a 28 pixel
+/// Arial cell with 20 pixel average characters. It stays quiet while the map editor is running.
 /// </summary>
 /// <param name="text">The text to display. A NULL or empty string draws nothing.</param>
 void Tactical::Draw_Screen_Text(char const * text)
@@ -1370,22 +1369,14 @@ void Tactical::Draw_Screen_Text(char const * text)
 	if (text == NULL || !strlen(text)) {
 		return;
 	}
-	if (CompositeSurface->Is_GDI_Backed()) {
-		DSurface * surface = (DSurface *)CompositeSurface;
-		Rect rect = TacticalRect;
-		HDC hdc = surface->GetDC();
-		if (hdc != NULL) {
-			HFONT font = CreateFont(28, 20, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_RASTER_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, FF_SWISS | DEFAULT_PITCH, NULL);
-			HGDIOBJ h = SelectObject(hdc, font);
-			Point2D point = Point2D(TacticalRect.Width / 2, TacticalRect.Height / 2);
-			SetBkMode(hdc, TRANSPARENT);
-			SetTextAlign(hdc, TA_CENTER);
-			SetTextColor(hdc, RGB(255, 255, 255));
-			TextOut(hdc, rect.X + point.X, rect.Y + point.Y, text, strlen(text));
-			SelectObject(hdc, h);
-			DeleteObject(font);
-			surface->ReleaseDC(hdc);
-		}
+
+	SurfaceFont * const font = Surface_Font("Arial", 28, 20, false);
+	if (font != NULL) {
+		int width = 0;
+		int height = 0;
+		Surface_Text_Extent(font, text, (int)strlen(text), width, height);
+		Surface_Draw_Text(*CompositeSurface, font, TacticalRect.X + TacticalRect.Width / 2 - width / 2,
+			TacticalRect.Y + TacticalRect.Height / 2, text, (int)strlen(text), RGB(255, 255, 255));
 	}
 }
 

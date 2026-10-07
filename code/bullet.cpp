@@ -1544,7 +1544,7 @@ ClassID BulletClass::Class_ID(void) const
 /// </summary>
 void BulletClass::Assign_Target(AbstractClass * target)
 {
-	Sync_Record_Target(*this, target, (unsigned)(uintptr_t)_ReturnAddress());
+	Sync_Record_Target(*this, target, (uintptr_t)_ReturnAddress());
 	TarCom = target;
 }
 

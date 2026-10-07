@@ -2213,6 +2213,11 @@ void Exception_Wndproc_Test_Fault(void)
 
 #else
 
+#include <cstdio>
+#include <cstdlib>
+#include <cxxabi.h>
+#include <dlfcn.h>
+
 void Install_Exception_Handler(void)
 {
 }
@@ -2223,13 +2228,25 @@ void Exception_Register_Log_File(char const *)
 }
 
 
-bool Describe_Code_Address(void const *, char * buffer, unsigned size)
+bool Describe_Code_Address(void const * address, char * buffer, unsigned size)
 {
-	if (buffer != NULL && size != 0) {
-		buffer[0] = '\0';
+	if (buffer == NULL || size == 0) {
+		return(false);
+	}
+	buffer[0] = '\0';
+
+	// dladdr names exported functions only; a static function reports the nearest one before it.
+	Dl_info info;
+	if (dladdr(address, &info) == 0 || info.dli_sname == NULL) {
+		return(false);
 	}
 
-	return(false);
+	int status = 0;
+	char * demangled = abi::__cxa_demangle(info.dli_sname, NULL, NULL, &status);
+	snprintf(buffer, size, "%s+0x%lx", status == 0 && demangled != NULL ? demangled : info.dli_sname,
+		(unsigned long)((uintptr_t)address - (uintptr_t)info.dli_saddr));
+	free(demangled);
+	return(true);
 }
 
 

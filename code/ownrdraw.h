@@ -29,8 +29,10 @@ namespace OwnerDraw {
 #define OD_TEXT_ALIGN_CENTER 2
 #define OD_TEXT_ALIGN_MAX 3
 
-int OD_Draw_Text(COLORREF color, HFONT font, Rect const & rect, const char * text, int len, int x_alignment, int y_alignment, Surface * surface);
-HFONT WS_Get_Font(HDC hdc, const char * face_name, int decipt_width, int decipt_height, int attributes);
+struct SurfaceFont;
+
+int OD_Draw_Text(COLORREF color, SurfaceFont * font, Rect const & rect, const char * text, int len, int x_alignment, int y_alignment, Surface * surface);
+SurfaceFont * WS_Get_Font(const char * face_name, int decipt_width, int decipt_height, int attributes);
 
 std::string Build_Hotkey_String(KeyNumType key);
 

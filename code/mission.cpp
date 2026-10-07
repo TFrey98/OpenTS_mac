@@ -343,7 +343,7 @@ bool MissionClass::Commence(void)
  *=============================================================================================*/
 void MissionClass::Assign_Mission(MissionType order)
 {
-	Sync_Record_Mission(*this, CurrentMission, order, SYNC_MISSION_ASSIGN, (unsigned)(uintptr_t)_ReturnAddress());
+	Sync_Record_Mission(*this, CurrentMission, order, SYNC_MISSION_ASSIGN, (uintptr_t)_ReturnAddress());
 
 	if (CurrentMission == MISSION_DECONSTRUCTION) return;
 	/*

@@ -1234,7 +1234,7 @@ void InfantryClass::Assign_Destination(AbstractClass * target, bool immediate)
  *=============================================================================================*/
 void InfantryClass::Assign_Target(AbstractClass * target)
 {
-	Sync_Record_Target(*this, target, (unsigned)(uintptr_t)_ReturnAddress());
+	Sync_Record_Target(*this, target, (uintptr_t)_ReturnAddress());
 
 	if (target != TarCom && Strength > 0) {
 		IsFiring = false;

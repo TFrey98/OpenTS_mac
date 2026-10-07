@@ -11,13 +11,11 @@
 
 #include "dbgprint.h"
 #include "gamewindow.h"
-#include "resource.h"
 #include "sdl/sdlevents.h"
 #include "sdl/sdlinput.h"
 #include "sdl/sdlkeys.h"
 #include "win.h"
 
-#include <commctrl.h>
 
 #define SDL_MAIN_HANDLED
 #include <SDL3/SDL.h>
@@ -41,11 +39,10 @@ SDLInputStateClass _Input;
 
 SDL_Cursor * _SystemCursors[UI_CURSOR_COUNT];
 
-// The SDL event types the main window posts when Windows takes its mouse capture away, and
-// when a window drag, a resize or the system menu ends.
+// SDL event types for a mouse capture the system took away and for the end of a modal window
+// drag or resize. macOS reports neither apart from SDL's own events, so nothing posts them.
 Uint32 _CaptureCancelled = 0;
 Uint32 _ModalLoopEnded = 0;
-UINT_PTR const WindowSubclass = 2;
 
 
 void Set_Hint(char const * name, char const * value)
@@ -70,21 +67,12 @@ void Set_Hints(void)
 {
 	Set_Hint(SDL_HINT_QUIT_ON_LAST_WINDOW_CLOSE, "0");
 	Set_Hint(SDL_HINT_NO_SIGNAL_HANDLERS, "1");
-	Set_Hint(SDL_HINT_WINDOWS_CLOSE_ON_ALT_F4, "1");
-	Set_Hint(SDL_HINT_WINDOWS_ENABLE_MENU_MNEMONICS, "0");
-	Set_Hint(SDL_HINT_WINDOWS_RAW_KEYBOARD, "0");
-	Set_Hint(SDL_HINT_WINDOWS_GAMEINPUT, "0");
-	Set_Hint(SDL_HINT_WINDOWS_ERASE_BACKGROUND_MODE, "0");
-	Set_Hint(SDL_HINT_WINDOWS_INTRESOURCE_ICON, IDI_SUN);
-	Set_Hint(SDL_HINT_WINDOWS_INTRESOURCE_ICON_SMALL, IDI_SUN);
 	Set_Hint(SDL_HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS, "0");
 	Set_Hint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER, "1");
 	Set_Hint(SDL_HINT_WINDOW_ALLOW_TOPMOST, "0");
 	Set_Hint(SDL_HINT_MOUSE_FOCUS_CLICKTHROUGH, "1");
 	Set_Hint(SDL_HINT_MOUSE_AUTO_CAPTURE, "1");
 	Set_Hint(SDL_HINT_MOUSE_EMULATE_WARP_WITH_RELATIVE, "0");
-	Set_Hint(SDL_HINT_MOUSE_DOUBLE_CLICK_TIME, (int)GetDoubleClickTime());
-	Set_Hint(SDL_HINT_MOUSE_DOUBLE_CLICK_RADIUS, GetSystemMetrics(SM_CXDOUBLECLK) / 2);
 	Set_Hint(SDL_HINT_KEYCODE_OPTIONS, "french_numbers,latin_letters");
 }
 
@@ -115,15 +103,6 @@ void Dispatch(WindowEvent const & event)
 }
 
 
-HWND Window_Handle(void)
-{
-	if (_Window == nullptr) {
-		return(NULL);
-	}
-	return((HWND)SDL_GetPointerProperty(SDL_GetWindowProperties(_Window), SDL_PROP_WINDOW_WIN32_HWND_POINTER, nullptr));
-}
-
-
 void Post_Event(Uint32 type)
 {
 	if (type != 0) {
@@ -132,23 +111,6 @@ void Post_Event(Uint32 type)
 		event.type = type;
 		SDL_PushEvent(&event);
 	}
-}
-
-
-// Windows can end the capture while the window keeps the focus, for a system menu or another
-// window taking the mouse, and SDL reports neither. The window's own releases are ignored.
-LRESULT CALLBACK Watch_Messages(HWND window, UINT message, WPARAM wparam, LPARAM lparam, UINT_PTR, DWORD_PTR)
-{
-	if (message == WM_CANCELMODE || (message == WM_CAPTURECHANGED && lparam != 0 && (HWND)lparam != window)) {
-		Post_Event(_CaptureCancelled);
-	}
-
-	// SDL reset the keyboard when the drag, the resize or the system menu began.
-	LRESULT const result = DefSubclassProc(window, message, wparam, lparam);
-	if (message == WM_EXITSIZEMOVE || message == WM_EXITMENULOOP) {
-		Post_Event(_ModalLoopEnded);
-	}
-	return(result);
 }
 
 
@@ -251,15 +213,10 @@ bool Start_SDL(void)
 
 	Set_Hints();
 
-	// The window class keeps the game's own name, which tools looking for the window use.
-	if (!SDL_RegisterApp("Tiberian Sun", 0, ProgramInstance)) {
-		DebugString("SDL: the window class was not registered: %s\n", SDL_GetError());
-	}
 	SDL_SetMainReady();
 
 	if (!SDL_Init(SDL_INIT_VIDEO)) {
 		DebugString("SDL: video did not start: %s\n", SDL_GetError());
-		SDL_UnregisterApp();
 		return(false);
 	}
 
@@ -322,13 +279,11 @@ void Main_Window_Destroy(void)
 	if (_Window != nullptr) {
 		SDL_RemoveEventWatch(Watch_Window, nullptr);
 		SDL_RemoveEventWatch(Watch_Keys, nullptr);
-		RemoveWindowSubclass(Window_Handle(), Watch_Messages, WindowSubclass);
 		SDL_DestroyWindow(_Window);
 		_Window = nullptr;
 	}
 
 	SDL_Quit();
-	SDL_UnregisterApp();
 	_Started = false;
 }
 
@@ -345,7 +300,7 @@ bool Main_Window_Create(bool windowed, int width, int height)
 		return(false);
 	}
 
-	SDL_WindowFlags flags = SDL_WINDOW_HIDDEN | SDL_WINDOW_HIGH_PIXEL_DENSITY;
+	SDL_WindowFlags flags = SDL_WINDOW_HIDDEN | SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_METAL;
 	flags |= windowed ? SDL_WINDOW_RESIZABLE : SDL_WINDOW_FULLSCREEN;
 
 	_Window = SDL_CreateWindow("Tiberian Sun", width, height, flags);
@@ -378,13 +333,12 @@ bool Main_Window_Create(bool windowed, int width, int height)
 
 	SDL_AddEventWatch(Watch_Window, nullptr);
 	SDL_AddEventWatch(Watch_Keys, nullptr);
-	SetWindowSubclass(Window_Handle(), Watch_Messages, WindowSubclass, 0);
 	_Input.Reset();
 
 	SDL_ShowWindow(_Window);
 	SDL_RaiseWindow(_Window);
 
-	// Typed text is always on, as characters from Windows were.
+	// Typed text is always on, as character messages were under Windows.
 	SDL_StartTextInput(_Window);
 
 	return(true);
@@ -395,7 +349,7 @@ NativeWindow Main_Window_Native(void)
 {
 	NativeWindow window = { NATIVE_WINDOW_DEFAULT, nullptr, nullptr };
 	if (_Window != nullptr) {
-		window.Handle = SDL_GetPointerProperty(SDL_GetWindowProperties(_Window), SDL_PROP_WINDOW_WIN32_HWND_POINTER, nullptr);
+		window.Handle = SDL_GetPointerProperty(SDL_GetWindowProperties(_Window), SDL_PROP_WINDOW_COCOA_WINDOW_POINTER, nullptr);
 	}
 	return(window);
 }
@@ -521,44 +475,41 @@ void Main_Window_Pump_Events(void)
 }
 
 
+// The expose event is handled as it is pushed, so the picture is redrawn before this returns.
 void Main_Window_Request_Repaint(void)
 {
-	HWND const window = Window_Handle();
-	if (window != NULL) {
-		InvalidateRect(window, NULL, FALSE);
+	if (_Window != nullptr) {
+		SDL_Event event;
+		SDL_zero(event);
+		event.type = SDL_EVENT_WINDOW_EXPOSED;
+		event.window.windowID = SDL_GetWindowID(_Window);
+		SDL_PushEvent(&event);
 	}
 }
 
 
-// SDL_RaiseWindow would take the foreground from another program.
+// Focus moves only from another of the game's windows; SDL_RaiseWindow alone would bring the
+// game forward over another application.
 void Main_Window_Take_Focus(void)
 {
-	HWND const window = Window_Handle();
-	if (window != NULL) {
-		SetFocus(window);
+	SDL_Window * const focused = SDL_GetKeyboardFocus();
+	if (_Window != nullptr && focused != nullptr && focused != _Window) {
+		SDL_RaiseWindow(_Window);
 	}
 }
 
 
 void Main_Window_Capture_Mouse(bool capture)
 {
-	if (_Window == nullptr) {
-		return;
-	}
-	SDL_CaptureMouse(capture);
-
-	// SDL still records a capture Windows took away, so it does not ask for it again.
-	HWND const window = Window_Handle();
-	if (capture && (SDL_GetWindowFlags(_Window) & SDL_WINDOW_MOUSE_CAPTURE) != 0 && GetCapture() != window) {
-		SetCapture(window);
+	if (_Window != nullptr) {
+		SDL_CaptureMouse(capture);
 	}
 }
 
 
 bool Main_Window_Mouse_Captured(void)
 {
-	HWND const window = Window_Handle();
-	return(window != NULL && GetCapture() == window);
+	return(_Window != nullptr && (SDL_GetWindowFlags(_Window) & SDL_WINDOW_MOUSE_CAPTURE) != 0);
 }
 
 
