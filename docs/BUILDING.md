@@ -96,10 +96,20 @@ so its floating-point results match in every configuration. Debug defines
 engine's classes register themselves from static initializers that nothing
 else refers to. The `ui/` folder is copied into the bundle's `Resources`.
 
-To install it, copy the Release build to Applications:
+A Release build is committed at `dist/OpenTS.app`, so the game can be installed
+without building it. It is signed only to run locally, so on another Mac open it
+the first time with Control-click and Open. To install it, or a fresh build,
+copy it to Applications:
 
 ```sh
-ditto build/xcode/Build/Products/Release/OpenTS.app /Applications/OpenTS.app
+ditto dist/OpenTS.app /Applications/OpenTS.app
+```
+
+After changing the source, refresh the committed copy from a Release build:
+
+```sh
+rm -rf dist/OpenTS.app
+ditto build/xcode/Build/Products/Release/OpenTS.app dist/OpenTS.app
 ```
 
 Opened from Finder with no data directory named, the game looks for
