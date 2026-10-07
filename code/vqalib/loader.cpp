@@ -63,6 +63,7 @@
 ****************************************************************************/
 
 #include "cmp.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <memory.h>
 #include "vqaplayp.h"
@@ -301,10 +302,10 @@ long VQA_LoadFrame(VQAHandleP *vqap, long flags)
  */
 #pragma pack(push,1)
 struct VQASN2J {
-	short index;
-	long  predicted;
-	short index2;
-	long  predicted2;
+	int16_t index;
+	int32_t predicted;
+	int16_t index2;
+	int32_t predicted2;
 };
 static_assert(sizeof(VQASN2J) == 12, "the SN2J chunk is 12 bytes on disk");
 #pragma pack(pop)

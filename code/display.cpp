@@ -156,6 +156,7 @@
 #include <algorithm>
 #include <cstddef>
 #include <vector>
+#include <strings.h>
 
 /*
 **	These layer control elements are used to group the displayable objects
@@ -3010,7 +3011,7 @@ bool DisplayClass::Read_INI(CCINIClass const & ini)
 	char fill[32];
 	IsometricTileType ittype = IsometricTileTypeClass::ClearTile;
 	ini.Get_String(name, "Fill", "Clear", fill, sizeof(fill));
-	if (stricmp(fill, "Water") == 0) {
+	if (strcasecmp(fill, "Water") == 0) {
 		ittype = IsometricTileTypeClass::WaterSet;
 	}
 
@@ -3695,7 +3696,7 @@ void DisplayClass::Reposition_Sidebar(void)
 /// <returns>Returns with whatever the default window procedure decides.</returns>
 LRESULT DisplayClass::Windows_Message_Proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
-	return(DefWindowProcW(hWnd, Msg, wParam, lParam));
+	return(0);
 }
 
 

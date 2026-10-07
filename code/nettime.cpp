@@ -10,8 +10,7 @@
 
 #include "nettime.h"
 
-#include <windows.h>
-#include <mmsystem.h>
+#include "win.h"
 
 
 namespace NetTiming

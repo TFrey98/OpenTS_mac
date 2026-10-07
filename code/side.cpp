@@ -20,6 +20,7 @@
 #include "savestream.h"
 #include "sun.h"
 #include "tracker.h"
+#include <strings.h>
 
 
 /// <summary>
@@ -78,7 +79,7 @@ SideClass::~SideClass(void)
 SideType SideClass::From_Name(char const * name)
 {
 	for (int classid = 0; classid < Sides.Count(); classid++) {
-		if (stricmp(Sides[classid]->Name(), name) == 0) {
+		if (strcasecmp(Sides[classid]->Name(), name) == 0) {
 			return((SideType)classid);
 		}
 	}

@@ -15,6 +15,7 @@
 #include <cstring>
 #include <format>
 #include <string_view>
+#include <strings.h>
 
 
 /*
@@ -135,10 +136,10 @@ struct TStringID
 		 * These match the way the game looks names up in its INI files, which
 		 * ignores case.
 		 */
-		bool operator==(char const * string) const {return(stricmp(StringBuffer, string) == 0);}
-		bool operator!=(char const * string) const {return(stricmp(StringBuffer, string) != 0);}
-		bool operator==(TStringID const & that) const {return(stricmp(StringBuffer, that.StringBuffer) == 0);}
-		bool operator!=(TStringID const & that) const {return(stricmp(StringBuffer, that.StringBuffer) != 0);}
+		bool operator==(char const * string) const {return(strcasecmp(StringBuffer, string) == 0);}
+		bool operator!=(char const * string) const {return(strcasecmp(StringBuffer, string) != 0);}
+		bool operator==(TStringID const & that) const {return(strcasecmp(StringBuffer, that.StringBuffer) == 0);}
+		bool operator!=(TStringID const & that) const {return(strcasecmp(StringBuffer, that.StringBuffer) != 0);}
 
 		[[nodiscard]] bool starts_with(std::string_view string) const noexcept {return(View().starts_with(string));}
 		[[nodiscard]] bool ends_with(std::string_view string) const noexcept {return(View().ends_with(string));}

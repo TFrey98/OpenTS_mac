@@ -18,6 +18,7 @@
 
 #include <cmath>
 #include <cstring>
+#include <strings.h>
 
 bool _indexes[256] =
 {
@@ -244,7 +245,7 @@ ColorScheme::~ColorScheme(void)
 /// <returns>bool; Do the two schemes share a name?</returns>
 bool ColorScheme::operator==(ColorScheme const & that)
 {
-	return(stricmp(Name, that.Name) == 0);
+	return(strcasecmp(Name, that.Name) == 0);
 }
 
 
@@ -255,7 +256,7 @@ bool ColorScheme::operator==(ColorScheme const & that)
 /// <returns>bool; Are the two schemes named differently?</returns>
 bool ColorScheme::operator!=(ColorScheme const & that)
 {
-	return(stricmp(Name, that.Name) != 0);
+	return(strcasecmp(Name, that.Name) != 0);
 }
 
 
@@ -275,7 +276,7 @@ int ColorScheme::Find_Or_Make(char const * name, HSVClass & hsv, const PaletteCl
 {
 	while (true) {
 		for (int i = 0; i < ColorSchemes.Count(); i++) {
-			if (stricmp(name, ColorSchemes[i]->Name) == 0 && ColorSchemes[i]->IntensityLevels == intensity_levels) {
+			if (strcasecmp(name, ColorSchemes[i]->Name) == 0 && ColorSchemes[i]->IntensityLevels == intensity_levels) {
 				return(i);
 			}
 		}
@@ -317,7 +318,7 @@ ColorScheme * Fetch_Scheme_By_Name(char const * name, int intensity_levels)
 int Fetch_Scheme_Index_By_Name(char const * name, int intensity_levels)
 {
 	for (int i = 0; i < ColorSchemes.Count(); i++) {
-		if (stricmp(name, ColorSchemes[i]->Name) == 0 && ColorSchemes[i]->IntensityLevels == intensity_levels) {
+		if (strcasecmp(name, ColorSchemes[i]->Name) == 0 && ColorSchemes[i]->IntensityLevels == intensity_levels) {
 			return(i);
 		}
 	}

@@ -20,6 +20,7 @@
 #include "vector.h"
 
 #include <cassert>
+#include <strings.h>
 
 
 /// <summary>
@@ -64,7 +65,7 @@ CampaignType CampaignClass::From_Name(char const * name)
 	assert(name != NULL);
 
 	for (int index = 0; index < Campaigns.Count(); index++) {
-		if (stricmp(Campaigns[index]->IniName, name) == 0) {
+		if (strcasecmp(Campaigns[index]->IniName, name) == 0) {
 			return(CampaignType(index));
 		}
 	}

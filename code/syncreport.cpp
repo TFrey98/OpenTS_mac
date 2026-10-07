@@ -90,6 +90,7 @@
 #include "waypoint.h"
 #include "weapon.h"
 
+#include <cerrno>
 #include <cstdio>
 #include <float.h>
 
@@ -199,7 +200,7 @@ void Print_CRCs(EventClass const * events, int count, unsigned const * crc_ring,
 		SYSTEMTIME now;
 		GetLocalTime(&now);
 		Delete_Files_Older_Than(debug_dir, "SYNC_*.LOG", SYNC_REPORT_MAX_AGE_DAYS);
-		snprintf(filename, sizeof(filename), "%s\\SYNC_H%d_%02u-%02u-%04u_%02u-%02u-%02u_F%d.LOG",
+		snprintf(filename, sizeof(filename), "%s/SYNC_H%d_%02u-%02u-%04u_%02u-%02u-%02u_F%d.LOG",
 			debug_dir, PlayerPtr->HeapID,
 			now.wDay, now.wMonth, now.wYear, now.wHour, now.wMinute, now.wSecond, Frame);
 	} else {
@@ -211,7 +212,7 @@ void Print_CRCs(EventClass const * events, int count, unsigned const * crc_ring,
 
 	fp = fopen(filename,"wt");
 	if (fp==NULL) {
-		DWORD const error = GetLastError();
+		int const error = errno;
 		DebugString("Failed to open the out-of-sync report %s. Error %d - %s\n", filename, error, Last_Error_Text(error));
 		return;
 	}
@@ -234,7 +235,7 @@ void Print_CRCs(EventClass const * events, int count, unsigned const * crc_ring,
 	}
 	fprintf(fp, "Seed: %08x\n", Seed);
 	fprintf(fp, "Session type: %d\n", Session.Type);
-	fprintf(fp, "FPU control word: %x\n", _controlfp(0, 0));
+	fprintf(fp, "FPCR: %llx\n", (unsigned long long)__builtin_arm_rsr64("fpcr"));
 
 	int cpu_type = PROC_PENTIUM_PRO;
 	char vendor[32];

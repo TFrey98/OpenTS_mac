@@ -24,6 +24,7 @@
 #include "sun.h"
 #include "swizzle.h"
 #include "weapon.h"
+#include <strings.h>
 
 
 /// <summary>
@@ -251,7 +252,7 @@ SuperWeaponType SuperWeaponTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int classid = SUPER_FIRST; classid < SuperWeaponTypes.Count(); classid++) {
-			if (stricmp(SuperWeaponTypes[classid]->IniName, name) == 0) {
+			if (strcasecmp(SuperWeaponTypes[classid]->IniName, name) == 0) {
 				return(SuperWeaponType)classid;
 			}
 		}

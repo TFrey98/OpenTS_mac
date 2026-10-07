@@ -16,6 +16,7 @@
 #include "grphmsct.h"
 #include "ini.h"
 #include "keyboard.h"
+#include <strings.h>
 
 
 unsigned int GM_Build_Key(const char *list);
@@ -88,15 +89,15 @@ unsigned int GM_Build_Key(const char *list)
 	int modifiers = 0;
 	const char *lst = list;
 
-	if (strnicmp(lst, "ctrl-", 5) == 0) {
+	if (strncasecmp(lst, "ctrl-", 5) == 0) {
 		modifiers |= KN_CTRL_BIT;
 		lst += 5;
 	}
-	if (strnicmp(lst, "alt-", 4) == 0) {
+	if (strncasecmp(lst, "alt-", 4) == 0) {
 		modifiers |= KN_ALT_BIT;
 		lst += 4;
 	}
-	if (strnicmp(lst, "shift-", 6) == 0) {
+	if (strncasecmp(lst, "shift-", 6) == 0) {
 		modifiers |= KN_SHIFT_BIT;
 		lst += 6;
 	}
@@ -118,7 +119,7 @@ unsigned int GM_Build_Key(const char *list)
 		default: {
 			int k = -1;
 			for (int i = ARRAY_SIZE(_name2key) - 1; i >= 0; i--) {
-				if (stricmp(lst, _name2key[i].Name) == 0) {
+				if (strcasecmp(lst, _name2key[i].Name) == 0) {
 					k = i;
 					break;
 				}

@@ -181,6 +181,7 @@
 #include <algorithm>
 #include <utility>
 #include <vector>
+#include <strings.h>
 
 CDTimerClass<SystemTimerClass> ScenUnusedTimer;
 
@@ -684,7 +685,7 @@ bool Read_Scenario(char const * fname)
 
 	// Any file but a seed file is read once, both to see whether it asks to be generated and to play.
 	CCINIClass requested;
-	bool const is_seed_file = (stricmp(ext, ".SED") == 0);
+	bool const is_seed_file = (strcasecmp(ext, ".SED") == 0);
 	bool file_read = false;
 	bool random_map = false;
 	if (!is_seed_file) {

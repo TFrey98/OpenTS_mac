@@ -16,9 +16,8 @@
 #include <string>
 
 
-// Returns the virtual-key code the layout gives the key, or 0 for none; raw is the Windows scan
-// code or 0, and a null layout is the thread's current one.
-int Virtual_Key_From_SDL(SDL_Scancode scancode, SDL_Keycode keycode, SDL_Keymod modifiers, Uint16 raw = 0, HKL layout = NULL);
+// Returns the virtual-key code the active layout gives the key, or 0 for none.
+int Virtual_Key_From_SDL(SDL_Scancode scancode, SDL_Keycode keycode, SDL_Keymod modifiers);
 
 // Returns the layout's character or SDL's English name for a virtual-key code, or "" for none.
-std::string Virtual_Key_Name(int virtualkey, HKL layout = NULL);
+std::string Virtual_Key_Name(int virtualkey);

@@ -83,6 +83,7 @@
 #include "tracker.h"
 #include "vector.h"
 #include "waypoint.h"
+#include <strings.h>
 
 
 
@@ -202,7 +203,7 @@ TeamMissionType TeamTypeClass::Mission_From_Name(char const * name)
 {
 	if (name) {
 		for (TeamMissionType order = TMISSION_FIRST; order < TMISSION_COUNT; order++) {
-			if (stricmp(TMissions[order], name) == 0) {
+			if (strcasecmp(TMissions[order], name) == 0) {
 				return(order);
 			}
 		}
@@ -449,7 +450,7 @@ TeamTypeClass * TeamTypeClass::From_Name(char const * name)
 {
 	if (name) {
 		for (int index = 0; index < TeamTypes.Count(); index++) {
-			if (stricmp(name, TeamTypes[index]->IniName) == 0 || stricmp(name, TeamTypes[index]->GivenName) == 0) {
+			if (strcasecmp(name, TeamTypes[index]->IniName) == 0 || strcasecmp(name, TeamTypes[index]->GivenName) == 0) {
 				return(TeamTypes[index]);
 			}
 		}

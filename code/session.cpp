@@ -77,8 +77,9 @@
 
 #include <algorithm>
 #include <ctime> // for station ID computation
-#include <dos.h> // for station ID computation
-#include <winsock.h> // for ntohl
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <strings.h>
 
 
 /***************************** Globals *************************************/
@@ -376,10 +377,10 @@ int SessionClass::Create_Connections(void)
 		//.....................................................................
 		// Make sure the name matches before creating the connection
 		//.....................................................................
-		if (!stricmp(Players[i]->Name,
+		if (!strcasecmp(Players[i]->Name,
 			Houses[Players[i]->Player.ID]->IniName)) {
 
-			if (stricmp(Players[i]->Name, MasterPlayerName) == 0) {
+			if (strcasecmp(Players[i]->Name, MasterPlayerName) == 0) {
 				MasterPlayerID = Players[i]->Player.ID;
 			}
 
@@ -739,17 +740,17 @@ void SessionClass::Read_MultiPlayer_Settings(void)
 
 		ConfigINI.Get_String("SyncBug", "Type", "NONE", buf, 80);
 
-		if (!stricmp(buf,"AIRCRAFT"))
+		if (!strcasecmp(buf,"AIRCRAFT"))
 			TrapObjType = RTTI_AIRCRAFT;
-		else if (!stricmp(buf,"ANIM"))
+		else if (!strcasecmp(buf,"ANIM"))
 			TrapObjType = RTTI_ANIM;
-		else if (!stricmp(buf,"BUILDING"))
+		else if (!strcasecmp(buf,"BUILDING"))
 			TrapObjType = RTTI_BUILDING;
-		else if (!stricmp(buf,"BULLET"))
+		else if (!strcasecmp(buf,"BULLET"))
 			TrapObjType = RTTI_BULLET;
-		else if (!stricmp(buf,"INFANTRY"))
+		else if (!strcasecmp(buf,"INFANTRY"))
 			TrapObjType = RTTI_INFANTRY;
-		else if (!stricmp(buf,"UNIT"))
+		else if (!strcasecmp(buf,"UNIT"))
 			TrapObjType = RTTI_UNIT;
 		else {
 			TrapObjType = RTTI_NONE;
@@ -939,7 +940,7 @@ void SessionClass::Read_Scenario_Descriptions(void)
 	}
 
 	for (std::string const & name : Search_Files("*.PKT")) {
-		if (stricmp(name.c_str(), "MISSIONS.PKT")) {
+		if (strcasecmp(name.c_str(), "MISSIONS.PKT")) {
 			file.Close();
 			file.Set_Name(name.c_str());
 			ini.Clear();
@@ -1534,7 +1535,7 @@ void SessionClass::Init_Fixed_Alliances(void)
 	while (token != NULL && *token != '\0') {
 		for (i = 0; i < Houses.Count(); i++) {
 			hptr = Houses[i];
-			if (hptr->IsHuman && (_stricmp(hptr->IniName, token) == 0)) {
+			if (hptr->IsHuman && (strcasecmp(hptr->IniName, token) == 0)) {
 				squad1.Add(hptr);
 			}
 		}
@@ -1547,7 +1548,7 @@ void SessionClass::Init_Fixed_Alliances(void)
 	while (token != NULL && *token != '\0') {
 		for (i = 0; i < Houses.Count(); i++) {
 			hptr = Houses[i];
-			if (hptr->IsHuman && (_stricmp(hptr->IniName, token) == 0)) {
+			if (hptr->IsHuman && (strcasecmp(hptr->IniName, token) == 0)) {
 				squad2.Add(hptr);
 			}
 		}

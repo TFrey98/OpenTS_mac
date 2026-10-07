@@ -4,9 +4,9 @@ summary: Builds the Debug or Release executable for either platform and runs it 
 category: getting-started
 source_files:
   - docs/BUILDING.md
-  - CMakeLists.txt
-  - code/CMakeLists.txt
-  - code/language/CMakeLists.txt
+  - archive/windows/CMakeLists.txt
+  - archive/windows/code/CMakeLists.txt
+  - archive/windows/code/language/CMakeLists.txt
 related:
   - type: using
     id: game-data

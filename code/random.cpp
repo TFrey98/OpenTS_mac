@@ -44,7 +44,6 @@
 
 #include "syncrechook.h"
 
-#include <intrin.h>
 
 // Timing tests for random these random number generators in seconds for
 // 10000000 iterations. Testing done by Hector Yee, 6/20/01

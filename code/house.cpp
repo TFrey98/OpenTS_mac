@@ -200,6 +200,7 @@
 #include <algorithm>
 #include <cassert>
 #include <vector>
+#include <strings.h>
 
 
 DynamicVectorClass<HouseClass::BuildChoiceClass *> HouseClass::BuildChoice;
@@ -5553,7 +5554,7 @@ void HouseClass::Read_All(CCINIClass const & ini)
 
 static HousesType Acts_Like_From(char const * section, char const * value, HousesType defvalue)
 {
-	if (stricmp(value, "<none>") == 0) {
+	if (strcasecmp(value, "<none>") == 0) {
 		return(HOUSE_NONE);
 	}
 
@@ -6978,7 +6979,7 @@ bool HouseClass::Is_Acted_Tower(BuildingTypeClass const * type) const
 static void Keep_Upgrades_Of(DynamicVectorClass<BuildingTypeClass *> & defenses, BuildingTypeClass const * tower)
 {
 	for (int index = defenses.Count() - 1; index >= 0; index--) {
-		if (stricmp(defenses[index]->PowersUpBuilding, tower->Name()) != 0) {
+		if (strcasecmp(defenses[index]->PowersUpBuilding, tower->Name()) != 0) {
 			defenses.Delete_Index(index);
 		}
 	}
@@ -7195,7 +7196,7 @@ void HouseClass::Make_Base_Nodes(void)
 			if (isadded[index]) continue;
 
 			BuildingTypeClass const * b = buildables[index];
-			if (stricmp(b->IniName, "GAPLUG") == 0) {
+			if (strcasecmp(b->IniName, "GAPLUG") == 0) {
 				plugid = index;
 				continue;
 			}

@@ -67,8 +67,8 @@
 #include <utime.h>
 #define _unlink         unlink
 #else
-#include <io.h>
-#include <windows.h>
+#include <unistd.h>
+#include "win.h"
 #endif
 
 

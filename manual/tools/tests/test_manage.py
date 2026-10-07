@@ -159,13 +159,13 @@ class DeltaTests(unittest.TestCase):
         self.assertIsNone(versioning.semver("1.0", "test", errors))
         self.assertTrue(any("invalid SemVer" in error for error in errors))
 
-    def test_release_registry_status_dates_duplicates_and_cmake_sync(self):
+    def test_release_registry_status_dates_duplicates_and_version_sync(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             data = root / "manual" / "data"
             data.mkdir(parents=True)
             releases = data / "releases.yaml"
-            cmake = root / "CMakeLists.txt"
+            version = root / "VERSION"
 
             releases.write_text(
                 "releases:\n"
@@ -176,11 +176,7 @@ class DeltaTests(unittest.TestCase):
                 "    status: development\n",
                 encoding="utf-8",
             )
-            cmake.write_text(
-                "project(OpenTS VERSION 1.0.0 LANGUAGES CXX)\n"
-                'set(OPENTS_VERSION_PRERELEASE "rc.1")\n',
-                encoding="utf-8",
-            )
+            version.write_text("1.0.0-rc.1\n", encoding="utf-8")
             errors = []
             registry = versioning.validate_releases(
                 errors, root / "manual", root)
@@ -197,18 +193,14 @@ class DeltaTests(unittest.TestCase):
                 "    date: '2026-02-01'\n",
                 encoding="utf-8",
             )
-            cmake.write_text(
-                "project(OpenTS VERSION 0.9.0 LANGUAGES CXX)\n"
-                'set(OPENTS_VERSION_PRERELEASE "rc.1")\n',
-                encoding="utf-8",
-            )
+            version.write_text("0.9.0-rc.1\n", encoding="utf-8")
             errors = []
             versioning.validate_releases(errors, root / "manual", root)
             self.assertTrue(any("released entries require an ISO date" in error
                                 for error in errors))
             self.assertTrue(any("development entries cannot have a date" in error
                                 for error in errors))
-            self.assertTrue(any("must match the development SemVer core" in error
+            self.assertTrue(any("VERSION must match the development version" in error
                                 for error in errors))
 
             releases.write_text(
@@ -220,23 +212,19 @@ class DeltaTests(unittest.TestCase):
                 "    status: development\n",
                 encoding="utf-8",
             )
-            cmake.write_text(
-                "project(OpenTS VERSION 1.0.0 LANGUAGES CXX)\n"
-                'set(OPENTS_VERSION_PRERELEASE "")\n',
-                encoding="utf-8",
-            )
+            version.write_text("1.0.0\n", encoding="utf-8")
             errors = []
             versioning.validate_releases(errors, root / "manual", root)
             self.assertTrue(any("duplicate version 1.0.0" in error
                                 for error in errors))
 
-    def test_cmake_prerelease_label_tracks_the_development_version(self):
+    def test_version_file_tracks_the_development_prerelease_label(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             data = root / "manual" / "data"
             data.mkdir(parents=True)
             releases = data / "releases.yaml"
-            cmake = root / "CMakeLists.txt"
+            version = root / "VERSION"
 
             releases.write_text(
                 "releases:\n"
@@ -246,37 +234,26 @@ class DeltaTests(unittest.TestCase):
             )
 
             # A label that disagrees with the registry is rejected.
-            cmake.write_text(
-                "project(OpenTS VERSION 0.2.0 LANGUAGES CXX)\n"
-                'set(OPENTS_VERSION_PRERELEASE "alpha1")\n',
-                encoding="utf-8",
-            )
+            version.write_text("0.2.0-alpha1\n", encoding="utf-8")
             errors = []
             versioning.validate_releases(errors, root / "manual", root)
-            self.assertTrue(any("must match the development version's label" in error
+            self.assertTrue(any("VERSION must match the development version" in error
                                 for error in errors))
 
-            # So is a missing declaration.
-            cmake.write_text(
-                "project(OpenTS VERSION 0.2.0 LANGUAGES CXX)\n",
-                encoding="utf-8",
-            )
+            # So is a missing file.
+            version.unlink()
             errors = []
             versioning.validate_releases(errors, root / "manual", root)
-            self.assertTrue(any("OPENTS_VERSION_PRERELEASE" in error
+            self.assertTrue(any("VERSION must declare the development version" in error
                                 for error in errors))
 
-            # The matching label passes.
-            cmake.write_text(
-                "project(OpenTS VERSION 0.2.0 LANGUAGES CXX)\n"
-                'set(OPENTS_VERSION_PRERELEASE "beta1")\n',
-                encoding="utf-8",
-            )
+            # The matching version passes.
+            version.write_text("0.2.0-beta1\n", encoding="utf-8")
             errors = []
             versioning.validate_releases(errors, root / "manual", root)
             self.assertFalse(errors)
 
-            # A stable development version requires an empty label.
+            # A stable development version requires a version without a label.
             releases.write_text(
                 "releases:\n"
                 "  - version: 0.2.0\n"
@@ -285,7 +262,7 @@ class DeltaTests(unittest.TestCase):
             )
             errors = []
             versioning.validate_releases(errors, root / "manual", root)
-            self.assertTrue(any("must match the development version's label" in error
+            self.assertTrue(any("VERSION must match the development version" in error
                                 for error in errors))
 
     def test_new_numeric_aliases_reserve_only_current_unused_indices(self):

@@ -36,5 +36,4 @@
 */
 
 #pragma warning(disable:4201)
-#include <mmsystem.h>
 #pragma warning(default:4201)

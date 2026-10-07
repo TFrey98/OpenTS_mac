@@ -4,8 +4,8 @@ summary: Checks the supported toolchain, target architecture, output location, a
 category: troubleshooting
 source_files:
   - docs/BUILDING.md
-  - CMakeLists.txt
-  - code/CMakeLists.txt
+  - archive/windows/CMakeLists.txt
+  - archive/windows/code/CMakeLists.txt
 related:
   - type: using
     id: build-and-run

@@ -55,6 +55,7 @@
 #include "pkstraw.h"
 #include "shastraw.h"
 #include "xstraw.h"
+#include <strings.h>
 
 
 //template<class T> int Compare(T const *obj1, T const *obj2) {
@@ -319,7 +320,7 @@ MixFileClass * MixFileClass::Finder(char const * filename)
 		_splitpath(ptr->Filename, NULL, NULL, name, ext);
 		_makepath(path, NULL, NULL, name, ext);
 
-		if (stricmp(path, filename) == 0) {
+		if (strcasecmp(path, filename) == 0) {
 			return(ptr);
 		}
 		ptr = ptr->Next();

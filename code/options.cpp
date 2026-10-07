@@ -90,6 +90,7 @@
 #include "diff.hh"
 
 #include <algorithm>
+#include <strings.h>
 
 
 char const * const OptionsClass::HotkeyName = "WinHotkeys";
@@ -315,9 +316,9 @@ void OptionsClass::Set_Voice_Volume(float volume, bool feedback)
 /// <returns>int; One of the VideoScaleMode values.</returns>
 static int Scale_Mode_From_Name(char const * name, int fallback)
 {
-	if (stricmp(name, "Nearest") == 0) return(VIDEO_SCALE_NEAREST);
-	if (stricmp(name, "Linear") == 0) return(VIDEO_SCALE_LINEAR);
-	if (stricmp(name, "PixelArt") == 0) return(VIDEO_SCALE_PIXELART);
+	if (strcasecmp(name, "Nearest") == 0) return(VIDEO_SCALE_NEAREST);
+	if (strcasecmp(name, "Linear") == 0) return(VIDEO_SCALE_LINEAR);
+	if (strcasecmp(name, "PixelArt") == 0) return(VIDEO_SCALE_PIXELART);
 
 	return(fallback);
 }

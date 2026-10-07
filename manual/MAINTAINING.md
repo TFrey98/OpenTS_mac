@@ -99,10 +99,8 @@ Other format routes default to `/formats/<filename-stem>/`.
 
 `data/releases.yaml` uses complete SemVer 2.0 versions without build metadata.
 It has exactly one `development` version, which must be the highest entry; only
-`released` entries carry an ISO date. The development version's numeric core
-must match CMake's `project(OpenTS VERSION ...)` declaration. Its prerelease
-label must match CMake's `OPENTS_VERSION_PRERELEASE`, which is empty when there
-is no label. The private npm package version is tooling metadata, not the OpenTS
+`released` entries carry an ISO date. The development version, prerelease
+label included, must match the repository's top-level `VERSION` file. The private npm package version is tooling metadata, not the OpenTS
 release.
 
 The engine stamps saves and network sessions with this version. Opening a cycle

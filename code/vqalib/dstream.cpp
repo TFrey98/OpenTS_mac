@@ -45,7 +45,8 @@
 #include	"vqaplayp.h"
 #include	<stdio.h>
 #include	<fcntl.h>
-#include	<io.h>
+#include	<sys/stat.h>
+#include <unistd.h>
 #include	<string.h>
 
 
@@ -62,7 +63,7 @@ intptr_t __cdecl Disk_VQA_Stream_Handler(VQAHandle *vqa, long action, void *buff
 
 		/* VQACMD_OPEN asks that you open the file for access. */
 		case VQACMD_OPEN:
-			error = open((char *)buffer, (O_RDONLY|O_BINARY));
+			error = open((char *)buffer, O_RDONLY);
 
 			if (error != -1) {
 				((VQAHandleP*)vqa)->Config.StreamFileHandle = error;
@@ -119,8 +120,11 @@ intptr_t __cdecl Disk_VQA_Stream_Handler(VQAHandle *vqa, long action, void *buff
 			break;
 
 		case VQACMD_SIZE:
-			*((unsigned int *)buffer) = filelength(fh);
-			error = 0;
+			{
+				struct stat info;
+				error = fstat(fh, &info) != 0;
+				*((unsigned int *)buffer) = error ? 0 : (unsigned int)info.st_size;
+			}
 			break;
 
 		case VQACMD_CLOSE:

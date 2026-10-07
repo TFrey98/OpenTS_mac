@@ -62,6 +62,7 @@
 #include "tracker.h"
 
 #include <cstdio>
+#include <strings.h>
 
 /***********************************************************************************************
  * InfantryTypeClass::InfantryTypeClass -- Constructor for infantry type class objects.        *
@@ -238,7 +239,7 @@ InfantryType InfantryTypeClass::From_Name(char const * name)
 {
 	if (name != NULL && strcmpi(name, "<none>") != 0 && strcmpi(name, "none") != 0) {
 		for (int classid = INFANTRY_FIRST; classid < InfantryTypes.Count(); classid++) {
-			if (stricmp(InfantryTypes[classid]->Name(), name) == 0) {
+			if (strcasecmp(InfantryTypes[classid]->Name(), name) == 0) {
 				return((InfantryType)classid);
 			}
 		}

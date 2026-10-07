@@ -41,7 +41,8 @@
 #include <cstdarg>
 #include <cstdio>
 #include <string>
-#include <winsock.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
 
 
 static_assert(HOUSE_NAME_MAX == MPLAYER_NAME_MAX,

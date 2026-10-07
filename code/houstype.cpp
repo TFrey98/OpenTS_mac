@@ -54,6 +54,7 @@
 #include "swizzle.h"
 #include "tracker.h"
 #include "vector.h"
+#include <strings.h>
 
 /***********************************************************************************************
  * HouseTypeClass::HouseTypeClass -- Constructor for house type objects.                       *
@@ -132,7 +133,7 @@ HousesType HouseTypeClass::From_Name(char const * name)
 	if (name != NULL) {
 		for (int house = HOUSE_FIRST; house < HouseTypes.Count(); house++) {
 			HouseTypeClass *ptr = HouseTypes[house];
-			if (stricmp(ptr->Full_Name(), name) == 0 || stricmp(ptr->Name(), name) == 0) {
+			if (strcasecmp(ptr->Full_Name(), name) == 0 || strcasecmp(ptr->Name(), name) == 0) {
 				return(ptr->House);
 			}
 		}

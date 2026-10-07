@@ -25,6 +25,7 @@
 #include <algorithm>
 #include <cstring>
 #include <string>
+#include <strings.h>
 
 
 /// <summary>
@@ -102,7 +103,7 @@ void ThemeControl::Read_Sides(char const * text)
 		name = (first == std::string::npos) ? std::string() : name.substr(first, last - first + 1);
 
 		if (!name.empty()) {
-			if (stricmp(name.c_str(), "<none>") == 0) {
+			if (strcasecmp(name.c_str(), "<none>") == 0) {
 				Owners.clear();
 				return;
 			}

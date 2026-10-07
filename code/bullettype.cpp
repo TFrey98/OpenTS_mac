@@ -56,6 +56,7 @@
 #include "tracker.h"
 #include "vector.h"
 #include "weapon.h"
+#include <strings.h>
 
 
 /***********************************************************************************************
@@ -217,9 +218,9 @@ bool BulletTypeClass::Read_INI(CCINIClass const & ini)
 /// name is the "none" placeholder, then BULLET_NONE is returned.</returns>
 BulletType BulletTypeClass::From_Name(char const * name)
 {
-	if (name != NULL && stricmp(name, "<none>")) {
+	if (name != NULL && strcasecmp(name, "<none>")) {
 		for (int index = BULLET_FIRST; index < BulletTypes.Count(); index++) {
-			if (stricmp(name, BulletTypes[index]->Name()) == 0) {
+			if (strcasecmp(name, BulletTypes[index]->Name()) == 0) {
 				return(BulletType(index));
 			}
 		}

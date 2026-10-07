@@ -103,6 +103,7 @@
 
 #include <algorithm>
 #include <cstring>
+#include <strings.h>
 
 
 void Difficulty_Get(CCINIClass const & ini, DifficultyClass & diff, char const * section);
@@ -2971,7 +2972,7 @@ bool RulesClass::Objects(CCINIClass const & ini)
 	}
 
 	for (int iindex = 0; iindex < InfantryTypes.Count(); iindex++) {
-		stricmp(InfantryTypes[iindex]->IniName, "MUTANT"); /// the result of this comparison is discarded
+		strcasecmp(InfantryTypes[iindex]->IniName, "MUTANT"); /// the result of this comparison is discarded
 		InfantryTypes[iindex]->Read_INI(ini);
 	}
 

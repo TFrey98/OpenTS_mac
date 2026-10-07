@@ -70,6 +70,7 @@
 #include "color.hh"
 
 #include <algorithm>
+#include <strings.h>
 
 
 Surface * EightBitSurface = NULL;
@@ -182,7 +183,7 @@ UnitType UnitTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int classid = UNIT_FIRST; classid < UnitTypes.Count(); classid++) {
-			if (stricmp(UnitTypes[classid]->Name(), name) == 0) {
+			if (strcasecmp(UnitTypes[classid]->Name(), name) == 0) {
 				return(UnitType(classid));
 			}
 		}

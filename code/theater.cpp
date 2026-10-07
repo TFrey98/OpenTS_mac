@@ -16,6 +16,7 @@
 #include "findmake.h"
 
 #include <cctype>
+#include <strings.h>
 
 
 /*
@@ -62,7 +63,7 @@ TheaterClass::TheaterClass(char const * name, bool listed) :
 	HighRadarBrightness(1.6f)
 {
 	for (TheaterSeedType const & seed : _Seeds) {
-		if (stricmp(seed.Name, IniName) == 0) {
+		if (strcasecmp(seed.Name, IniName) == 0) {
 			Root = seed.Root;
 			IsoRoot = seed.IsoRoot;
 			Suffix = seed.Suffix;
@@ -98,7 +99,7 @@ TheaterType TheaterClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int classid = 0; classid < Theaters.Count(); classid++) {
-			if (stricmp(Theaters[classid]->Name(), name) == 0) {
+			if (strcasecmp(Theaters[classid]->Name(), name) == 0) {
 				return((TheaterType)classid);
 			}
 		}

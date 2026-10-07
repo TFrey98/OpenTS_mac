@@ -18,12 +18,13 @@
 #include <algorithm>
 #include <cstring>
 #include <string>
+#include <strings.h>
 
 
 void UI_Sort_Map_Gen_Options(std::vector<UIMapGenOption> & options)
 {
 	std::stable_sort(options.begin(), options.end(), [](UIMapGenOption const & a, UIMapGenOption const & b) {
-		return(stricmp(a.Label.c_str(), b.Label.c_str()) < 0);
+		return(strcasecmp(a.Label.c_str(), b.Label.c_str()) < 0);
 	});
 }
 

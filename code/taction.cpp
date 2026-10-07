@@ -104,6 +104,7 @@
 
 #include <cstdio>
 #include <limits>
+#include <strings.h>
 
 DynamicVectorClass<TActionClass *> Actions;
 
@@ -1928,7 +1929,7 @@ bool TActionClass::TAction_DO_EXPLOSION(HouseClass * , ObjectClass * , TriggerCl
 
 	Combat_Lighting(coord, damage, Weapons[weapon]->WarheadPtr);
 	Explosion_Damage(coord, damage, NULL, Weapons[weapon]->WarheadPtr);
-	if (stricmp(ww->IniName, "empulseweapon") == 0) {
+	if (strcasecmp(ww->IniName, "empulseweapon") == 0) {
 		new EMPulseClass(coord.As_Cell(), ww->WarheadPtr->SpreadFactor, damage, NULL);
 	}
 	return(true);
@@ -2765,7 +2766,7 @@ TActionType Action_From_Name (char const * name)
 	}
 
 	for (TActionType i = TACTION_NONE; i < TACTION_COUNT; ++i) {
-		if (!stricmp(name, _ActionText[i].Name)) {
+		if (!strcasecmp(name, _ActionText[i].Name)) {
 			return(i);
 		}
 	}

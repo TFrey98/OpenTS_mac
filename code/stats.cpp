@@ -61,6 +61,12 @@ int WestwoodOnline_PortNumber = 1234;
 #include "unit.h"
 #include "unittype.h"
 #include "win.h"
+#include <algorithm>
+#include <climits>
+#include <cstdint>
+#include <mach-o/dyld.h>
+#include <sys/stat.h>
+#include <sys/sysctl.h>
 
 #define FIELD_GAME_ID							"IDNO"
 #define FIELD_START_CREDITS						"CRED"
@@ -402,10 +408,10 @@ void Send_Statistics_Packet(void)
 	/*
 	**	Memory
 	*/
-	MEMORYSTATUS	mem_info;
-	mem_info.dwLength=sizeof(mem_info);
-	GlobalMemoryStatus(&mem_info);
-	stats.Add_Field (FIELD_MEMORY, (int)mem_info.dwTotalPhys);
+	uint64_t memory = 0;
+	size_t memory_size = sizeof(memory);
+	sysctlbyname("hw.memsize", &memory, &memory_size, NULL, 0);
+	stats.Add_Field (FIELD_MEMORY, (int)std::min<uint64_t>(memory, INT_MAX));
 
 	/*
 	**	Game speed setting.
@@ -419,16 +425,15 @@ void Send_Statistics_Packet(void)
 	snprintf(version, sizeof(version), "V%s", VerNum.Version_Name() );
 	stats.Add_Field (FIELD_GAME_VERSION, (char*)version);
 
-	char path_to_exe[280];
+	char path_to_exe[PATH_MAX];
+	uint32_t path_size = sizeof(path_to_exe);
 	FILETIME write_time;		//File time is 64 bits
 
-	GetModuleFileName (ProgramInstance, path_to_exe, sizeof(path_to_exe));
-
 	// The packet carries each half byte-swapped with the low half still leading.
-	WIN32_FILE_ATTRIBUTE_DATA attributes;
+	struct stat attributes;
 
-	if (GetFileAttributesEx (path_to_exe, GetFileExInfoStandard, &attributes)) {
-		write_time = attributes.ftLastWriteTime;
+	if (_NSGetExecutablePath(path_to_exe, &path_size) == 0 && stat(path_to_exe, &attributes) == 0) {
+		write_time = File_Time_From_Unix(attributes.st_mtimespec.tv_sec, attributes.st_mtimespec.tv_nsec);
 		write_time.dwLowDateTime = htonl (write_time.dwLowDateTime);
 		write_time.dwHighDateTime = htonl (write_time.dwHighDateTime);
 		stats.Add_Field (FIELD_GAME_BUILD_DATE, (void*)&write_time, sizeof (write_time));

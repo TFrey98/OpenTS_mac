@@ -11,6 +11,7 @@
 #include "spawnhouse.h"
 
 #include <cstring>
+#include <strings.h>
 
 static_assert(HOUSE_SPAWN_LAST - HOUSE_SPAWN_FIRST + 1 == SPAWN_HOUSE_COUNT, "one Spawn alias per start position");
 static_assert(HOUSE_PLAYER_AT_LAST - HOUSE_PLAYER_AT_FIRST + 1 == SPAWN_HOUSE_COUNT, "one Player @ alias per start position");
@@ -36,7 +37,7 @@ int Spawn_House_Waypoint(char const * name)
 	}
 
 	for (int spawn_waypoint = 0; spawn_waypoint < SPAWN_HOUSE_COUNT; spawn_waypoint++) {
-		if (_stricmp(name, SpawnNames[spawn_waypoint]) == 0 || _stricmp(name, PlayerAtNames[spawn_waypoint]) == 0) {
+		if (strcasecmp(name, SpawnNames[spawn_waypoint]) == 0 || strcasecmp(name, PlayerAtNames[spawn_waypoint]) == 0) {
 			return spawn_waypoint;
 		}
 	}

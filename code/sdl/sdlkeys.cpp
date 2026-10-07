@@ -68,7 +68,7 @@ int Layout_Key(SDL_Keycode keycode)
 }
 
 
-// Windows gives these keys the codes of the active layout; every other key has a fixed code.
+// These keys take the codes of the active layout; every other key has a fixed code.
 bool Layout_Position(SDL_Scancode scancode)
 {
 	return((scancode >= SDL_SCANCODE_A && scancode <= SDL_SCANCODE_0)
@@ -77,13 +77,8 @@ bool Layout_Position(SDL_Scancode scancode)
 }
 
 
-HKL Layout_Or_Current(HKL layout)
-{
-	return((layout != NULL) ? layout : GetKeyboardLayout(0));
-}
-
-
-// The remaining keys take the code Windows gives the same position on a US layout.
+// The remaining keys take the code Windows gives the same position on a US layout, which saved
+// hotkeys store.
 int Position_Key(SDL_Scancode scancode)
 {
 	if (scancode >= SDL_SCANCODE_A && scancode <= SDL_SCANCODE_Z) {
@@ -162,22 +157,15 @@ int Position_Key(SDL_Scancode scancode)
 }
 
 
-int Virtual_Key_From_SDL(SDL_Scancode scancode, SDL_Keycode keycode, SDL_Keymod modifiers, Uint16 raw, HKL layout)
+int Virtual_Key_From_SDL(SDL_Scancode scancode, SDL_Keycode keycode, SDL_Keymod modifiers)
 {
 	int key = Keypad_Key(scancode, modifiers);
 	if (key >= 0) {
 		return(key);
 	}
 
+	// SDL's keycode already follows the active layout.
 	if (Layout_Position(scancode)) {
-		// Some layouts give an unused key 0xFF, which is no key.
-		if (raw != 0) {
-			key = (int)MapVirtualKeyExW(raw, MAPVK_VSC_TO_VK_EX, Layout_Or_Current(layout));
-			if (key > 0 && key < 0xFF) {
-				return(key);
-			}
-		}
-
 		key = Layout_Key(keycode);
 		if (key != 0) {
 			return(key);
@@ -206,7 +194,7 @@ static int Scancode_Of(int virtualkey)
 }
 
 
-std::string Virtual_Key_Name(int virtualkey, HKL layout)
+std::string Virtual_Key_Name(int virtualkey)
 {
 	if (virtualkey <= 0) {
 		return(std::string());
@@ -220,22 +208,6 @@ std::string Virtual_Key_Name(int virtualkey, HKL layout)
 	}
 
 	int const scancode = Scancode_Of(virtualkey);
-	if (scancode == SDL_SCANCODE_UNKNOWN || Layout_Position((SDL_Scancode)scancode)) {
-
-		// The top bit marks a dead key, which still prints its accent.
-		UINT const character = MapVirtualKeyExW((UINT)virtualkey, MAPVK_VK_TO_CHAR, Layout_Or_Current(layout)) & 0x7FFFFFFF;
-		if (character != 0 && character <= 0xFFFF) {
-			wchar_t wide[2] = { (wchar_t)character, L'\0' };
-			CharUpperW(wide);
-
-			char utf8[8];
-			int const length = WideCharToMultiByte(CP_UTF8, 0, wide, 1, utf8, sizeof(utf8), nullptr, nullptr);
-			if (length > 0) {
-				return(std::string(utf8, (size_t)length));
-			}
-		}
-	}
-
 	if (scancode == SDL_SCANCODE_UNKNOWN) {
 		return(std::string());
 	}

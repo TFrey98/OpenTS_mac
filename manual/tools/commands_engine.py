@@ -386,7 +386,7 @@ def discover_launch_sites(init_text=None):
 
     for match in re.finditer(r"\bcase\s+(PARM_[A-Z0-9_]+)\s*:", body):
         add("obfuscated:" + match.group(1), match.start())
-    for match in re.finditer(r"^.*\b(?:stricmp|strcmp|strstr|memcmp|strnicmp)\s*\(.*$", body, re.M):
+    for match in re.finditer(r"^.*\b(?:strcasecmp|strncasecmp|stricmp|strcmp|strstr|memcmp|strnicmp)\s*\(.*$", body, re.M):
         line = match.group(0)
         for literal in re.findall(r'"((?:[^"\\]|\\.)*)"', line):
             value = _decode_rc_string(literal)

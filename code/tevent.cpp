@@ -56,6 +56,7 @@
 #include "techno.h"
 #include "tracker.h"
 #include "vector.h"
+#include <strings.h>
 
 DynamicVectorClass<TEventClass *> Events;
 
@@ -643,7 +644,7 @@ TEventType Event_From_Name (char const * name)
 {
 	if (name) {
 		for (TEventType i = TEVENT_NONE; i < TEVENT_COUNT; ++i) {
-			if (!stricmp(name, _EventText[i].Name)) {
+			if (!strcasecmp(name, _EventText[i].Name)) {
 				return(i);
 			}
 		}

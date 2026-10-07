@@ -58,8 +58,8 @@
 #include "syncrechook.h"
 
 #include "bench.hh"
+#include <strings.h>
 
-#include <intrin.h>
 
 
 /***********************************************************************************************
@@ -522,7 +522,7 @@ MissionType MissionClass::Mission_From_Name(char const * name)
 
 	if (name) {
 		for (order = MISSION_FIRST; order < MISSION_COUNT; order++) {
-			if (stricmp(Missions[order], name) == 0) {
+			if (strcasecmp(Missions[order], name) == 0) {
 				return(order);
 			}
 		}

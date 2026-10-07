@@ -3,20 +3,18 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/OpenTS-Developers/OpenTS/releases"><img src="https://img.shields.io/github/downloads/OpenTS-Developers/OpenTS/total?label=downloads" alt="Downloads"></a>
-  <a href="https://github.com/OpenTS-Developers/OpenTS/actions/workflows/engine.yml"><img src="https://github.com/OpenTS-Developers/OpenTS/actions/workflows/engine.yml/badge.svg" alt="Engine build"></a>
   <a href="https://opents-developers.github.io/OpenTS/"><img src="https://github.com/OpenTS-Developers/OpenTS/actions/workflows/manual-pages.yml/badge.svg" alt="Manual"></a>
   <a href="https://www.patreon.com/c/ZivDero"><img src="https://img.shields.io/badge/Patreon-ZivDero-F96854?logo=patreon&logoColor=white" alt="Patreon"></a>
 </p>
 
 # OpenTS
 
-This fork develops a native desktop macOS ARM64 port. A development application
-presents diagnostic frames through the desktop engine's renderer on Metal;
-ten engine tests also build on Apple Silicon. The full game executable still
-requires Windows. Track the work in the [port TODO](TODO.md). See
+This fork ports OpenTS to macOS on Apple silicon, its only target. A
+development application presents diagnostic frames through the engine's
+renderer on Metal, and ten engine tests build and pass; the full game does not
+run yet. Track the work in the [port TODO](TODO.md). See
 [Mac port status](docs/MACOS_PORT.md) and
-[build instructions](docs/BUILDING.md#macos-desktop-build-with-xcode).
+[build instructions](docs/BUILDING.md).
 
 OpenTS is a community-led, open-source reconstruction of *Command & Conquer:
 Tiberian Sun*. Instead of patching or extending the retail executable, it
@@ -50,41 +48,11 @@ endorsed by Electronic Arts.
 - Bug reports and proposals:
   [GitHub issues](https://github.com/OpenTS-Developers/OpenTS/issues)
 
-## Downloads
+## Playing
 
-- **Releases** are the recommended builds. Every release on the
-  [releases page](https://github.com/OpenTS-Developers/OpenTS/releases) carries
-  a zip per platform, `OpenTS-<version>-Win32.zip` and
-  `OpenTS-<version>-x64.zip`, each containing `Game.exe`, `Language.dll`, and
-  `Game.pdb`. The 32-bit build runs on both 32-bit and 64-bit Windows and has
-  the longer runtime history; the 64-bit build runs on 64-bit Windows only.
-- **Nightly builds** are development snapshots from the
-  [Engine nightly](https://github.com/OpenTS-Developers/OpenTS/actions/workflows/engine-nightly.yml)
-  workflow. Download the latest one without a GitHub account through
-  [nightly.link](https://nightly.link/OpenTS-Developers/OpenTS/workflows/engine-nightly/main).
-  Nightlies contain the latest merged changes without release validation and
-  expire after 90 days.
-
-## Installing
-
-1. Install Tiberian Sun from Command & Conquer The Ultimate Collection on
-   Steam or the EA App.
-2. Extract the release zip into the Tiberian Sun game directory.
-3. Run `Game.exe`.
-
-OpenTS supports Windows 10 version 1903 (build 18362) and newer. Earlier
-Windows versions are untested and unsupported. Wine may work, but there is no
-supported native Linux build.
-
-Keep a saved game with the platform that wrote it, and play a network game with
-peers on the same platform. The 32-bit and 64-bit builds write saves and
-network packets at their own pointer widths, and neither checks which platform
-produced what it is reading, so a mismatch surfaces as a failed load or a
-desync.
-
-OpenTS supplies the engine, not the game data: the installation above
-provides the original assets. There is no installer, and no extra runtime
-library or launch argument is required.
+There is no playable macOS build yet. When there is, OpenTS will supply the
+engine, not the game data: Tiberian Sun's original assets come from a legally
+obtained copy of the game.
 
 ## Documentation
 
@@ -94,15 +62,14 @@ internals.
 
 ## State and plans
 
-Release 0.1.0 runs the full Tiberian Sun 2.03 Firestorm game. The GDI, Nod,
-and Firestorm campaigns, skirmish, and save/load have received full
-play-through testing. LAN multiplayer has had more limited testing. No
-user-visible regression from the original game is currently known. The
-renderer uses
+This fork's current goal is a playable macOS build; the
+[port TODO](TODO.md) lists its milestones. The engine it starts from, upstream
+OpenTS 0.1.0, ran the full Tiberian Sun 2.03 Firestorm game on Windows, with
+its campaigns, skirmish, and save/load play-tested. The renderer uses
 [bgfx](https://github.com/bkaradzic/bgfx) and supports modern resolutions
 through 4K, including ultrawide.
 
-The first of the project's three development milestones is the current focus:
+Upstream OpenTS has three development milestones:
 
 1. CnCNet and CnCNet client support, including porting the parts of
    [ts-patches](https://github.com/CnCNet/ts-patches) this requires.
@@ -120,7 +87,7 @@ reasoning.
 
 ## Building
 
-OpenTS builds for 32-bit and 64-bit Windows with Visual Studio 2022 and CMake.
+This fork builds for macOS on Apple silicon with Xcode.
 [Building OpenTS](docs/BUILDING.md) documents the exact requirements,
 commands, and outputs.
 

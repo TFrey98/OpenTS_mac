@@ -42,8 +42,8 @@
 
 #include <cstdio>
 #include <cstring>
+#include <sys/sysctl.h>
 
-#include <intrin.h>
 
 /***********************************************************************************************
  * Get_CPU_Type -- Find out what kind of CPU we are running on                                 *
@@ -66,40 +66,24 @@ extern "C" {
 
 char CPUType = 0;
 
-/*
- * Filled in by CPU_Id from CPUID leaf 0. The buffer holds the twelve vendor characters,
- * the separating space the original wrote after them, and the terminator Get_CPU_Type
- * copies up to.
- */
-char VendorID[20] = "Not available";
+// The processor's marketing name, such as "Apple M2", or "Not available".
+char VendorID[64] = "Not available";
 
 }
 
 
 /// <summary>
-/// Records the processor family in CPUType and the vendor in VendorID.
+/// Records the processor family in CPUType and its name in VendorID. Apple silicon has no x86
+/// family, so it reports the P6 family that every x86 processor the game supported reports; the
+/// timing paths that test the family take their modern-hardware branch.
 /// </summary>
-void __cdecl CPU_Id(void)
+void CPU_Id(void)
 {
-	int regs[4];
-
-	char cputype = 4;
-
-	__cpuid(regs, 0);
-	int const maxleaf = regs[0];
-
-	std::memcpy(&VendorID[0], &regs[1], 4);
-	std::memcpy(&VendorID[4], &regs[3], 4);
-	std::memcpy(&VendorID[8], &regs[2], 4);
-	VendorID[12] = ' ';
-	VendorID[13] = '\0';
-
-	if (maxleaf >= 1) {
-		__cpuid(regs, 1);
-		cputype = (char)((regs[0] & 0x0F00) >> 8);
+	size_t size = sizeof(VendorID);
+	if (sysctlbyname("machdep.cpu.brand_string", VendorID, &size, NULL, 0) != 0) {
+		strncpy(VendorID, "Not available", sizeof(VendorID));
 	}
-
-	CPUType = cputype;
+	CPUType = 6;
 }
 
 
@@ -107,9 +91,6 @@ void Get_CPU_Type(int & cpu_type, char * vendor_id, int vendor_id_length)
 {
 	CPU_Id();
 
-	/*
-	**	Return the promised results
-	*/
 	cpu_type = (int)CPUType;
 
 	if (vendor_id != NULL) {

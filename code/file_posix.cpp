@@ -20,6 +20,7 @@
 #include "file.h"
 
 #include <cstring>
+#include <memory>
 #include <dirent.h>
 #include <fnmatch.h>
 #include <limits.h>
@@ -44,14 +45,14 @@ class Find_File_Data_Posix : public Find_File_Data
 	private:
 		DIR * Directory;
 		struct dirent * DirEntry;
-		const char * FileFilter;
+		char FileFilter[PATH_MAX];
 		char FullName[PATH_MAX];
 		char DirName[PATH_MAX];
 
 		bool FindNextWithFilter();
 };
 
-Find_File_Data_Posix::Find_File_Data_Posix() : Directory(nullptr), DirEntry(nullptr) {}
+Find_File_Data_Posix::Find_File_Data_Posix() : Directory(nullptr), DirEntry(nullptr), FileFilter{} {}
 
 Find_File_Data_Posix::~Find_File_Data_Posix()
 {
@@ -73,7 +74,7 @@ unsigned int Find_File_Data_Posix::GetTime() const
 	}
 	struct stat buf = {0};
 	if (stat(FullName, &buf) != 0) {
-		return false;
+		return 0;
 	}
 	return buf.st_mtime;
 }
@@ -104,10 +105,10 @@ bool Find_File_Data_Posix::FindFirst(const char * fname)
 	char * fdir = strrchr((char *)fname, '/');
 	if (fdir != nullptr) {
 		strncat(DirName, fname, (fdir - fname + 1));
-		FileFilter = fdir + 1;
+		snprintf(FileFilter, sizeof(FileFilter), "%s", fdir + 1);
 		Directory = opendir(DirName);
 	} else {
-		FileFilter = fname;
+		snprintf(FileFilter, sizeof(FileFilter), "%s", fname);
 		Directory = opendir(".");
 	}
 
@@ -138,4 +139,24 @@ Find_File_Data * Find_File_Data::CreateFindData()
 {
 	return new Find_File_Data_Posix();
 }
+
+std::vector<FoundFileRecord> Find_Files(char const * pattern)
+{
+	std::vector<FoundFileRecord> found;
+	std::unique_ptr<Find_File_Data> search(Find_File_Data::CreateFindData());
+	if (!search->FindFirst(pattern)) {
+		return(found);
+	}
+	do {
+		struct stat info;
+		char const * name = search->GetName();
+		if (name[0] == '.' || stat(search->GetFullName(), &info) != 0 || !S_ISREG(info.st_mode)) {
+			continue;
+		}
+		found.push_back({name, File_Time_From_Unix(info.st_mtimespec.tv_sec, info.st_mtimespec.tv_nsec)});
+	} while (search->FindNext());
+	search->Close();
+	return(found);
+}
+
 #endif

@@ -440,9 +440,9 @@ static char const * const UI_SANS_RASTER_FILES[] = {
 	"sserifet.fon",		// Turkish
 	"ssee1257.fon",		// Baltic
 };
-static char const * const UI_SANS_FONT_FILE = "micross.ttf";
+static char const * const UI_SANS_FONT_FILE = "Microsoft Sans Serif.ttf";
 static char const * const UI_PRINT_FONT_FAMILY = "fullfnt";
-static char const * const UI_PRINT_FONT_FILE = "arial.ttf";
+static char const * const UI_PRINT_FONT_FILE = "Arial.ttf";
 static char const * const UI_SHIPPED_FONT_FILE = "Arimo.ttf";
 
 static char const * const UI_REVEAL_SOUND = "EMBLEM.AUD";

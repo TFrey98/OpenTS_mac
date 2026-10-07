@@ -11,14 +11,8 @@
 #include "utf8.h"
 
 #include <cstring>
+#include <iconv.h>
 
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-#include <windows.h>
 
 
 namespace {
@@ -208,12 +202,25 @@ int Best_Fit_Index(unsigned page, short * cache, char32_t code)
 
 	short & slot = cache[code];
 	if (slot == 0) {
-		wchar_t wide = (wchar_t)code;
-		char narrow = 0;
-		BOOL defaulted = FALSE;
-		int written = WideCharToMultiByte(page, 0, &wide, 1, &narrow, 1, NULL, &defaulted);
-		unsigned char byte = (unsigned char)narrow;
-		slot = (written == 1 && !defaulted && byte >= 0x20 && byte != 0x7F) ? (short)byte : (short)-1;
+		slot = -1;
+		// Transliteration supplies the close visual match. It writes '?' for a character it
+		// cannot match, and several bytes for one it spells out; neither is a single glyph.
+		iconv_t const converter = iconv_open(page == 437 ? "CP437//TRANSLIT" : "WINDOWS-1252//TRANSLIT", "UTF-32LE");
+		if (converter != (iconv_t)-1) {
+			unsigned char wide[4] = {(unsigned char)code, (unsigned char)(code >> 8), 0, 0};
+			char narrow[8];
+			char * in = (char *)wide;
+			char * out = narrow;
+			size_t inleft = sizeof(wide);
+			size_t outleft = sizeof(narrow);
+			if (iconv(converter, &in, &inleft, &out, &outleft) != (size_t)-1 && out - narrow == 1) {
+				unsigned char const byte = (unsigned char)narrow[0];
+				if (byte != '?' && byte >= 0x20 && byte != 0x7F) {
+					slot = (short)byte;
+				}
+			}
+			iconv_close(converter);
+		}
 	}
 	return(slot);
 }

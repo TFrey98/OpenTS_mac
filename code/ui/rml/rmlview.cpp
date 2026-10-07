@@ -31,6 +31,7 @@
 #include <RmlUi/Core/Variant.h>
 #include <cmath>
 #include <cstring>
+#include <strings.h>
 
 
 UIRmlViewClass::UIRmlViewClass(UIPresenterClass & presenter, char const * document, char const * model) :
@@ -615,7 +616,7 @@ bool UIRmlViewClass::Type_Ahead(Rml::Element * list, Rml::String const & text)
 	for (int step = 1; step <= (int)rows.size(); step++) {
 		int index = (current + step) % (int)rows.size();
 		std::string label = Row_Text(rows[index]);
-		if (strnicmp(label.c_str(), wanted.c_str(), wanted.size()) == 0) {
+		if (strncasecmp(label.c_str(), wanted.c_str(), wanted.size()) == 0) {
 			if (index != current) {
 				rows[index]->Click();
 			}

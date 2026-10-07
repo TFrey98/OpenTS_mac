@@ -29,6 +29,7 @@
 #include "vector.h"
 #include "wdtnet.h"
 #include "worlddom.h"
+#include <strings.h>
 
 typedef VectorClass<Point2D> POINT2D_LIST;
 
@@ -1032,7 +1033,7 @@ void Selection::Play_SFX(char const * name)
 {
 	if (name != NULL) {
 		for (MSSfxEntry * entry : SfxEntries) {
-			if (stricmp(entry->Get_Name(), name) == 0) {
+			if (strcasecmp(entry->Get_Name(), name) == 0) {
 				entry->Play();
 				break;
 			}

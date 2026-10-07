@@ -61,6 +61,7 @@
 #include "vector.h"
 
 #include <algorithm>
+#include <strings.h>
 
 
 /// <summary>
@@ -815,7 +816,7 @@ ThemeType ThemeClass::From_Name(char const * name) const
 		*/
 		ThemeType theme;
 		for (theme = THEME_FIRST; theme < Themes.Count(); theme = ThemeType(theme + 1)) {
-			if (stricmp(Themes[theme]->Name, name) == 0) {
+			if (strcasecmp(Themes[theme]->Name, name) == 0) {
 				return(theme);
 			}
 		}

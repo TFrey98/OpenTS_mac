@@ -22,6 +22,7 @@
 #define STBI_NO_STDIO
 #include <cstring>
 #include <stb_image.h>
+#include <strings.h>
 
 
 static bool Has_Extension(char const * name, char const * extension)
@@ -29,7 +30,7 @@ static bool Has_Extension(char const * name, char const * extension)
 	size_t length = strlen(name);
 	size_t extensionlength = strlen(extension);
 
-	return(length >= extensionlength && _stricmp(name + length - extensionlength, extension) == 0);
+	return(length >= extensionlength && strcasecmp(name + length - extensionlength, extension) == 0);
 }
 
 

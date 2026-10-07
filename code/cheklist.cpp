@@ -53,6 +53,7 @@
 #include "vector.h"
 
 #include <cstdio>
+#include <strings.h>
 
 
 /***************************************************************************
@@ -193,7 +194,7 @@ void CheckListClass::Remove_Item(char const * text)
 {
 	for (int index = 0; index < Count(); index++) {
 		CheckObject * obj = (CheckObject *)BASECLASS::Get_Item(index);
-		if (obj && stricmp(obj->Text, text) == 0) {
+		if (obj && strcasecmp(obj->Text, text) == 0) {
 			BASECLASS::Remove_Item(index);
 			delete obj;
 			break;
@@ -222,7 +223,7 @@ void CheckListClass::Set_Selected_Index(char const * text)
 {
 	for (int index = 0; index < Count(); index++) {
 		CheckObject * obj = (CheckObject *)BASECLASS::Get_Item(index);
-		if (obj && stricmp(obj->Text, text) == 0) {
+		if (obj && strcasecmp(obj->Text, text) == 0) {
 			Set_Selected_Index(index);
 			break;
 		}

@@ -52,6 +52,7 @@
 #include "swizzle.h"
 #include "tracker.h"
 #include "vector.h"
+#include <strings.h>
 
 
 /// <summary>
@@ -314,7 +315,7 @@ void WarheadTypeClass::Detach(AbstractClass const * target, bool all)
 WarheadTypeClass *WarheadTypeClass::From_Name(char const * name)
 {
 	for (int index = 0; index < Warheads.Count(); index++) {
-		if (stricmp(Warheads[index]->Name(), name) == 0) {
+		if (strcasecmp(Warheads[index]->Name(), name) == 0) {
 			return(Warheads[index]);
 		}
 	}

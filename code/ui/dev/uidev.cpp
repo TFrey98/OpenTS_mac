@@ -435,15 +435,12 @@ void UIDev_Tick(void)
 		ratio = 1.0f;
 	}
 
-	LARGE_INTEGER now;
-	LARGE_INTEGER frequency;
-	QueryPerformanceCounter(&now);
-	QueryPerformanceFrequency(&frequency);
-	float delta = (_LastFrameTicks == 0 || frequency.QuadPart == 0) ? (1.0f / 60.0f) : (float)(now.QuadPart - _LastFrameTicks) / (float)frequency.QuadPart;
+	long long const now = (long long)clock_gettime_nsec_np(CLOCK_UPTIME_RAW);
+	float delta = (_LastFrameTicks == 0) ? (1.0f / 60.0f) : (float)(now - _LastFrameTicks) / 1.0e9f;
 	if (delta < 0.0001f) {
 		delta = 0.0001f;
 	}
-	_LastFrameTicks = now.QuadPart;
+	_LastFrameTicks = now;
 
 	ImGuiIO & io = ImGui::GetIO();
 	io.DisplaySize = ImVec2((float)scale.DestWidth, (float)scale.DestHeight);

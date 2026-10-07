@@ -148,6 +148,7 @@
 #include <new>
 #include <stdexcept>
 #include <string>
+#include <strings.h>
 
 //#define	SAVE_BLOCK_SIZE	512
 #define	SAVE_BLOCK_SIZE	4096
@@ -1338,7 +1339,7 @@ bool Reconcile_Players(void)
 		HouseClass * found = NULL;
 
 		for (int house = 0; house < Houses.Count(); house++) {
-			if (Houses[house]->IsHuman && stricmp(Session.Players[i]->Name, Houses[house]->IniName) == 0) {
+			if (Houses[house]->IsHuman && strcasecmp(Session.Players[i]->Name, Houses[house]->IniName) == 0) {
 				found = Houses[house];
 				break;
 			}

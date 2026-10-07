@@ -17,6 +17,7 @@
 #include "quarry.h"
 
 #include "win.h"
+#include <strings.h>
 
 
 /***************************************************************************
@@ -49,7 +50,7 @@ QuarryType Quarry_From_Name(char const * name)
 {
 	//if (name) {
 		for (int quarry = QUARRY_FIRST; quarry < QUARRY_COUNT; quarry++) {
-			if (stricmp(name, QuarryName[quarry]) == 0) {
+			if (strcasecmp(name, QuarryName[quarry]) == 0) {
 				return(QuarryType(quarry));
 			}
 		}

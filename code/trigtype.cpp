@@ -69,6 +69,7 @@
 #include "persist.hh"
 
 #include <cstdio>
+#include <strings.h>
 
 
 char const * const TriggerTypeClass::INI_NAME = "Triggers";
@@ -375,7 +376,7 @@ TriggerTypeClass * TriggerTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = 0; index < TriggerTypes.Count(); index++) {
-			if (stricmp(TriggerTypes[index]->IniName, name) == 0 || stricmp(TriggerTypes[index]->GivenName, name) == 0) {
+			if (strcasecmp(TriggerTypes[index]->IniName, name) == 0 || strcasecmp(TriggerTypes[index]->GivenName, name) == 0) {
 				return(TriggerTypes[index]);
 			}
 		}
@@ -401,7 +402,7 @@ static char const * PersistentName[3] = {
 PersistentType Persistence_From_Name(char const * name)
 {
 	for (int index = 0; index < ARRAY_SIZE(PersistentName); index++) {
-		if (stricmp(name, PersistentName[index]) == 0) {
+		if (strcasecmp(name, PersistentName[index]) == 0) {
 			return(PersistentType(index));
 		}
 	}
@@ -502,11 +503,11 @@ bool TriggerTypeClass::Read_INI(CCINIClass const & ini)
 
 	if (!line.empty()) {
 		char * token = strtok(line.data(), ",");
-		House = stricmp(token, "<none>") == 0 ? House_From_HousesType(HOUSE_FIRST) : House_From_Name(token);
+		House = strcasecmp(token, "<none>") == 0 ? House_From_HousesType(HOUSE_FIRST) : House_From_Name(token);
 		if (House == NULL) return(false);
 		token = strtok(NULL, ",");
 		LinkedTo = NULL;
-		if (stricmp(token, "<none>") != 0) {
+		if (strcasecmp(token, "<none>") != 0) {
 			LinkedTo = From_Name(token);
 		}
 		GivenName = strtok(NULL, ",");

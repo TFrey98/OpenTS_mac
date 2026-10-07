@@ -29,6 +29,7 @@
 
 #include <algorithm>
 #include <climits>
+#include <strings.h>
 
 
 /// <summary>
@@ -455,7 +456,7 @@ void MSEngine::Play_Sound_Effect(char const * name, int volume)
 
 	for (int i = 0; i < Sounds.Count(); i++) {
 		MSSfx * sfx = Sounds[i];
-		if (stricmp(name, sfx->Get_Name()) == 0) {
+		if (strcasecmp(name, sfx->Get_Name()) == 0) {
 			sfx->Play(volume);
 			break;
 		}

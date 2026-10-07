@@ -75,6 +75,7 @@
 #include "winstub.h"
 
 #include <algorithm>
+#include <strings.h>
 
 
 #define SIZEGBAR			140
@@ -1139,7 +1140,7 @@ void ScoreClass::DoSound(const char * name, int volume)
 		for (int i = 0; i < ScoreSnds.Count(); i++) {
 			SfxEntry * snd = ScoreSnds[i];
 
-			if (stricmp(name, snd->Get_Name()) == 0) {
+			if (strcasecmp(name, snd->Get_Name()) == 0) {
 				if (snd->Get_Sample() != NULL) {
 					AudioEngine.Play_Sample(snd->Get_Sample(), AUDIO_GROUP_SFX, (float)volume / 255.0f, 255);
 				}

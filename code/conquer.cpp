@@ -133,13 +133,13 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <climits>
 #include <ctime>
-#include <direct.h>
-#include <dos.h>
+#include <filesystem>
 #include <fcntl.h>
-#include <io.h>
-#include <share.h>
+#include <unistd.h>
 #include <span>
+#include <strings.h>
 
 
 /****************************************
@@ -755,7 +755,7 @@ SourceType Source_From_Name(char const * name)
 {
 	if (name) {
 		for (SourceType source = SOURCE_FIRST; source < SOURCE_COUNT; source++) {
-			if (stricmp(SourceName[source], name) == 0) {
+			if (strcasecmp(SourceName[source], name) == 0) {
 				return(source);
 			}
 		}
@@ -1195,8 +1195,6 @@ TechnoTypeClass const * Fetch_Techno_Type(RTTIType type, int id)
  *=========================================================================*/
 unsigned int Disk_Space_Available(void)
 {
-	ULARGE_INTEGER freebytecount;		// Free bytes on disk available to caller (caller may not have access to entire disk).
-
 	DebugString("Checking available disk space\n");
 
 	/*
@@ -1204,16 +1202,15 @@ unsigned int Disk_Space_Available(void)
 	 * directory once a player has one of their own.
 	 */
 	std::string const user_directory = User_File_Write_Name("");
-	LPCTSTR const disk = user_directory.empty() ? NULL : user_directory.c_str();
-
-	if (!GetDiskFreeSpaceEx(disk, &freebytecount, NULL, NULL)) {
-		DWORD const error = GetLastError();
-		DebugString("GetDiskFreeSpaceEx failed with error code %d - %s\n", error, Last_Error_Text(error));
+	std::error_code error;
+	std::filesystem::space_info const space = std::filesystem::space(user_directory.empty() ? "." : user_directory, error);
+	if (error) {
+		DebugString("Free disk space query failed: %s\n", error.message().c_str());
 		return(0);
 	}
 
-	// The kilobyte count saturates rather than wrapping.
-	unsigned int const diskspace = (unsigned int)std::min<ULONGLONG>(freebytecount.QuadPart / 1024, UINT_MAX);
+	// The kilobyte count, which counts only space available to this user, saturates rather than wrapping.
+	unsigned int const diskspace = (unsigned int)std::min<std::uintmax_t>(space.available / 1024, UINT_MAX);
 	DebugString("Free disk space is %u Mb\n", diskspace / 1024);
 	return(diskspace);
 }
@@ -1238,7 +1235,7 @@ CrateType Crate_From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (CrateType crate = CRATE_FIRST; crate < CRATE_COUNT; crate++) {
-			if (stricmp(name, CrateNames[crate]) == 0) return(crate);
+			if (strcasecmp(name, CrateNames[crate]) == 0) return(crate);
 		}
 	}
 	return(CRATE_MONEY);
@@ -1343,7 +1340,7 @@ VQType VQ_From_Name(char const * name)
 {
 	if (name != NULL && strcmpi("<none>", name)) {
 		for (int movie = 0; movie < Movies.Count(); movie++) {
-			if (stricmp(name, Movies[movie]) == 0) return(VQType(movie));
+			if (strcasecmp(name, Movies[movie]) == 0) return(VQType(movie));
 		}
 	}
 	return(VQ_NONE);
@@ -1361,7 +1358,7 @@ LandType Land_From_Name(char const * name)
 {
 	if (name != NULL && strcmpi("<none>", name)) {
 		for (LandType land = LAND_FIRST; land < LAND_COUNT; land++) {
-			if (stricmp(LandName[land], name) == 0) return(land);
+			if (strcasecmp(LandName[land], name) == 0) return(land);
 		}
 	}
 	return(LAND_NONE);
@@ -1395,7 +1392,7 @@ SpeedType Speed_From_Name(char const * name)
 {
 	if (name != NULL && strcmpi("<none>", name)) {
 		for (SpeedType speed = SPEED_FIRST; speed < SPEED_COUNT; speed++) {
-			if (stricmp(SpeedName[speed], name) == 0) return(speed);
+			if (strcasecmp(SpeedName[speed], name) == 0) return(speed);
 		}
 	}
 	return(SPEED_NONE);

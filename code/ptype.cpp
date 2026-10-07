@@ -20,6 +20,7 @@
 #include "swizzle.h"
 #include "tracker.h"
 #include "warhead.h"
+#include <strings.h>
 
 
 /// <summary>
@@ -158,9 +159,9 @@ bool ParticleTypeClass::Read_INI(CCINIClass const & ini)
 /// was named.</returns>
 ParticleType ParticleTypeClass::From_Name(char const * name)
 {
-	if (name != NULL && stricmp(name, "<none>")) {
+	if (name != NULL && strcasecmp(name, "<none>")) {
 		for (int index = PARTICLE_FIRST; index < ParticleTypes.Count(); index++) {
-			if (stricmp(name, ParticleTypes[index]->Name()) == 0) {
+			if (strcasecmp(name, ParticleTypes[index]->Name()) == 0) {
 				return(ParticleType(index));
 			}
 		}

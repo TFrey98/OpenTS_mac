@@ -60,6 +60,7 @@
 #include "savestream.h"
 #include "sun.h"
 #include "tracker.h"
+#include <strings.h>
 
 
 void const * AircraftTypeClass::LRotorData = NULL;
@@ -130,7 +131,7 @@ AircraftType AircraftTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (AircraftType classid = AIRCRAFT_FIRST; classid < AircraftTypes.Count(); classid++) {
-			if (stricmp(AircraftTypes[classid]->Name(), name) == 0) {
+			if (strcasecmp(AircraftTypes[classid]->Name(), name) == 0) {
 				return(classid);
 			}
 		}

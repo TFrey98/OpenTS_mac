@@ -182,6 +182,7 @@
 
 #include <algorithm>
 #include <limits>
+#include <strings.h>
 
 
 char const * const BuildingClass::INI_NAME = "Structures";
@@ -1869,7 +1870,7 @@ bool BuildingClass::Unlimbo(Coord const & coord, Dir256 dir)
 		if (object != NULL && object->RTTI == RTTI_BUILDING) {
 			BuildingClass * building = (BuildingClass *)object;
 			BuildingTypeClass *btype = Class;
-			if (House == building->House && stricmp(btype->PowersUpBuilding, building->Class->IniName) == 0) {
+			if (House == building->House && strcasecmp(btype->PowersUpBuilding, building->Class->IniName) == 0) {
 				bool ok = false;
 				if (btype->PowersUpToLevel != -1) {
 					if (btype->PowersUpToLevel <= 0 || btype->PowersUpToLevel > BUILDING_UPGRADE_MAX) {
@@ -1891,7 +1892,7 @@ bool BuildingClass::Unlimbo(Coord const & coord, Dir256 dir)
 					levels = 1;
 				}
 				char * anim = building->Class->AnimData[building->UpgradeLevel].Anim;
-				if (stricmp(anim, Class->GraphicName) != 0) {
+				if (strcasecmp(anim, Class->GraphicName) != 0) {
 					strncpy(anim, Class->GraphicName, sizeof(building->Class->AnimData[0].Anim));
 				}
 				while (levels) {
@@ -8304,7 +8305,7 @@ bool BuildingClass::Can_Repair(void) const
 /// <param name="upgrader">The house that wishes to install the upgrade.</param>
 bool BuildingClass::Can_Upgrade(BuildingTypeClass const * upgrade, HouseClass const * upgrader) const
 {
-	if (upgrader != House || stricmp(upgrade->PowersUpBuilding, Class->IniName)) {
+	if (upgrader != House || strcasecmp(upgrade->PowersUpBuilding, Class->IniName)) {
 		goto failed;
 	}
 

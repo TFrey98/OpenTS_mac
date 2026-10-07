@@ -15,6 +15,7 @@
 
 #include "ccini.h"
 #include "typelist.h"
+#include <strings.h>
 
 class CCINIClass;
 
@@ -30,7 +31,7 @@ T * TFind_Or_Make(char const * name, DynamicVectorClass<T *> const & vector)
 	}
 
 	for (int index = 0; index < vector.Count(); index++) {
-		if (stricmp((const char *)vector[index]->IniName, name) == 0) {
+		if (strcasecmp((const char *)vector[index]->IniName, name) == 0) {
 			return(vector[index]);
 		}
 	}

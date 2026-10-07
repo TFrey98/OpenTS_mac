@@ -61,6 +61,7 @@
 #include "swizzle.h"
 #include "tracker.h"
 #include "warhead.h"
+#include <strings.h>
 
 
 /// <summary>
@@ -346,7 +347,7 @@ AnimType AnimTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int classid = ANIM_FIRST; classid < AnimTypes.Count(); classid++) {
-			if (stricmp(AnimTypes[classid]->Name(), name) == 0) {
+			if (strcasecmp(AnimTypes[classid]->Name(), name) == 0) {
 				return(AnimType)classid;
 			}
 		}

@@ -90,6 +90,7 @@
 #include "weapon.h"
 
 #include <algorithm>
+#include <strings.h>
 
 void const * BuildingTypeClass::BuildingZShape;
 void const * BuildingTypeClass::PowerOffShapes;
@@ -426,7 +427,7 @@ StructType BuildingTypeClass::From_Given_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int classid = STRUCT_FIRST; classid < BuildingTypes.Count(); classid++) {
-			if (stricmp(BuildingTypes[classid]->GivenName, name) == 0) {
+			if (strcasecmp(BuildingTypes[classid]->GivenName, name) == 0) {
 				return((StructType)classid);
 			}
 		}
@@ -456,7 +457,7 @@ StructType BuildingTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (StructType classid = STRUCT_FIRST; classid < BuildingTypes.Count(); classid++) {
-			if (stricmp(BuildingTypes[classid]->Name(), name) == 0) {
+			if (strcasecmp(BuildingTypes[classid]->Name(), name) == 0) {
 				return(classid);
 			}
 		}

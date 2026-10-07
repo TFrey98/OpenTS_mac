@@ -24,6 +24,7 @@
 #include "vector.h"
 
 #include <cstdio>
+#include <strings.h>
 
 /// <summary>
 /// Creates a running instance of the specified script type.
@@ -315,7 +316,7 @@ ScriptTypeClass * ScriptTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = 0; index < ScriptTypes.Count(); index++) {
-			if (stricmp(name, ScriptTypes[index]->IniName) == 0 || stricmp(name, ScriptTypes[index]->GivenName) == 0) {
+			if (strcasecmp(name, ScriptTypes[index]->IniName) == 0 || strcasecmp(name, ScriptTypes[index]->GivenName) == 0) {
 				return(ScriptTypes[index]);
 			}
 		}
@@ -336,7 +337,7 @@ ScriptTypeClass * ScriptTypeClass::From_Given_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = 0; index < ScriptTypes.Count(); index++) {
-			if (stricmp(name, ScriptTypes[index]->GivenName) == 0) {
+			if (strcasecmp(name, ScriptTypes[index]->GivenName) == 0) {
 				return(ScriptTypes[index]);
 			}
 		}

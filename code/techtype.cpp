@@ -44,7 +44,8 @@
 #include "voc.hh"
 
 #include <algorithm>
-#include <new.h>
+#include <new>
+#include <strings.h>
 
 
 /***************************************************************************
@@ -928,7 +929,7 @@ void TechnoTypeClass::Post_Load(void)
 		ImageData = MFCD::Retrieve(fname);
 
 		ArtINI.Get_String((const char *)GraphicName, "Cameo", "XXICON", buffer, sizeof(buffer));
-		if (stricmp(buffer, "XXICON") == 0) {
+		if (strcasecmp(buffer, "XXICON") == 0) {
 			ArtINI.Get_String((const char *)IniName, "Cameo", "XXICON", buffer, sizeof(buffer));
 		}
 		_makepath(fname, NULL, NULL, buffer, ".SHP");

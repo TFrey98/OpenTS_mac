@@ -74,6 +74,7 @@
 #include "sun.h"
 #include "swizzle.h"
 #include "tracker.h"
+#include <strings.h>
 
 
 /// <summary>
@@ -171,7 +172,7 @@ OverlayType OverlayTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = 0; index < OverlayTypes.Count(); index++) {
-			if (stricmp(OverlayTypes[index]->IniName, name) == 0) {
+			if (strcasecmp(OverlayTypes[index]->IniName, name) == 0) {
 				return(OverlayType(index));
 			}
 		}

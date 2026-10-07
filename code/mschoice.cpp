@@ -21,6 +21,7 @@
 #include "globals.h"
 #include "goptions.h"
 #include "mixfile.h"
+#include <strings.h>
 
 /// <summary>
 /// Creates an empty map choice database.
@@ -219,7 +220,7 @@ MapStage * MapChoice::Find_Stage_By_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = 0; index < Stages.Count(); index++) {
-			if (stricmp(name, Stages[index]->Get_Stage_Label()) == 0) {
+			if (strcasecmp(name, Stages[index]->Get_Stage_Label()) == 0) {
 				return(Stages[index]);
 			}
 		}
@@ -268,7 +269,7 @@ MSSfxEntry * MapChoice::Find_Sound(char const * name)
 	if (name == NULL) return(NULL);
 	for (int i = 0; i < SoundEntries.Count(); i++) {
 		MSSfxEntry * sfx = SoundEntries[i];
-		if (stricmp(name, sfx->Get_Name()) == 0) {
+		if (strcasecmp(name, sfx->Get_Name()) == 0) {
 			return(sfx);
 		}
 	}
@@ -462,7 +463,7 @@ MapSelection * MapStage::Find_Selection_By_Name(char const * name) const
 	for (int i = 0; i < Selections.Count(); i++) {
 		const char * selection = Selections[i]->Get_Stage_Label();
 		if (selection != NULL) {
-			if (stricmp(selection, name) == 0) {
+			if (strcasecmp(selection, name) == 0) {
 				return(Selections[i]);
 			}
 		}

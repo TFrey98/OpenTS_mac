@@ -66,8 +66,11 @@
 
 #include <algorithm>
 #include <deque>
+#include <filesystem>
 #include <optional>
 #include <vector>
+#include <strings.h>
+#include <sys/stat.h>
 
 
 bool (*RMGCallback)() = MapGen_Call_Back;
@@ -3323,79 +3326,26 @@ int Do_Random_Map_Dialog(bool (*callback)())
 /// </summary>
 void Clean_Up_RMCache(void)
 {
-	WIN32_FIND_DATA *ff;
-
-	DynamicVectorClass<WIN32_FIND_DATA *> files;
-
-	ff = new WIN32_FIND_DATA;
-	HANDLE handle = FindFirstFile("rmcache\\*.mmp", ff);
-
-	if (handle != INVALID_HANDLE_VALUE) {
-		files.Add(ff);
-
-		ff = new WIN32_FIND_DATA;
-		while (FindNextFile(handle, ff) != 0) {
-			files.Add(ff);
-			ff = new WIN32_FIND_DATA;
+	std::error_code error;
+	std::vector<std::pair<std::filesystem::path, timespec>> files;
+	for (std::filesystem::directory_entry const & entry : std::filesystem::directory_iterator("rmcache", error)) {
+		struct stat info;
+		if (strcasecmp(entry.path().extension().c_str(), ".mmp") == 0 && stat(entry.path().c_str(), &info) == 0
+			&& S_ISREG(info.st_mode)) {
+			files.push_back({entry.path(), info.st_atimespec});
 		}
-		FindClose(handle);
 	}
 
 	/*
-	 * The last record was allocated but never added to the list (the
-	 * enumeration ended). Free it here.
+	 * Limit the cache to a fixed number of entries, deleting the least recently used first.
 	 */
-	delete ff;
-
-	/*
-	 * Limit the cache to a fixed number of entries. While there are too many
-	 * cached maps, repeatedly find the oldest file and delete it.
-	 */
-	while (files.Count() > 70) {
-		FILETIME oldesttime;
-		oldesttime.dwLowDateTime = 0xFFFFFFFF;
-		oldesttime.dwHighDateTime = 0x7FFFFFFF;
-
-		int oldest = -1;
-		for (int index = 0; index < files.Count(); index++) {
-			WIN32_FIND_DATA * file = files[index];
-
-			if (file->ftLastAccessTime.dwHighDateTime != 0) {
-				if (CompareFileTime(&file->ftLastAccessTime, &oldesttime) == -1) {
-					oldest = index;
-					oldesttime.dwLowDateTime = files[index]->ftLastAccessTime.dwLowDateTime;
-					oldesttime.dwHighDateTime = files[index]->ftLastAccessTime.dwHighDateTime;
-				}
-			} else if (file->ftCreationTime.dwHighDateTime != 0) {
-				if (CompareFileTime(&file->ftCreationTime, &oldesttime) == -1) {
-					oldest = index;
-					oldesttime.dwLowDateTime = files[index]->ftCreationTime.dwLowDateTime;
-					oldesttime.dwHighDateTime = files[index]->ftCreationTime.dwHighDateTime;
-				}
-			} else if (file->ftLastWriteTime.dwHighDateTime != 0) {
-				if (CompareFileTime(&file->ftLastWriteTime, &oldesttime) == -1) {
-					oldest = index;
-					oldesttime.dwLowDateTime = files[index]->ftLastWriteTime.dwLowDateTime;
-					oldesttime.dwHighDateTime = files[index]->ftLastWriteTime.dwHighDateTime;
-				}
-			}
-		}
-
-		if (oldest == -1) {
+	std::sort(files.begin(), files.end(), [](auto const & a, auto const & b) {
+		return a.second.tv_sec != b.second.tv_sec ? a.second.tv_sec < b.second.tv_sec : a.second.tv_nsec < b.second.tv_nsec;
+	});
+	for (std::size_t index = 0; files.size() - index > 70; index++) {
+		if (!std::filesystem::remove(files[index].first, error)) {
 			break;
 		}
-
-		if (!DeleteFile(files[oldest]->cFileName)) {
-			break;
-		}
-
-		delete files[oldest];
-		files.Delete_Index(oldest);
-	}
-
-	while (files.Count()) {
-		delete files[0];
-		files.Delete_Index(0);
 	}
 }
 
@@ -3457,11 +3407,9 @@ void Do_Random_Map(bool (*callback)())
 		if (RandomMapGen.MapPreview->Get_Preview_Surface() != NULL) {
 			RawFileClass file("RandMap.img");
 			Write_PCX_File(file, *RandomMapGen.MapPreview->Get_Preview_Surface(), &GamePalette);
-			WIN32_FIND_DATA ff;
-			if (FindFirstFile("rmcache", &ff) == INVALID_HANDLE_VALUE) {
-				CreateDirectory("rmcache", 0);
-			}
-			CopyFile("RandMap.img", name, FALSE);
+			std::error_code error;
+			std::filesystem::create_directory("rmcache", error);
+			std::filesystem::copy_file("RandMap.img", name, std::filesystem::copy_options::overwrite_existing, error);
 			Clean_Up_RMCache();
 		}
 		delete RandomMapGen.MapPreview;
@@ -3866,7 +3814,7 @@ bool MapSeedClass::Save(const char * name)
 /// </summary>
 static bool Is_Shared_Map_File(char const * file_name)
 {
-	return(stricmp(file_name, RANDOM_MAP_FILE_NAME) == 0);
+	return(strcasecmp(file_name, RANDOM_MAP_FILE_NAME) == 0);
 }
 
 
@@ -4033,13 +3981,13 @@ bool MapSeedClass::Delete_File(const char * file_name)
 /// <param name="entry">The list entry to fill in.</param>
 /// <param name="ff">The file the directory search turned up.</param>
 /// <returns>bool; Was the entry filled in from a readable random map file?</returns>
-bool MapSeedClass::Read_File(FileEntryClass * entry, WIN32_FIND_DATAA * ff)
+bool MapSeedClass::Read_File(FileEntryClass * entry, FoundFileRecord const & found)
 {
 	char buffer[128];
 
-	if (entry != NULL && ff != NULL) {
-		if (stricmp(ff->cFileName, RANDOM_MAP_FILE_NAME)) {
-			RawFileClass file(Saved_Game_Name(ff->cFileName).c_str());
+	if (entry != NULL) {
+		if (strcasecmp(found.Name.c_str(), RANDOM_MAP_FILE_NAME)) {
+			RawFileClass file(Saved_Game_Name(found.Name.c_str()).c_str());
 			INIClass ini;
 			if (ini.Load(file)) {
 				if (ini.Get_String("RandomMap", "Description", 0, buffer, sizeof(buffer)) > 0 )
@@ -4052,12 +4000,8 @@ bool MapSeedClass::Read_File(FileEntryClass * entry, WIN32_FIND_DATAA * ff)
 				}
 				entry->Scenario = 0;
 				entry->House = HOUSE_FIRST;
-				strncpy(entry->Filename, ff->cFileName, sizeof(entry->Filename));
-				if (!strlen(entry->Filename)) {
-					strncpy(entry->Filename, ff->cAlternateFileName, sizeof(entry->Filename));
-				}
-				entry->DateTime.dwHighDateTime = ff->ftLastWriteTime.dwHighDateTime;
-				entry->DateTime.dwLowDateTime = ff->ftLastWriteTime.dwLowDateTime;
+				snprintf(entry->Filename, sizeof(entry->Filename), "%s", found.Name.c_str());
+				entry->DateTime = found.WriteTime;
 				return(true);
 			}
 		}

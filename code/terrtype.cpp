@@ -63,6 +63,7 @@
 #include "terrain.h"
 #include "terrtype.h"
 #include "tracker.h"
+#include <strings.h>
 
 static Cell const _OccupyLists[BSIZE_COUNT][10] = {
 	/* BSIZE_11,	*/	{ Cell(0, 0), REFRESH_EOL },
@@ -216,7 +217,7 @@ TerrainType TerrainTypeClass::From_Name(char const * name)
 
 	if (name != NULL) {
 		for (index = TERRAIN_FIRST; index < TerrainTypes.Count(); index++) {
-			if (stricmp(name, TerrainTypes[index]->Name()) == 0) {
+			if (strcasecmp(name, TerrainTypes[index]->Name()) == 0) {
 				return(index);
 			}
 		}

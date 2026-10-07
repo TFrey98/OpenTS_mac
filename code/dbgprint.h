@@ -13,19 +13,6 @@
 
 #pragma once
 
-#if defined(_WIN32)
-
-#include <sal.h>
-
-#else
-
-// The annotation and the calling convention are the compiler's own. Off Windows
-// they carry no meaning, so they cost nothing to spell.
-#define _Printf_format_string_
-#define __cdecl
-
-#endif
-
 void Debug_Init(void);
 void Debug_Init_Console(void);
 void Debug_Console_Hold(void);
@@ -33,7 +20,7 @@ char const * Debug_Log_File_Name(void);
 char const * Debug_Directory(void);
 bool Delete_Files_Older_Than(char const * directory, char const * pattern, unsigned days);
 
-void __cdecl DebugString(_Printf_format_string_ char const * string, ...);
-void __cdecl DebugStringNoPrefix(_Printf_format_string_ char const * string, ...);
+void DebugString(char const * string, ...) __attribute__((format(printf, 1, 2)));
+void DebugStringNoPrefix(char const * string, ...) __attribute__((format(printf, 1, 2)));
 
 char const * Last_Error_Text(unsigned long error);

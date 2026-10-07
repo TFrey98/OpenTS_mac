@@ -15,6 +15,11 @@
 
 #pragma once
 
+#include "win.h"
+
+#include <string>
+#include <vector>
+
 void Resolve_File(char * fname);
 
 class Find_File_Data
@@ -35,3 +40,12 @@ class Find_File_Data
 extern bool Find_First(const char * fname, unsigned int mode, Find_File_Data ** ffblk);
 extern bool Find_Next(Find_File_Data * ffblk);
 extern void Find_Close(Find_File_Data * ffblk);
+
+// A file found by a directory search, with its last-write time.
+struct FoundFileRecord {
+	std::string Name;
+	FILETIME WriteTime;
+};
+
+// Lists the regular, visible files matching a wildcard pattern that may include a directory.
+std::vector<FoundFileRecord> Find_Files(char const * pattern);

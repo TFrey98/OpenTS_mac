@@ -60,6 +60,7 @@
 #include "warhead.h"
 
 #include <cstring>
+#include <strings.h>
 
 
 /***********************************************************************************************
@@ -264,7 +265,7 @@ ArmorType Armor_From_Name(char const * name)
 	if (!name) return(ARMOR_NONE);
 
 	for (ArmorType index = ARMOR_FIRST; index < ARMOR_COUNT; index++) {
-		if (stricmp(ArmorName[index], name) == 0) {
+		if (strcasecmp(ArmorName[index], name) == 0) {
 			return(index);
 		}
 	}
@@ -435,7 +436,7 @@ WeaponTypeClass * WeaponTypeClass::Find_Or_Make(const char *name)
 WeaponType WeaponTypeClass::From_Name(char const * name)
 {
 	for (int index = 0; index < Weapons.Count(); index++) {
-		if (stricmp(Weapons[index]->IniName, name) == 0) {
+		if (strcasecmp(Weapons[index]->IniName, name) == 0) {
 			return(WeaponType(index));
 		}
 	}

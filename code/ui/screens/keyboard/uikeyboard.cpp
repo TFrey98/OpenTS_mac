@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <cstring>
 #include <utility>
+#include <strings.h>
 
 
 UIKeyboardPresenterClass::UIKeyboardPresenterClass(UIKeyboardServiceClass & service, UIKeyboardState state) :
@@ -105,7 +106,7 @@ void UIKeyboardPresenterClass::Reload(void)
 	for (UIHotkeyCommand const & command : State.Commands) {
 		bool known = false;
 		for (std::string const & category : State.Categories) {
-			if (stricmp(category.c_str(), command.Category.c_str()) == 0) {
+			if (strcasecmp(category.c_str(), command.Category.c_str()) == 0) {
 				known = true;
 			}
 		}
@@ -114,7 +115,7 @@ void UIKeyboardPresenterClass::Reload(void)
 		}
 	}
 	std::sort(State.Categories.begin(), State.Categories.end(), [](std::string const & a, std::string const & b) {
-		return(stricmp(a.c_str(), b.c_str()) < 0);
+		return(strcasecmp(a.c_str(), b.c_str()) < 0);
 	});
 
 	Show_Category(State.Categories.empty() ? -1 : 0);
@@ -129,12 +130,12 @@ void UIKeyboardPresenterClass::Show_Category(int index)
 	if (State.Category >= 0) {
 		std::string const & category = State.Categories[State.Category];
 		for (int command = 0; command < (int)State.Commands.size(); command++) {
-			if (stricmp(State.Commands[command].Category.c_str(), category.c_str()) == 0) {
+			if (strcasecmp(State.Commands[command].Category.c_str(), category.c_str()) == 0) {
 				State.Visible.push_back({ command, State.Commands[command].Name });
 			}
 		}
 		std::stable_sort(State.Visible.begin(), State.Visible.end(), [](UIHotkeyRow const & a, UIHotkeyRow const & b) {
-			return(stricmp(a.Name.c_str(), b.Name.c_str()) < 0);
+			return(strcasecmp(a.Name.c_str(), b.Name.c_str()) < 0);
 		});
 	}
 

@@ -95,7 +95,7 @@
 #include "bench.hh"
 
 #include <algorithm>
-#include <intrin.h>
+#include <strings.h>
 
 
 /***********************************************************************************************
@@ -366,7 +366,7 @@ AnimType Anim_From_Name(char const * name)
 	if (strcmpi(name, "<none>") == 0 || strcmpi(name, "none") == 0) return(ANIM_NONE);
 
 	for (AnimType anim = ANIM_FIRST; anim < AnimTypes.Count(); anim++) {
-		if (stricmp(AnimTypes[anim]->IniName, name) == 0) {
+		if (strcasecmp(AnimTypes[anim]->IniName, name) == 0) {
 			return(anim);
 		}
 	}

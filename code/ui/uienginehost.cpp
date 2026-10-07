@@ -36,6 +36,8 @@
 #include "wwmouse.h"
 
 #include <cstdio>
+#include <cstdlib>
+#include <filesystem>
 
 
 std::string UI_Color_Text(COLORREF color)
@@ -165,18 +167,16 @@ class UIEngineHostClass : public UIShellHostClass
 
 		virtual std::string System_Font_Path(char const * face) const override
 		{
-			char directory[MAX_PATH];
-			unsigned int length = GetWindowsDirectoryA(directory, MAX_PATH);
-			if (length == 0 || length >= MAX_PATH) {
-				return(std::string());
+			std::error_code error;
+			std::filesystem::path const home = getenv("HOME") != NULL ? getenv("HOME") : "";
+			for (std::filesystem::path const & directory : {std::filesystem::path("/System/Library/Fonts/Supplemental"),
+				std::filesystem::path("/System/Library/Fonts"), std::filesystem::path("/Library/Fonts"), home / "Library/Fonts"}) {
+				std::filesystem::path const path = directory / face;
+				if (std::filesystem::is_regular_file(path, error)) {
+					return(path.string());
+				}
 			}
-
-			std::string path = std::string(directory) + "\\Fonts\\" + face;
-			if (GetFileAttributesA(path.c_str()) == INVALID_FILE_ATTRIBUTES) {
-				return(std::string());
-			}
-
-			return(path);
+			return(std::string());
 		}
 
 		// Looked up per screen, since a saved game mounts archives before the side list exists.

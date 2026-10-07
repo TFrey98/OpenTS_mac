@@ -15,7 +15,7 @@
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "pattern": "^(?:README\\.md|CONTRIBUTING\\.md|CMakeLists\\.txt|docs/[^/].*|code/[^/].*|Run/[^/].*)$"
+        "pattern": "^(?:README\\.md|CONTRIBUTING\\.md|VERSION|docs/[^/].*|code/[^/].*|platform/[^/].*|archive/[^/].*|Run/[^/].*)$"
       }
     },
     "related": {

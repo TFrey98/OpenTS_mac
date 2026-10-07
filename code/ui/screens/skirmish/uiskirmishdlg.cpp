@@ -34,6 +34,7 @@
 #include <cstdio>
 #include <cstring>
 #include <utility>
+#include <strings.h>
 
 
 static int const UI_SKIRMISH_MIN_MONEY = 2500;
@@ -48,7 +49,7 @@ static void Refresh_Preview(void)
 	int index = Session.Options.ScenarioIndex;
 
 	if (index < 0 || index >= Session.Scenarios.Count()
-		|| stricmp(Session.Scenarios[index]->Get_Filename(), RANDOM_MAP_FILE_NAME) != 0) {
+		|| strcasecmp(Session.Scenarios[index]->Get_Filename(), RANDOM_MAP_FILE_NAME) != 0) {
 		Update_Network_Dialog_Preview();
 		return;
 	}

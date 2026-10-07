@@ -126,6 +126,7 @@
 
 #include <cstdio>
 #include <ctime>
+#include <strings.h>
 
 class ListClass;
 class ColorListClass;
@@ -270,14 +271,14 @@ void Destroy_Connection(int id, int error)
 	// Remove this player from the Players vector
 	//------------------------------------------------------------------------
 	for (i = 0; i < Session.Players.Count(); i++) {
-		if (!_stricmp(Session.Players[i]->Name, housep->IniName)) {
+		if (!strcasecmp(Session.Players[i]->Name, housep->IniName)) {
 			delete Session.Players[i];
 			Session.Players.Delete(Session.Players[i]);
 			break;
 		}
 	}
 
-	if (Session.Type == GAME_INTERNET && ! stricmp(Session.MasterPlayerName, housep->IniName)) {
+	if (Session.Type == GAME_INTERNET && ! strcasecmp(Session.MasterPlayerName, housep->IniName)) {
 		Session.MasterPlayerID = -1;
 		Session.MasterPlayerName[0] = '\0';
 	}

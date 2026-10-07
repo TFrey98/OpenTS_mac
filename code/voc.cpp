@@ -32,6 +32,7 @@
 
 #include <algorithm>
 #include <cstdlib>
+#include <strings.h>
 
 
 DynamicVectorClass<VocClass *> Vocs;
@@ -542,7 +543,7 @@ VocType VocClass::From_Name(char const * name)
 	if (name == NULL) return(VOC_NONE);
 
 	for (VocType voc = VOC_FIRST; voc < Vocs.Count(); voc = VocType(voc + 1)) {
-		if (stricmp(name, Vocs[voc]->Name) == 0) {
+		if (strcasecmp(name, Vocs[voc]->Name) == 0) {
 			return(voc);
 		}
 	}
@@ -567,7 +568,7 @@ VocClass * VocClass_From_Name(char const * name)
 	if (!strcmpi(name, "<none>")) return(NULL);
 
 	for (VocType voc = VOC_FIRST; voc < Vocs.Count(); voc = VocType(voc + 1)) {
-		if (stricmp(name, Vocs[voc]->Name) == 0) {
+		if (strcasecmp(name, Vocs[voc]->Name) == 0) {
 			return(Vocs[voc]);
 		}
 	}

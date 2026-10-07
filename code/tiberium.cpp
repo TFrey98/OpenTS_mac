@@ -30,6 +30,7 @@
 
 #include <algorithm>
 #include <optional>
+#include <strings.h>
 
 #define MAX_SPREAD_DELAY	50
 #define MAX_GROWTH_DELAY	50
@@ -162,7 +163,7 @@ TiberiumClass * TiberiumClass::Find_Or_Make(char const * name)
 	}
 
 	for (int index = 0; index < Tiberiums.Count(); index++) {
-		if (stricmp(Tiberiums[index]->IniName, name) == 0) {
+		if (strcasecmp(Tiberiums[index]->IniName, name) == 0) {
 			return(Tiberiums[index]);
 		}
 	}

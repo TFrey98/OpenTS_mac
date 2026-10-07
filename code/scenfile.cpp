@@ -11,11 +11,12 @@
 
 #include <cstring>
 #include <utility>
+#include <strings.h>
 
 
 bool ScenarioFileClass::Matches(char const * name) const
 {
-	return(name != NULL && Is_Present() && _stricmp(FileName.c_str(), name) == 0);
+	return(name != NULL && Is_Present() && strcasecmp(FileName.c_str(), name) == 0);
 }
 
 

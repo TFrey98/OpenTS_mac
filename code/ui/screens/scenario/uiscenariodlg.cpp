@@ -26,6 +26,7 @@
 #include "win.h"
 
 #include <utility>
+#include <strings.h>
 
 
 namespace
@@ -41,7 +42,7 @@ class UIScenarioEngineServiceClass : public UIScenarioServiceClass
 			if (index >= 0 && index < Session.Scenarios.Count()) {
 				Set_Scenario_Info_From_Index(index);
 
-				if (stricmp(Session.Scenarios[index]->Get_Filename(), RANDOM_MAP_FILE_NAME) == 0) {
+				if (strcasecmp(Session.Scenarios[index]->Get_Filename(), RANDOM_MAP_FILE_NAME) == 0) {
 					delete MultiplayerMapPreview;
 					MultiplayerMapPreview = new MapPreviewClass;
 					MultiplayerMapPreview->Read_PCX_Preview("RandMap.img");

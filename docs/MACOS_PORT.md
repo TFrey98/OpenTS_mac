@@ -1,16 +1,14 @@
-# Native desktop macOS ARM64 port
+# macOS port status
 
-The fork builds a desktop development application and ten engine test
-harnesses on Apple Silicon. The application uses the engine's frame presenter
-to display a diagnostic frame through Metal. The full game executable still
-uses the Windows build and application layer. The Mac targets build from an
-Xcode project without CMake; [Building OpenTS](BUILDING.md#macos-desktop-build-with-xcode)
-owns the commands and requirements.
+OpenTS targets macOS on Apple silicon only. The fork builds a development
+application and ten engine test harnesses from an Xcode project. The
+application uses the engine's frame presenter to display a diagnostic frame
+through Metal; the full game does not yet compile or link.
+[Building OpenTS](BUILDING.md#build-with-xcode) owns the commands and
+requirements.
 
-The source for this port is the desktop OpenTS engine in this fork. The
-application will use macOS windows, Metal rendering, and keyboard and mouse
-controls. "Portable" in the test configuration means engine components that
-compile across operating systems.
+The game will use Cocoa windows, Metal rendering, and keyboard and mouse
+controls.
 
 The port will retain OpenTS's game logic and original asset formats. Its
 source baseline targets Tiberian Sun 2.03 Firestorm. Compatibility with the
@@ -65,13 +63,11 @@ Debug and Release builds passed all ten harnesses locally with Apple Clang
 21.0.0 and CMake 4.4.4 on macOS ARM64. Clang reported inherited warnings for
 deleting `void *` buffers in `code/buff.cpp` and copying `AbilityFlagsType`
 with `memcpy` in `code/ability.hh`. These tests do not establish full engine,
-save-game, or multiplayer compatibility. Windows configurations have not
-been rebuilt in this environment.
+save-game, or multiplayer compatibility.
 
 ## Xcode project
 
-`platform/macos/OpenTS.xcodeproj` replaced the earlier CMake presets, which
-have been removed; the CMake build is now Windows-only. It was
+`platform/macos/OpenTS.xcodeproj` replaced the earlier CMake presets. It was
 checked with Xcode 27.0 (27A266a) and the macOS 27.0 SDK. Both configurations
 built the shell and all ten harnesses, and the `PortableTests` scheme passed
 all ten. Clang reported the same inherited `buff.cpp` and `ability.hh`
@@ -86,6 +82,47 @@ target, which Xcode 27 rejects, and its only override is a file inside the
 submodule. Unlike the earlier CMake build, this SDL build includes its audio,
 GPU, joystick, haptic, and other subsystems; the shell does not initialize
 them.
+
+## Engine compilation
+
+A syntax-only pass compiles each of the 499 engine and VQA sources with Apple
+Clang, C++20, and `-fms-extensions`, which accepts the engine's
+`__declspec(property)` declarations. Before porting, 168 compiled; 487 do
+now. No engine library is linked yet.
+
+`code/win.h` now defines the Win32 names the engine still uses for macOS:
+fixed-width types, so `DWORD` and `LONG` stay 32-bit; `FILETIME`, which save
+files store in its Windows representation; the system time functions;
+millisecond timing; and the drag threshold. `code/vkey.h` holds the
+virtual-key table with Windows values, which saved hotkeys store. Other Win32
+calls were replaced with POSIX or macOS equivalents in the files that used
+them:
+
+- The load, save, and random-map dialogs, game directories, and save files use
+  the portable file search and POSIX I/O. Save files are flushed with
+  `F_FULLFSYNC`.
+- The debug log writes to `~/Library/Logs/OpenTS` and mirrors to standard
+  error when the console is requested.
+- CPU identity reports the Apple chip name and the P6 family, so the
+  family-gated timing paths keep their modern-hardware branch. The tick counter
+  is `mach_absolute_time`, with its rate taken from the timebase.
+- Best-fit code page lookup uses `iconv` transliteration. Its close matches can
+  differ from Windows' best-fit tables.
+- The VQA `SN2J` record uses `int32_t`; with `long` it was 20 bytes instead of
+  12.
+
+Fixed while porting: the random-map cache cleanup deleted the wrong path, so it
+never removed old previews. The POSIX file search kept a pointer to its
+caller's pattern string.
+
+Nine files still need macOS implementations. GDI text and DIB surfaces in
+`ownrdraw.cpp`, `tactical.cpp`, `egos.cpp`, and `dsurface.cpp` need a FreeType
+text renderer. `data.cpp` loads strings from `Language.dll` (M4.3).
+`gamewindow.cpp`, `sdlwindow.cpp`, and `startup.cpp` hold Win32 window and
+startup code. `syncrechook.cpp` reads the Windows executable's headers. The
+`sdlkeys` contract test loads Windows keyboard layouts and must be rewritten
+for macOS. Packed structures that use `long` and lack size assertions remain
+for the M2.4 audit.
 
 ## Remaining work
 

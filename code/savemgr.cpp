@@ -45,6 +45,7 @@
 #include <cstdio>
 #include <string>
 #include <vector>
+#include <unistd.h>
 
 
 static AutosaveClass::KindType Single_Player_Kind(void)
@@ -324,7 +325,7 @@ int SaveManagerClass::Next_Multiplayer_Save_Slot(void)
 {
 	for (int slot = 0; slot < MULTIPLAYER_SAVE_SLOTS; slot++) {
 		std::string path = Saved_Game_Name(Multiplayer_Save_File_Name(slot).c_str());
-		if (GetFileAttributesA(path.c_str()) == INVALID_FILE_ATTRIBUTES) {
+		if (access(path.c_str(), F_OK) != 0) {
 			return(slot);
 		}
 	}
@@ -358,14 +359,14 @@ void SaveManagerClass::Multiplayer_Saves_Begin_Match(bool resumed)
 	int removed = 0;
 	for (int slot = 0; slot < MULTIPLAYER_SAVE_SLOTS; slot++) {
 		std::string path = Saved_Game_Name(Multiplayer_Save_File_Name(slot).c_str());
-		if (DeleteFileA(path.c_str())) {
+		if (remove(path.c_str()) == 0) {
 			removed++;
 		}
 	}
 	if (removed > 0) {
 		DebugString("Removed %d multiplayer saves of a previous match\n", removed);
 	}
-	if (DeleteFileA(Saved_Game_Name("spawnSG.ini").c_str())) {
+	if (remove(Saved_Game_Name("spawnSG.ini").c_str()) == 0) {
 		DebugString("Removed the launch-file copy of a previous match\n");
 	}
 

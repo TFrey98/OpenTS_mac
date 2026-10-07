@@ -24,6 +24,7 @@
 #include <string>
 #include <string_view>
 #include <vector>
+#include <strings.h>
 
 namespace {
 
@@ -129,7 +130,7 @@ unsigned Parse_Flags(char const * text, unsigned fallback, std::span<FlagName co
 	}
 	unsigned flags = 0;
 	for (std::string const & token : tokens) {
-		auto match = std::find_if(names.begin(), names.end(), [&token](FlagName const & name) { return(_stricmp(token.c_str(), name.Name) == 0); });
+		auto match = std::find_if(names.begin(), names.end(), [&token](FlagName const & name) { return(strcasecmp(token.c_str(), name.Name) == 0); });
 		if (match != names.end()) {
 			flags |= match->Value;
 		} else {
@@ -260,7 +261,7 @@ int Sound_Parse_Priority(char const * text, int fallback)
 		return(fallback);
 	}
 	char const * first = tokens[0].c_str();
-	auto match = std::find_if(std::begin(PRIORITY_NAMES), std::end(PRIORITY_NAMES), [first](PriorityName const & name) { return(_stricmp(first, name.Name) == 0); });
+	auto match = std::find_if(std::begin(PRIORITY_NAMES), std::end(PRIORITY_NAMES), [first](PriorityName const & name) { return(strcasecmp(first, name.Name) == 0); });
 	if (match != std::end(PRIORITY_NAMES)) {
 		return(match->Value);
 	}

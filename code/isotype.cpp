@@ -52,6 +52,7 @@
 #include <algorithm>
 #include <limits>
 #include <vector>
+#include <strings.h>
 
 enum {
 	ISO_WIDTH = 48,
@@ -438,7 +439,7 @@ IsometricTileType IsometricTileTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = ISOTILE_FIRST; index < IsometricTileTypes.Count(); index++) {
-			if (stricmp(IsometricTileTypes[index]->IniName, name) == 0) {
+			if (strcasecmp(IsometricTileTypes[index]->IniName, name) == 0) {
 				return(IsometricTileType(index));
 			}
 		}

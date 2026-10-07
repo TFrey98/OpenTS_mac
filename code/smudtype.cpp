@@ -69,6 +69,7 @@
 #include "sun.h"
 #include "tactical.h"
 #include "tracker.h"
+#include <strings.h>
 
 
 /***********************************************************************************************
@@ -140,7 +141,7 @@ SmudgeType SmudgeTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = SMUDGE_FIRST; index < SmudgeTypes.Count(); index++) {
-			if (stricmp(SmudgeTypes[index]->Name(), name) == 0) {
+			if (strcasecmp(SmudgeTypes[index]->Name(), name) == 0) {
 				return(SmudgeType(index));
 			}
 		}

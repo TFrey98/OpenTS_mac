@@ -33,10 +33,14 @@
 #include "session.h"
 
 #include "house.hh"
+#include "file.h"
 #include "opents_version.h"
+#include "win.h"
 
 #include <cstddef>
 #include <cstdint>
+#include <string>
+#include <vector>
 
 template<class T> class DynamicVectorClass;
 
@@ -105,7 +109,7 @@ class LoadOptionsClass
 		virtual bool Load_File(const char * file_name);
 		virtual bool Save_File(const char * file_name, const char * descr);
 		virtual bool Delete_File(const char * file_name);
-		virtual bool Read_File(FileEntryClass * entry, WIN32_FIND_DATAA * ff);
+		virtual bool Read_File(FileEntryClass * entry, FoundFileRecord const & file);
 
 		static bool Stamp_Strings(FileEntryClass const & entry, char * date, std::size_t datesize,
 			char * timeofday, std::size_t timesize);
@@ -191,7 +195,7 @@ class MultiplayerLoadOptionsClass : public LoadOptionsClass
 		MultiplayerLoadOptionsClass(void);
 
 		virtual bool Load_File(const char * file_name);
-		virtual bool Read_File(FileEntryClass * entry, WIN32_FIND_DATAA * ff);
+		virtual bool Read_File(FileEntryClass * entry, FoundFileRecord const & file);
 
 		char const * Picked_File(void) const {return(Picked);}
 

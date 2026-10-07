@@ -36,6 +36,7 @@
 
 #include "font.h"
 #include "shapeset.h"
+#include <strings.h>
 
 
 /// <summary>
@@ -330,7 +331,7 @@ void DropListClass::Set_Selected_Index(char const * text)
 {
 	if (text) {
 		for (int index = 0; index < Count(); index++) {
-			if (stricmp(text, List.Get_Item(index)) == 0) {
+			if (strcasecmp(text, List.Get_Item(index)) == 0) {
 				Set_Selected_Index(index);
 				break;
 			}

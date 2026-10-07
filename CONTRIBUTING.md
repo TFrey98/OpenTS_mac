@@ -1,8 +1,8 @@
 # Contributing to OpenTS
 
 OpenTS welcomes focused bug reports, proposals, documentation changes, and
-pull requests. Visual Studio 2022 Win32 and x64, each in Debug and Release,
-are the supported development targets. A successful build is not runtime
+pull requests. macOS on Apple silicon, built with Xcode in Debug and
+Release, is the only development target. A successful build is not runtime
 evidence.
 
 ## Before starting
@@ -134,16 +134,13 @@ run. Do not describe configure or build success as runtime testing.
 
 Build the affected supported configuration for source changes. Build both
 Debug and Release when changing shared build setup, compiler-dependent code,
-or behavior that optimization may affect. Existing MSVC warnings remain;
+or behavior that optimization may affect. Existing compiler warnings remain;
 identify new warnings instead of describing the build as warning-free.
 
 Behavior changes need focused, reproducible evidence. Automated tests must not
-require proprietary game assets or original executables. CI builds Debug and
-Release on both platforms and runs CTest for ready engine pull requests; draft
-pull requests do not run these checks until marked ready. This is build
-evidence and does not replace any runtime testing the change needs.
-[Building OpenTS](docs/BUILDING.md#continuous-integration) documents the
-workflow.
+require proprietary game assets or original executables. There is no macOS
+continuous integration yet, so report the Xcode build and test results
+yourself. Build evidence does not replace any runtime testing the change needs.
 
 Every pull request touching `code/` also needs the manual change record
 described above. Purely mechanical work with no player- or modder-visible

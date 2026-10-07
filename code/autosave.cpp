@@ -12,6 +12,7 @@
 #include <cctype>
 #include <cstdio>
 #include <cstring>
+#include <strings.h>
 
 
 void AutosaveClass::Set_Interval(int frames)
@@ -98,8 +99,8 @@ std::string Multiplayer_Save_File_Name(int slot)
 
 int Multiplayer_Save_Slot(char const * file_name)
 {
-	if (file_name == NULL || std::strlen(file_name) != 12 || _strnicmp(file_name, "SVGM_", 5) != 0
-		|| _stricmp(file_name + 8, ".NET") != 0) {
+	if (file_name == NULL || std::strlen(file_name) != 12 || strncasecmp(file_name, "SVGM_", 5) != 0
+		|| strcasecmp(file_name + 8, ".NET") != 0) {
 		return(-1);
 	}
 

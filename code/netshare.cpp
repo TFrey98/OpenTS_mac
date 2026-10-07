@@ -43,6 +43,7 @@
 
 #include <algorithm>
 #include <ctime>
+#include <strings.h>
 
 
 const COLORREF ColorSystem     = RGB(255, 255, 255)|(255<<24);  /// 0xFFFFFFFF
@@ -269,13 +270,13 @@ void PumpGameopts(bool force, bool now)
 		if (_last_ai_difficulty != Session.Options.AIDifficulty) do_pump = true;
 
 		_last_scenario_description[43] = 0;
-		if (stricmp(_last_scenario_description, Session.Options.ScenarioDescription)) do_pump = true;
+		if (strcasecmp(_last_scenario_description, Session.Options.ScenarioDescription)) do_pump = true;
 
 		_last_scenario_file_name[13] = 0;
-		if (stricmp(_last_scenario_file_name, Session.ScenarioFileName)) do_pump = true;
+		if (strcasecmp(_last_scenario_file_name, Session.ScenarioFileName)) do_pump = true;
 
 		_last_scenario_digest[32] = 0;
-		if (stricmp(_last_scenario_digest, Session.ScenarioDigest)) do_pump = true;
+		if (strcasecmp(_last_scenario_digest, Session.ScenarioDigest)) do_pump = true;
 
 		if (_last_scenario_file_length != Session.ScenarioFileLength) do_pump = true;
 		if (_last_scenario_is_official != Session.ScenarioIsOfficial) do_pump = true;
@@ -350,7 +351,7 @@ void SendPrivateGameopts(char const * player, char const * options)
 	Session.GPacket.Options.Color = Session.ColorIdx;
 	Session.GPacket.Options.NameCRC = Compute_Name_CRC(Session.GameName);
 	for (int i = 1; i < Session.Players.Count(); i++) {
-		if (stricmp(Session.Players[i]->Name, player) == 0) {
+		if (strcasecmp(Session.Players[i]->Name, player) == 0) {
 			DebugString("Sending private game options to %s\n", Session.Players[i]->Name);
 			Ipx.Send_Global_Message(&Session.GPacket, sizeof(Session.GPacket), 1, &Session.Players[i]->Address);
 			Call_Back();
@@ -507,7 +508,7 @@ bool DecodePubGameopt(char * options, char * name)
 
 	token = strtok(NULL, ",");
 	if (token != NULL) {
-		if (stricmp(Session.ScenarioFileName, token) != 0) {
+		if (strcasecmp(Session.ScenarioFileName, token) != 0) {
 			same_scenario = false;
 		}
 		strncpy(Session.ScenarioFileName, token, sizeof(Session.ScenarioFileName));
@@ -527,7 +528,7 @@ bool DecodePubGameopt(char * options, char * name)
 		bool found = false;
 		for (int i = 0; i < Session.Scenarios.Count(); i++) {
 			MultiMission * scenario = Session.Scenarios[i];
-			if (stricmp(Session.ScenarioFileName, scenario->Get_Filename()) == 0 && stricmp(Session.ScenarioFileName, RANDOM_MAP_FILE_NAME) != 0) {
+			if (strcasecmp(Session.ScenarioFileName, scenario->Get_Filename()) == 0 && strcasecmp(Session.ScenarioFileName, RANDOM_MAP_FILE_NAME) != 0) {
 				strcpy(Session.Options.ScenarioDescription, scenario->Description());
 				found = true;
 				break;
@@ -536,7 +537,7 @@ bool DecodePubGameopt(char * options, char * name)
 		if (!found && scenario_description != NULL) {
 			strcpy(Session.Options.ScenarioDescription, scenario_description);
 		}
-		if (stricmp(Session.ScenarioFileName, RANDOM_MAP_FILE_NAME) == 0) {
+		if (strcasecmp(Session.ScenarioFileName, RANDOM_MAP_FILE_NAME) == 0) {
 			strcpy(Session.Options.ScenarioDescription, Fetch_String(TXT_RANDOM_MAP_DESCRIPTION));
 		}
 	}
@@ -571,12 +572,12 @@ bool DecodePubGameopt(char * options, char * name)
 		if (token == NULL) break;
 		int color = atol(token);
 
-		if (stricmp(handle, Session.Handle) == 0 && color != Session.PrefColor && !IsColorChangePending) {
+		if (strcasecmp(handle, Session.Handle) == 0 && color != Session.PrefColor && !IsColorChangePending) {
 			PMessagePrintf(-1, Fetch_String(TXT_COLOR_IN_USE));
 			Session.PrefColor = color;
 		}
 
-		if (stricmp(handle, Session.Handle) == 0) {
+		if (strcasecmp(handle, Session.Handle) == 0) {
 			IsColorChangePending = false;
 		}
 
@@ -895,7 +896,7 @@ void Send_Preview_To_Guests(void)
 {
 	CDTimerClass<SystemTimerClass> response_timer;
 
-	if (MultiplayerMapPreview != NULL && stricmp(Session.ScenarioFileName, RANDOM_MAP_FILE_NAME) == 0 && Session.Players.Count() > 1) {
+	if (MultiplayerMapPreview != NULL && strcasecmp(Session.ScenarioFileName, RANDOM_MAP_FILE_NAME) == 0 && Session.Players.Count() > 1) {
 		DebugString("Starting map preview upload\n");
 
 		GlobalPacketType packet;
@@ -1071,7 +1072,7 @@ int CreateRandomMap(void)
 	int index;
 	bool found = false;
 	for (index = 0; index < Session.Scenarios.Count(); index++) {
-		if (stricmp(Session.Scenarios[index]->Get_Filename(), RANDOM_MAP_FILE_NAME) == 0) {
+		if (strcasecmp(Session.Scenarios[index]->Get_Filename(), RANDOM_MAP_FILE_NAME) == 0) {
 			found = true;
 			break;
 		}

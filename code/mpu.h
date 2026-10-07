@@ -32,14 +32,6 @@
 #pragma once
 
 
-// Get_CPU_Clock reads the time stamp counter via the RDTSC intrinsic, available on every
-// processor the supported minimum hardware covers (SSE2, so a Pentium 4 or Athlon 64
-// onward).
-extern "C" {
-	unsigned int __cdecl Get_CPU_Clock(unsigned int & high);
-}
-
+unsigned int Get_CPU_Clock(unsigned int & high);
 unsigned int Get_CPU_Rate(unsigned int & high);
-
-void RDTSC(void);
 int Get_RDTSC_CPU_Speed(void);

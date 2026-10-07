@@ -67,6 +67,7 @@
 #include <cstring>
 #include <eh.h>
 #include <exception>
+#include <strings.h>
 
 #define MS_VC_THREAD_NAME_EXCEPTION			0x406D1388
 #define MS_CPP_EXCEPTION					0xE06D7363
@@ -2140,36 +2141,36 @@ void Exception_Run_Immediate_Test(void)
 		return;
 		}
 
-	if (stricmp(TestMode, "av-read") == 0) {
+	if (strcasecmp(TestMode, "av-read") == 0) {
 		volatile int const value = *(volatile int *)16;
 		(void)value;
 
-	} else if (stricmp(TestMode, "av-write") == 0) {
+	} else if (strcasecmp(TestMode, "av-write") == 0) {
 		*(volatile int *)16 = 1;
 
-	} else if (stricmp(TestMode, "stack") == 0) {
+	} else if (strcasecmp(TestMode, "stack") == 0) {
 		Test_Recurse(0);
 
-	} else if (stricmp(TestMode, "purecall") == 0) {
+	} else if (strcasecmp(TestMode, "purecall") == 0) {
 		TestPureDerivedClass instance;
 
-	} else if (stricmp(TestMode, "terminate") == 0) {
+	} else if (strcasecmp(TestMode, "terminate") == 0) {
 		std::terminate();
 
-	} else if (stricmp(TestMode, "invalidparam") == 0) {
+	} else if (strcasecmp(TestMode, "invalidparam") == 0) {
 		char target[4];
 		strcpy_s(target, 0, "longer than the buffer");
 
-	} else if (stricmp(TestMode, "fatal") == 0) {
+	} else if (strcasecmp(TestMode, "fatal") == 0) {
 		Fatal("Requested test failure %d.", 1);
 
-	} else if (stricmp(TestMode, "worker") == 0) {
+	} else if (strcasecmp(TestMode, "worker") == 0) {
 		HANDLE const thread = CreateThread(NULL, 0, Test_Worker_Thread, NULL, 0, NULL);
 		if (thread != NULL) {
 			WaitForSingleObject(thread, INFINITE);
 	}
 
-	} else if (stricmp(TestMode, "sectionfault") == 0) {
+	} else if (strcasecmp(TestMode, "sectionfault") == 0) {
 		TestSectionFault = true;
 		*(volatile int *)16 = 1;
 	}
@@ -2192,11 +2193,11 @@ static LRESULT CALLBACK Test_Window_Procedure(HWND window, UINT message, WPARAM 
 /// </summary>
 void Exception_Run_Post_Window_Test(void)
 {
-	if (stricmp(TestMode, "wndproc") == 0) {
+	if (strcasecmp(TestMode, "wndproc") == 0) {
 		SetWindowSubclass(MainWindow, Test_Window_Procedure, 1, 0);
 		PostMessage(MainWindow, WM_EXCEPTION_TEST, 0, 0);
 
-	} else if (stricmp(TestMode, "timer") == 0) {
+	} else if (strcasecmp(TestMode, "timer") == 0) {
 		timeSetEvent(200, 10, Test_Timer_Callback, 0, TIME_ONESHOT);
 	}
 }

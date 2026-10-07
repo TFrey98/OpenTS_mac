@@ -39,6 +39,7 @@
 #include "rules.h"
 
 #include <algorithm>
+#include <strings.h>
 
 static const char *AbilityName[ABILITY_COUNT] = {
 	"FASTER",
@@ -73,7 +74,7 @@ static const char *AbilityName[ABILITY_COUNT] = {
 AbilityType Ability_From_Name(const char *name)
 {
 	for (int ability = ABILITY_FIRST; ability < ABILITY_COUNT; ability++) {
-		if (stricmp(AbilityName[ability], name) == 0) {
+		if (strcasecmp(AbilityName[ability], name) == 0) {
 			return((AbilityType)ability);
 		}
 	}

@@ -203,12 +203,11 @@
 #include "scrnsel.hh"
 
 #include <algorithm>
-#include <conio.h>
 #include <ctime>
-#include <dos.h>
 #include <string>
 #include <unordered_set>
 #include <vector>
+#include <strings.h>
 
 extern VoxelDataStruct DropPodVoxel;
 
@@ -589,7 +588,7 @@ void Init_Campaigns(void)
 		CCINIClass * ini = new CCINIClass;
 		ini->Load(file, false);
 
-		if (stricmp(name.c_str(), DeploymentConfig.BattleFile.c_str()) == 0) {
+		if (strcasecmp(name.c_str(), DeploymentConfig.BattleFile.c_str()) == 0) {
 			found = true;
 		}
 
@@ -1451,7 +1450,7 @@ bool Parse_Command_Line(int argc, char * argv[])
 		/*
 		**	Print usage text only if requested.
 		*/
-		if (stricmp("/?", string) == 0 || stricmp("-?", string) == 0 || stricmp("-h", string) == 0 || stricmp("/h", string) == 0) {
+		if (strcasecmp("/?", string) == 0 || strcasecmp("-?", string) == 0 || strcasecmp("-h", string) == 0 || strcasecmp("/h", string) == 0) {
 			/*
 			**	Unrecognized command line parameter... Display usage
 			**	and then exit.
@@ -1502,25 +1501,25 @@ bool Parse_Command_Line(int argc, char * argv[])
 		/*
 		**	Scenario Editor Mode
 		*/
-		if (stricmp(string, "-CHECKMAP") == 0) {
+		if (strcasecmp(string, "-CHECKMAP") == 0) {
 			Debug_Check_Map = true;
 			continue;
 		}
 
 #endif
 
-		if (strnicmp(string, "-DATADIR=", strlen("-DATADIR=")) == 0) {
+		if (strncasecmp(string, "-DATADIR=", strlen("-DATADIR=")) == 0) {
 			Set_Data_Directory(&original[strlen("-DATADIR=")]);
 			continue;
 		}
 
-		if (strnicmp(string, "-USERDIR=", strlen("-USERDIR=")) == 0) {
+		if (strncasecmp(string, "-USERDIR=", strlen("-USERDIR=")) == 0) {
 			Set_User_Directory(&original[strlen("-USERDIR=")]);
 			continue;
 		}
 
 		// A client asking the game to launch what SPAWN.INI describes.
-		if (stricmp(string, "-SPAWN") == 0) {
+		if (strcasecmp(string, "-SPAWN") == 0) {
 			Spawner_Request();
 			continue;
 		}
@@ -1562,12 +1561,12 @@ bool Parse_Command_Line(int argc, char * argv[])
 			continue;
 		}
 
-		if (stricmp(string, "-WIN") == 0) {
+		if (strcasecmp(string, "-WIN") == 0) {
 			WindowedMode = true;
 			continue;
 		}
 
-		if (stricmp(string, "-MULTIINSTANCE") == 0) {
+		if (strcasecmp(string, "-MULTIINSTANCE") == 0) {
 			Debug_MultipleInstances = true;
 			continue;
 		}
@@ -1575,7 +1574,7 @@ bool Parse_Command_Line(int argc, char * argv[])
 		/*
 		 * Arms a deliberate fault; the mode decides where it is raised later.
 		 */
-		if (strnicmp(string, "-EXCEPTIONTEST=", strlen("-EXCEPTIONTEST=")) == 0) {
+		if (strncasecmp(string, "-EXCEPTIONTEST=", strlen("-EXCEPTIONTEST=")) == 0) {
 			Exception_Set_Test_Mode(string + strlen("-EXCEPTIONTEST="));
 			continue;
 		}
@@ -1584,7 +1583,7 @@ bool Parse_Command_Line(int argc, char * argv[])
 		 * Arms one deliberate checksum mismatch, so that the out-of-sync path can be
 		 * exercised without waiting for a real desynchronization.
 		 */
-		if (strnicmp(string, "-DESYNCTEST=", strlen("-DESYNCTEST=")) == 0) {
+		if (strncasecmp(string, "-DESYNCTEST=", strlen("-DESYNCTEST=")) == 0) {
 			Session.ForceDesyncFrame = atoi(string + strlen("-DESYNCTEST="));
 			continue;
 		}
@@ -1601,7 +1600,7 @@ bool Parse_Command_Line(int argc, char * argv[])
 		/*
 		**	Special command line control parsing.
 		*/
-		if (strnicmp(string, "-X", strlen("-O")) == 0) {
+		if (strncasecmp(string, "-X", strlen("-O")) == 0) {
 			string += strlen("-X");
 			while (*string) {
 				char code = *string++;
@@ -1724,7 +1723,6 @@ void Init_Random(void)
 	*/
 	if (Session.Type == GAME_NORMAL || Session.Type == GAME_SKIRMISH) {
 
-	#ifdef WIN32
 		/*
 		**	Gather some "random" bits from the system timer. Actually, only the
 		**	low order millisecond bits are secure. The other bits could be
@@ -1749,16 +1747,6 @@ void Init_Random(void)
 		CryptRandom.Seed_Bit(t.wDayOfWeek);
 		CryptRandom.Seed_Bit(t.wMonth);
 		CryptRandom.Seed_Bit(t.wYear);
-	#else
-
-		/*
-		**	Gather some "random" bits from the DOS mode timer.
-		*/
-		struct timeb t;
-		ftime(&t);
-		CryptRandom.Seed_Byte(t.millitm);
-		CryptRandom.Seed_Byte(t.time);
-	#endif
 
 		/*
 		**	Set the optional user-specified seed

@@ -60,6 +60,7 @@
 #include "timer.h"
 
 #include <cassert>
+#include <strings.h>
 
 
 /// The binary confirms this was in the cpp as the vtable is inside this module
@@ -191,7 +192,7 @@ bool MapSelect::Advance_Progression(ScenarioClass * scen, char const * map_name)
 		if (selection != NULL) {
 			MapStage * sel_stage = Choices.Find_Stage_By_Name(selection->Get_Stage_Label());
 
-			if ((sel_stage != NULL) && stricmp(sel_stage->Get_Scenario_Name(), map_name) == 0) {
+			if ((sel_stage != NULL) && strcasecmp(sel_stage->Get_Scenario_Name(), map_name) == 0) {
 				scen->Set_Scenario_Name(sel_stage->Get_Scenario_Name());
 				scen->Stage = Choices.Get_Stage_ID(sel_stage);
 				break;

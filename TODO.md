@@ -1,9 +1,9 @@
-# Desktop macOS ARM64 port TODO
+# macOS port TODO
 
-Build a faithful desktop Tiberian Sun port from this fork's OpenTS engine,
-using Cocoa windows, Metal rendering, and keyboard and mouse controls. Use
-the desktop source as the implementation baseline; the mobile ARM64 port is
-outside this plan.
+Build a faithful Tiberian Sun port for macOS on Apple silicon from this fork's
+OpenTS engine, using Cocoa windows, Metal rendering, and keyboard and mouse
+controls. macOS is the only target; the engine's Windows code is replaced, not
+kept alongside.
 
 This file owns the implementation checklist. [Mac port status](docs/MACOS_PORT.md)
 records verified results, and [Building OpenTS](docs/BUILDING.md) owns build
@@ -31,8 +31,8 @@ Full engine startup, real assets, and gameplay remain unverified on macOS.
 ## Next tasks
 
 1. **M1.2:** Interactively validate the shell's window and input handling.
-2. **M2.1:** Separate the engine build from Windows sources, resources, and
-   compiler options so Apple Clang can expose the remaining compilation gaps.
+2. **M2.1:** Add an engine target to the Xcode project so the remaining
+   compilation and link gaps surface in a real build.
 3. **M3.1:** Define the required asset version and validate the supplied GDI
    disc against it before connecting asset loading to game startup.
 
@@ -61,18 +61,18 @@ Capture an image to verify the displayed result in addition to frame submission.
 
 ## M2: Native engine build and platform services
 
-Review [the engine build](code/CMakeLists.txt),
-[third-party dependencies](thirdparty/CMakeLists.txt),
-[Windows declarations](code/win.h), and [startup](code/startup.cpp).
+Review [the Xcode project](platform/macos/OpenTS.xcodeproj),
+[the Win32 names the engine uses](code/win.h), and [startup](code/startup.cpp).
 
-- [ ] **M2.1:** Introduce a reusable engine target and select platform sources
-  explicitly. On macOS, add it to the Xcode project. Keep Windows resource compilation, import libraries, MSVC
-  flags, manifests, and debugger settings on the Windows path.
+- [ ] **M2.1:** Add an engine target to the Xcode project with an explicit
+  source list. Leave out Windows-only sources, resources, and manifests, and
+  generate the version and build-stamp headers.
 - [ ] **M2.2:** Build the remaining pinned dependencies on ARM64: miniaudio,
   LZO, RmlUi, FreeType, and Dear ImGui. Use the existing dependency versions.
 - [ ] **M2.3:** Inventory Windows headers, handle types, calling conventions,
   intrinsics, and x86 assumptions. Replace each required dependency with a
-  defined platform interface or an equivalent implementation.
+  defined platform interface or an equivalent implementation. In progress:
+  487 of 499 sources compile; the status document lists the rest.
 - [ ] **M2.4:** Audit integer widths, pointer conversions, packing, and class
   layouts. Preserve required 32-bit values where macOS's 64-bit `long` would
   change asset, save, or packet representations.
@@ -85,8 +85,6 @@ Review [the engine build](code/CMakeLists.txt),
 
 Complete when the full engine compiles and links in ARM64 Debug and Release,
 the affected tests pass, and each remaining unsupported service is documented.
-Run the affected Windows build checks on a Windows host before treating the
-shared changes as verified there.
 
 ## M3: Original assets and file access
 
@@ -118,7 +116,7 @@ archive investigation does not establish integration with the game engine.
 
 Review [startup](code/startup.cpp), [initialization](code/init.cpp),
 [the SDL window layer](code/sdl/sdlwindow.cpp), and
-[language resources](code/language/CMakeLists.txt).
+[language resources](code/language/language.h).
 
 - [ ] **M4.1:** Connect the Mac application to real engine initialization,
   the main loop, and shutdown, replacing the generated diagnostic frame.
@@ -169,27 +167,24 @@ Review [the main loop](code/mainloop.cpp), [save streams](code/savestream.cpp),
   quicksave, autosave, settings persistence, and damaged-save rejection.
   Detect incompatible layouts before accepting saves from other builds.
 - [ ] **M6.5:** Compare deterministic simulation output across Debug and
-  Release and against the selected Windows reference. Audit random number
+  Release and against recorded reference results. Audit random number
   generation, floating-point contraction, and ordering where results diverge.
 
 Complete when campaign and skirmish checks pass for the declared content,
 Mac saves restore the tested state, and compatibility limits are documented.
 
-## M7: Networking and cross-platform state
+## M7: Networking
 
-Review [the existing POSIX socket backend](code/netsocket_posix.cpp) and
-[current save and network limits](docs/BUILDING.md#save-and-network-compatibility-between-the-platforms).
+Review [the existing POSIX socket backend](code/netsocket_posix.cpp).
 
 - [ ] **M7.1:** Compile and exercise the existing POSIX backend on macOS;
   test interface selection, broadcast, nonblocking I/O, and socket errors.
   Extend tests to cover the real backend as well as simulated transport.
-- [ ] **M7.2:** Define protocol widths and architecture identification;
-  reject incompatible peers before admitting them to a game. Version identity
+- [ ] **M7.2:** Define protocol widths and build identification; reject
+  incompatible peers before admitting them to a game. Version identity
   alone does not establish layout or simulation compatibility.
 - [ ] **M7.3:** Validate Mac-to-Mac lobby setup, match startup, sustained
   simulation, disconnect handling, and multiplayer save/load.
-- [ ] **M7.4:** Establish Mac-to-Windows interoperability only after packet
-  layout and simulation comparisons pass; document tested build combinations.
 
 Complete when compatible peers play the reference sessions without desyncs and
 incompatible peers receive a clear refusal.

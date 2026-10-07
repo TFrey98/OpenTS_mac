@@ -37,6 +37,7 @@
 #include "voc.h"
 
 #include <algorithm>
+#include <strings.h>
 
 /*
 **	Selected objects have a special marking box around them. This is the shapes that are
@@ -790,7 +791,7 @@ void ObjectTypeClass::Post_Load(void)
 ObjectTypeClass const * ObjectTypeClass::From_Name(char const * name)
 {
 	for (int classid = 0; classid < ObjectTypes.Count(); classid++) {
-		if (stricmp(ObjectTypes[classid]->IniName, name) == 0) {
+		if (strcasecmp(ObjectTypes[classid]->IniName, name) == 0) {
 			return(ObjectTypes[classid]);
 		}
 	}

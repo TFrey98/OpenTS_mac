@@ -45,7 +45,8 @@
 #include "utracker.h"
 
 #include <cstring>
-#include <winsock.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
 
 
 /***********************************************************************************************

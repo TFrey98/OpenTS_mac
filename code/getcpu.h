@@ -16,7 +16,7 @@
 void Get_CPU_Type(int & cpu_type, char * vendor_id = 0, int vendor_id_length = 0);
 
 extern "C" {
-	void __cdecl CPU_Id(void);
+	void CPU_Id(void);
 
 	extern char CPUType;
 	extern char VendorID[];

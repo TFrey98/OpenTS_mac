@@ -22,6 +22,7 @@
 #include "tracker.h"
 #include "trigtype.h"
 #include "vector.h"
+#include <strings.h>
 
 char const * const TagTypeClass::INI_NAME = "Tags";
 
@@ -146,7 +147,7 @@ TagTypeClass * TagTypeClass::From_Name(char const * name)
 	if (name != NULL) {
 		for (int index = 0; index < TagTypes.Count(); index++) {
 			TagTypeClass *ttptr = TagTypes[index];
-			if (stricmp(ttptr->IniName, name) == 0 || stricmp(ttptr->GivenName, name) == 0) {
+			if (strcasecmp(ttptr->IniName, name) == 0 || strcasecmp(ttptr->GivenName, name) == 0) {
 				return(ttptr);
 			}
 		}

@@ -11,7 +11,7 @@ on:
       - "LICENSE.md"
       - "docs/**"
       - "code/**"
-      - "CMakeLists.txt"
+      - "VERSION"
       - ".github/workflows/manual-pages.yml"
   push:
     branches: [main]
@@ -23,7 +23,7 @@ on:
       - "LICENSE.md"
       - "docs/**"
       - "code/**"
-      - "CMakeLists.txt"
+      - "VERSION"
       - ".github/workflows/manual-pages.yml"
   workflow_dispatch:
 

@@ -25,6 +25,7 @@
 #include "tracker.h"
 #include "vector.h"
 #include "warhead.h"
+#include <strings.h>
 
 
 /// <summary>
@@ -207,7 +208,7 @@ VoxelAnimType VoxelAnimTypeClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = VANIM_FIRST; index < VoxelAnimTypes.Count(); index++) {
-			if (stricmp(VoxelAnimTypes[index]->IniName, name) == 0) {
+			if (strcasecmp(VoxelAnimTypes[index]->IniName, name) == 0) {
 				return(VoxelAnimType(index));
 			}
 		}

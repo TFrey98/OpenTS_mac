@@ -35,7 +35,6 @@
 
 #include "win.h"
 
-#include <sal.h>
 
 // Posted to the main window so that a requested test fault happens inside window procedure
 // dispatch, which the operating system unwinds differently from an ordinary call.

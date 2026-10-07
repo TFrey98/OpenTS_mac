@@ -28,6 +28,7 @@
 #include "vector.h"
 
 #include <cstdio>
+#include <strings.h>
 
 
 /// <summary>
@@ -126,7 +127,7 @@ TaskForceClass * TaskForceClass::From_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = 0; index < TaskForces.Count(); index++) {
-			if (stricmp(name, TaskForces[index]->IniName) == 0) {
+			if (strcasecmp(name, TaskForces[index]->IniName) == 0) {
 				return(TaskForces[index]);
 			}
 		}
@@ -145,7 +146,7 @@ TaskForceClass * TaskForceClass::From_Given_Name(char const * name)
 {
 	if (name != NULL) {
 		for (int index = 0; index < TaskForces.Count(); index++) {
-			if (stricmp(name, TaskForces[index]->GivenName) == 0) {
+			if (strcasecmp(name, TaskForces[index]->GivenName) == 0) {
 				return(TaskForces[index]);
 			}
 		}

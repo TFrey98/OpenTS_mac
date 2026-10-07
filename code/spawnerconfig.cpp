@@ -21,6 +21,7 @@
 #include <cstring>
 #include <filesystem>
 #include <vector>
+#include <strings.h>
 
 
 namespace {
@@ -145,7 +146,7 @@ void SpawnerConfigClass::Read_Slots(INIClass const & ini)
 		if (staging[left].Color != staging[right].Color) {
 			return(staging[left].Color < staging[right].Color);
 		}
-		return(_stricmp(staging[left].Name.c_str(), staging[right].Name.c_str()) < 0);
+		return(strcasecmp(staging[left].Name.c_str(), staging[right].Name.c_str()) < 0);
 	});
 
 	HumanCount = (int)humans.size();
@@ -409,7 +410,7 @@ bool SpawnerConfigClass::Is_Playable(int countries, int colors, std::string & fa
 					continue;
 				}
 
-				if (_stricmp(Slots[other].Name.c_str(), slot.Name.c_str()) == 0) {
+				if (strcasecmp(Slots[other].Name.c_str(), slot.Name.c_str()) == 0) {
 					return(Fault(fault, "Seats %d and %d are both played by %s.",
 						other + 1, index + 1, slot.Name.c_str()));
 				}

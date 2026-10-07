@@ -49,6 +49,7 @@
 #include "wsproto.h"
 
 #include <algorithm>
+#include <strings.h>
 
 
 /*
@@ -261,7 +262,7 @@ void Net2Send_Chat(char const * text)
 
 static void Net2Refresh_Preview(void)
 {
-	if (stricmp((char *)Session.Scenarios[Session.Options.ScenarioIndex] + DESCRIP_MAX, "RandMap.Sed") != 0) {
+	if (strcasecmp((char *)Session.Scenarios[Session.Options.ScenarioIndex] + DESCRIP_MAX, "RandMap.Sed") != 0) {
 		Update_Network_Dialog_Preview();
 		return;
 	}
@@ -729,26 +730,12 @@ int Net2SetHouseAndColor(char *who, int house, int color)
 
 
 /// <summary>
-/// Fetches the serial number recorded in the registry.
-/// A key that is missing, or that cannot be opened, simply leaves the buffer as it was
-/// found -- the caller is expected to have primed it with something harmless.
+/// Fetches the serial number the Windows installer recorded in the registry. macOS has no
+/// registry, so the buffer is left as the caller primed it, as for a missing key.
 /// </summary>
-/// <param name="serial">Buffer to fill in with the serial number found.</param>
-/// <param name="reg_key">The registry key, beneath the local machine hive, to read from.</param>
-/// <remarks>Be sure the buffer is big enough to hold an entire encrypted serial number.</remarks>
-static void Get_Serial_From_Registry(char * serial, char const * reg_key)
+/// <param name="serial">Buffer the caller primed with something harmless.</param>
+static void Get_Serial_From_Registry(char * serial, char const *)
 {
-	if (reg_key && strlen(reg_key) != 0) {
-		HKEY rKey;
-		char keyname[256];
-		strcpy(keyname, reg_key);
-		if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, keyname, 0, KEY_READ, &rKey) == ERROR_SUCCESS) {
-			DWORD type;
-			DWORD sizeOfBuffer = ENCRYPTION_STRING_LENGTH;
-			RegQueryValueEx(rKey, "Serial", NULL, &type, (BYTE *)serial, &sizeOfBuffer);
-			RegCloseKey(rKey);
-		}
-	}
 	serial[SERIAL_MAX-1] = 0;
 }
 
