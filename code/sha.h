@@ -31,6 +31,8 @@
 
 #pragma once
 
+#include <cstdint>
+
 
 #include <cstdio>
 #include <cstdlib>
@@ -67,10 +69,12 @@ class SHAEngine
 
 	private:
 
+		// Five 32-bit words; a 64-bit long would double the digest and misplace its bytes.
 		typedef union {
-			unsigned long Long[5];
+			uint32_t Long[5];
 			unsigned char Char[20];
 		} SHADigest;
+		static_assert(sizeof(SHADigest) == 20, "an SHA-1 digest is 20 bytes");
 
 		/*
 		**	This holds the calculated final result. It is cached

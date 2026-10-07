@@ -16,6 +16,7 @@
 #include "file.h"
 
 #include <algorithm>
+#include <cstdlib>
 #include <cstring>
 #include <filesystem>
 #include <strings.h>
@@ -216,16 +217,26 @@ std::vector<std::string> Parse_Search_Folders(char const * list)
 
 /// <summary>
 /// Makes the directories the command line named usable.
-/// The user directory is created when it is not there yet, because it is the game's own to
-/// write. A named data directory must already exist, a missing one being reported here
-/// rather than as the missing files it would become later.
+/// Without a named user directory, the player's files go to ~/Library/Application
+/// Support/OpenTS, since the application bundle the game runs from must not change. The user
+/// directory is created when it is not there yet, because it is the game's own to write. A
+/// named data directory must already exist, a missing one being reported here rather than as
+/// the missing files it would become later.
 /// </summary>
 /// <returns>bool; Can the game run with the directories it was given?</returns>
 bool Apply_Game_Directories(void)
 {
+	char const * home = getenv("HOME");
+	if (UserDirectory.empty() && home != NULL && home[0] != '\0') {
+		Set_User_Directory((std::filesystem::path(home) / "Library/Application Support/OpenTS").c_str());
+	}
+
 	if (!UserDirectory.empty()) {
 		std::error_code error;
-		if (!Is_Directory(UserDirectory) && !std::filesystem::create_directory(UserDirectory, error)) {
+		// create_directories answers false for a path ending in a separator even when it made
+		// the folder, so the folder itself is checked.
+		std::filesystem::create_directories(UserDirectory, error);
+		if (!Is_Directory(UserDirectory)) {
 			Report_Directory_Error("user", UserDirectory);
 			return(false);
 		}

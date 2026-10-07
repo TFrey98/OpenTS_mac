@@ -31,10 +31,12 @@ Full engine startup, real assets, and gameplay remain unverified on macOS.
 ## Next tasks
 
 1. **M3.1:** Define the required asset version and validate the supplied GDI
-   disc against it. The game now starts and stops at the first archive it
-   cannot find, so real assets are the next thing it needs.
+   disc against it. With this disc's archives in `Run/`, the game reaches the
+   main menu and loads the first GDI mission.
 2. **M2.4:** Audit integer widths and packed layouts. The build's 99
-   `-Wshorten-64-to-32` warnings are the starting list.
+   `-Wshorten-64-to-32` warnings are the starting list, along with the
+   `unsigned long` fields in `vqa.h`, `wspudp.h`, `ipxmgr.h`, and
+   `sosdefs.h`. The SHA-1 digest was one such fault.
 3. **M1.2:** Interactively validate the window and input handling.
 
 Work through the milestones in order. The asset inventory in M3.1 can proceed

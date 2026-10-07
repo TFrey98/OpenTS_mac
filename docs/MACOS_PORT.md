@@ -159,6 +159,40 @@ its own crash reports. The `sdlkeys` contract test loads Windows keyboard
 layouts and must be rewritten for macOS, and the 40 harnesses not yet in the
 Xcode project still need porting.
 
+## Game data
+
+The supplied image is the 1999 GDI disc, `CD1_GDI.iso`, from the freeware
+release. OpenTS has no disc check: it reads the archives from the data
+directory named with `-DATADIR=`. The disc's own copy protection only guarded
+the original `GAME.EXE`, which OpenTS does not use. Six archives from the
+image, `INSTALL/TIBSUN.MIX` and `MAPS01.MIX`, `MOVIES01.MIX`, `MULTI.MIX`,
+`SCORES.MIX`, and `SIDECD01.MIX` from its root, were copied into the
+Git-ignored `Run/` directory. `TIBSUN.MIX` holds the cache, local, conquer,
+sound, and speech archives that startup opens.
+
+With that directory, the Debug application completed `Game Init Completed`.
+It read the rules, sides, sound, and theme files, started the title music,
+and opened `menu.rml`. From the menu, the first GDI mission, `GDI1A.MAP`,
+loaded with its briefing and in-game music, and the log recorded no errors.
+The user confirmed the mission opened on screen. Rendering, input, and
+gameplay have not yet been checked against the original. The Nod disc and the
+Firestorm expansion are not present, and whether this disc's archives match
+the 2.03 Firestorm baseline is still M3.1's question.
+
+Two faults were fixed on the way:
+
+- The SHA-1 digest union declared its five words as `unsigned long`, so on
+  macOS the digest was 40 bytes with its bytes misplaced, and every digest
+  check failed. `CACHE.MIX` carries a digest, so startup reported it could not
+  load. The words are now `uint32_t`, and a `static_assert` holds the size at
+  20 bytes.
+- The player's files now default to `~/Library/Application Support/OpenTS`.
+  They went to the working directory, which is the executable's folder inside
+  the application bundle, and writing `sun.ini` there broke the bundle's code
+  signature. `create_directories` reports false for a path ending in a
+  separator even when it creates the folder, so the folder itself is now
+  checked afterwards.
+
 ## Remaining work
 
 The [port TODO](../TODO.md) owns the prioritized milestones and completion
