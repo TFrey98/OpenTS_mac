@@ -19,7 +19,6 @@
 #include "ramp.hh"
 
 /// warning C4305: 'argument' : truncation from 'const double' to 'float'
-#pragma warning(disable : 4305)
 
 /*
  * These are the orientations a voxel takes on when it stands on each kind of ramp -- the

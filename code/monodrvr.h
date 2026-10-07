@@ -31,17 +31,8 @@
 
 #pragma once
 
-#ifdef _MSC_VER
-#pragma warning (push,3)
-#endif
 
-#ifdef _WINDOWS
-#include <winioctl.h>
-#endif
 
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif
 
 
 /*

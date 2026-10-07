@@ -11,7 +11,6 @@
  * See LICENSE.md for applicable additional terms and warranty disclaimers.
  ******************************************************************************/
 
-#ifndef _WIN32
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
@@ -159,4 +158,3 @@ std::vector<FoundFileRecord> Find_Files(char const * pattern)
 	return(found);
 }
 
-#endif

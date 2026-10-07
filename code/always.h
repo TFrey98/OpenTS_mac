@@ -32,25 +32,12 @@
 #pragma once
 
 // Disable warning about exception handling not being enabled. It's used as part of STL - in a part of STL we don't use.
-#pragma warning(disable : 4530)
 
 // Jani: Intel's C++ compiler issues too many warnings in WW libraries when using warning level 4
-#if defined (__ICL)    // Detect Intel compiler
-#pragma warning (3)
-#pragma warning ( disable: 981 ) // parameters defined in unspecified order
-#pragma warning ( disable: 279 ) // controlling expressaion is constant
-#pragma warning ( disable: 271 ) // trailing comma is nonstandard
-#pragma warning ( disable: 171 ) // invalid type conversion
-#pragma warning ( disable: 1 ) // last line of file ends without a newline
-#endif
 
 // Jani: MSVC doesn't necessarily inline code with inline keyword. Using __forceinline results better inlining
 // and also prints out a warning if inlining wasn't possible. __forceinline is MSVC specific.
-#if defined(_MSC_VER)
-#define WWINLINE __forceinline
-#else
 #define WWINLINE inline
-#endif
 
 
 /*
@@ -96,7 +83,6 @@
 /*
 ** Define some Windows specific values that are used throghout the games
 */
-#ifndef _WIN32
 
 #define _MAX_DRIVE 3
 #define _MAX_DIR   256
@@ -222,4 +208,3 @@ inline static void _strlwr(char* str)
 	}
 }
 
-#endif // not _WIN32

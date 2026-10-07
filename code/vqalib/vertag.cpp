@@ -37,20 +37,8 @@
 
 #include "vqaplayp.h"
 
-#ifdef __WATCOMC__
-#define DEVNAME "Watcom"
-#elif __BORLANDC__
-#define DEVNAME "Borland"
-#elif _MSC_VER
-#define DEVNAME "MSVC"
-#else
-#define DEVNAME "???????????"
-#endif
+#define DEVNAME "Clang"
 
-#if _MSC_VER >= 1200
-#undef VQA_DATE
-#define VQA_DATE "Nov 12 1999 13:58:22"
-#endif
 
 char VerTag[] = { "$VER$" VQA_IDSTRING " " DEVNAME " (" VQA_DATE ")" };
 char ReqTag[] = { "$REQ$" VQA_REQUIRES };

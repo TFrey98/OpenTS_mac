@@ -25,9 +25,6 @@
 #include <cstdlib>
 #include <cstring>
 #include <fs_ocornut_imgui.bin.h>
-#if defined(_WIN32)
-#include <malloc.h>
-#endif
 #include <vs_ocornut_imgui.bin.h>
 
 
@@ -90,9 +87,9 @@ class BackendCallback : public bgfx::CallbackI
 		virtual void fatal(const char * filepath, uint16_t line, bgfx::Fatal::Enum code, const char * str) override
 		{
 			// A debug check is the library's own assertion, not a renderer failure. The ones it
-			// runs while shutting down compare reference counts on interfaces that an overlay
-			// or the Direct3D debug layer is free to hold, so ending the process over one would
-			// report somebody else's reference as a crash.
+			// runs while shutting down compare reference counts on objects the system is free
+			// to hold, so ending the process over one would report somebody else's reference
+			// as a crash.
 			if (code == bgfx::Fatal::DebugCheck) {
 				DebugString("Renderer check failed at %s(%u): %s\n",
 							filepath != NULL ? filepath : "", (unsigned)line, str != NULL ? str : "");
@@ -107,11 +104,7 @@ class BackendCallback : public bgfx::CallbackI
 		{
 			char message[1024];
 			vsnprintf(message, sizeof(message), format, argList);
-#if defined(_WIN32)
-			OutputDebugString(message);
-#else
 			DebugStringNoPrefix("%s", message);
-#endif
 		}
 
 		virtual void profilerBegin(const char *, uint32_t, const char *, uint16_t) override {}
@@ -127,32 +120,6 @@ class BackendCallback : public bgfx::CallbackI
 };
 
 static BackendCallback _Callback;
-
-
-// bgfx contains cache-line-aligned render records but requests their backing arrays with
-// the allocator's default alignment. The Win32 CRT only guarantees eight-byte alignment,
-// which is insufficient when clang-cl copies those records with aligned SSE instructions.
-#if defined(_WIN32)
-class BackendAllocator : public bx::AllocatorI
-{
-	public:
-		virtual ~BackendAllocator(void) override {}
-
-		virtual void * realloc(void * ptr, size_t size, size_t alignment, const char *, uint32_t) override
-		{
-			if (size == 0) {
-				_aligned_free(ptr);
-				return(NULL);
-			}
-
-			const size_t cachelinealignment = BX_CACHE_LINE_SIZE;
-			alignment = std::max(alignment, cachelinealignment);
-			return(_aligned_realloc(ptr, size, alignment));
-		}
-};
-
-static BackendAllocator _Allocator;
-#endif
 
 
 /// <summary>
@@ -303,40 +270,15 @@ bool Backend_Init(NativeWindow const & window, int drawablewidth, int drawablehe
 	_ResetFlags = BGFX_RESET_FLIP_AFTER_RENDER | (vsync ? BGFX_RESET_VSYNC : BGFX_RESET_NONE);
 
 	bgfx::Init init;
-	init.platformData.ndt = window.Display;
 	init.platformData.nwh = window.Handle;
-	init.platformData.type = window.Type == NATIVE_WINDOW_WAYLAND
-		? bgfx::NativeWindowHandleType::Wayland
-		: bgfx::NativeWindowHandleType::Default;
 	init.resolution.width = (uint32_t)drawablewidth;
 	init.resolution.height = (uint32_t)drawableheight;
 	init.resolution.reset = _ResetFlags;
 	init.callback = &_Callback;
-#if defined(_WIN32)
-	init.allocator = &_Allocator;
-#endif
 
-	switch (renderer) {
-		case BACKEND_RENDERER_D3D11:
-			init.type = bgfx::RendererType::Direct3D11;
-			break;
-
-		case BACKEND_RENDERER_D3D12:
-			init.type = bgfx::RendererType::Direct3D12;
-			break;
-
-		case BACKEND_RENDERER_VULKAN:
-			init.type = bgfx::RendererType::Vulkan;
-			break;
-
-		case BACKEND_RENDERER_OPENGL:
-			init.type = bgfx::RendererType::OpenGL;
-			break;
-
-		default:
-			init.type = bgfx::RendererType::Count;
-			break;
-	}
+	// Metal is the only renderer on macOS, whatever the stored setting names.
+	(void)renderer;
+	init.type = bgfx::RendererType::Metal;
 
 	if (!bgfx::init(init)) {
 		return(false);

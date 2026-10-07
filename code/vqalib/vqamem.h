@@ -40,12 +40,7 @@
 #define DPMI_UNLOCK 0x0601
 
 /* Prototypes */
-#ifdef __WATCOMC__
-void DPMI_Lock(void const *ptr, long const size);
-void DPMI_Unlock(void const *ptr, long const size);
-#else
 #define DPMI_Lock(a,b)
 #define DPMI_Unlock(a,b)
-#endif
 
 #endif /* VQAMEM_H */

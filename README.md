@@ -9,11 +9,9 @@
 
 # OpenTS
 
-This fork ports OpenTS to macOS on Apple silicon, its only target. A
-development application presents diagnostic frames through the engine's
-renderer on Metal, and ten engine tests build and pass; the full game does not
-run yet. Track the work in the [port TODO](TODO.md). See
-[Mac port status](docs/MACOS_PORT.md) and
+This fork ports OpenTS to macOS on Apple silicon, its only target. The
+single-player game runs natively, campaigns and cinematics included, from the
+original game data. See [Mac port status](docs/MACOS_PORT.md) and
 [build instructions](docs/BUILDING.md).
 
 OpenTS is a community-led, open-source reconstruction of *Command & Conquer:
@@ -50,9 +48,17 @@ endorsed by Electronic Arts.
 
 ## Playing
 
-There is no playable macOS build yet. When there is, OpenTS will supply the
-engine, not the game data: Tiberian Sun's original assets come from a legally
-obtained copy of the game.
+OpenTS supplies the engine, not the game data. Tiberian Sun's original assets
+come from a legally obtained copy of the game; Electronic Arts released it as
+freeware. Copy the game's `.MIX` archives into a folder, such as `Run/`, then
+build the game and start it with that folder:
+
+```sh
+open build/xcode/Build/Products/Debug/OpenTS.app --args -DATADIR="$PWD/Run"
+```
+
+[Mac port status](docs/MACOS_PORT.md#game-data) lists the archives each disc
+provides.
 
 ## Documentation
 
@@ -62,8 +68,8 @@ internals.
 
 ## State and plans
 
-This fork's current goal is a playable macOS build; the
-[port TODO](TODO.md) lists its milestones. The engine it starts from, upstream
+This fork's single-player game runs on macOS; the known gaps are listed in
+[Mac port status](docs/MACOS_PORT.md#known-gaps). The engine it starts from, upstream
 OpenTS 0.1.0, ran the full Tiberian Sun 2.03 Firestorm game on Windows, with
 its campaigns, skirmish, and save/load play-tested. The renderer uses
 [bgfx](https://github.com/bkaradzic/bgfx) and supports modern resolutions

@@ -3,8 +3,7 @@ name: Change record
 # A pull request that changes engine source carries the manual change record for
 # what players and modders will see. Mechanical work that changes no visible
 # behavior is waived by the `no change record` label. This is a workflow of its
-# own rather than a job in Engine so that applying the label re-runs the check
-# without repeating the Windows build.
+# own so that applying the label re-runs the check alone.
 on:
   pull_request:
     types:

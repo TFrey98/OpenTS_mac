@@ -12,6 +12,8 @@
 #include "nativewindow.hh"
 
 
+// The values a stored Renderer setting holds. They keep their Windows numbering; every one
+// selects Metal on macOS.
 enum BackendRenderer {
 	BACKEND_RENDERER_AUTO,
 	BACKEND_RENDERER_D3D11,

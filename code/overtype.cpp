@@ -67,7 +67,6 @@
 #include "init.h"
 #include "mixfile.h"
 #include "overlay.h"
-#include "resource.h"
 #include "savestream.h"
 #include "scenario.h"
 #include "shapeset.h"

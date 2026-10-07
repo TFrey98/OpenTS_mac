@@ -1,6 +1,6 @@
 ---
 title: Debug logs and console
-summary: Every run writes a timestamped log beside the executable, and the debug console can be opened to watch that output live.
+summary: Every run writes a timestamped log to ~/Library/Logs/OpenTS, and the log can be mirrored to the terminal to watch it live.
 category: troubleshooting
 source_files:
   - code/dbgprint.cpp
@@ -15,15 +15,15 @@ related:
 
 ## Where the log is written
 
-Every run, in Release and Debug builds alike, writes a new log to a `Debug` folder in the directory that holds the executable. The file is named for the local time the process started:
+Every run, in Release and Debug builds alike, writes a new log to `~/Library/Logs/OpenTS`, where Console.app also lists it. The file is named for the local time the process started:
 
 ```
-Debug/DEBUG_17-08-2026_06-00-35.LOG
+~/Library/Logs/OpenTS/DEBUG_17-08-2026_06-00-35.LOG
 ```
 
 Because each run gets its own file, the log from a run that crashed is still there after the next launch. When two processes start within the same second, the second adds its process id to the name.
 
-The log stays beside the executable when [`-USERDIR`](/using/command-line/user-directory/) names a user directory, so the game needs write access to the executable's directory to keep a log. If the folder or the file cannot be created, the game still runs, and its output still reaches the console and an attached debugger.
+If the folder or the file cannot be created, the game still runs, and its output still reaches the console when one is open.
 
 At startup, the game deletes logs last written more than 14 days ago. A single log stops growing at 64 MB, and its last line then says that the size limit was reached.
 
@@ -32,18 +32,17 @@ At startup, the game deletes logs last written more than 14 days ago. A single l
 Every log opens with the OpenTS wordmark and a banner that identifies the build. For example:
 
 ```
-Version  : OpenTS 0.2.0 (x86 release build)
+Version  : OpenTS 0.2.0 (arm64 release build)
 Commit   : f6842d2c on main (modified)
 Committed: 2026-08-17 05:30:39
 Started  : 2026-08-17 06:00:35
-System   : Windows 10.0.26200
-Codepage : ANSI 65001, OEM 437
+System   : macOS 27.0.1 (26A434)
 Options  : -XC
 ```
 
-- `Version` gives the platform, `x86` or `x64`, and whether this is a release or debug build.
+- `Version` gives the architecture and whether this is a release or debug build.
 - `modified` means the build was made from a working copy with edits, so it does not exactly match the named commit.
-- `Codepage` shows the text code pages Windows gave the game. The game asks for UTF-8, which is code page 65001. Windows versions before Windows 10 version 1903 ignore that request.
+- `System` gives the macOS version and build.
 - `Options` lists the launch options the game was started with.
 
 ## Reading the rest
@@ -51,24 +50,22 @@ Options  : -XC
 Each line after the banner starts with the time it was written:
 
 ```
-[06:00:35.412] Video: renderer is Direct3D 11
+[06:00:35.412] Video: renderer is Metal
 ```
 
 Some lines are written in several parts while the engine works through a step. Such a line carries one time, from when its first part was written:
 
 ```
-[06:19:45.401] Bootstrap..... PATCH.MIX EXPAND03.MIX CACHE.MIX ...OK
+[06:19:45.401] Bootstrap..... PATCH.MIX EXPAND01.MIX CACHE.MIX ...OK
 ```
 
-## Opening the console
+## Watching the log live
 
-Debug builds always open the console. Release builds open it when [`-XC`](/using/command-line/console-debug) is passed. The console opens before the game writes its first log line, so it shows the whole log, including startup. It keeps about 4,000 lines of scrollback.
+Debug builds always mirror the log to standard error. Release builds do so when [`-XC`](/using/command-line/console-debug) is passed. Run from Terminal or Xcode, standard error is that window, so it shows the whole log as it is written, including startup. Started from Finder or with `open`, the game has no terminal, so read the file instead.
 
-The console's close button is disabled, because closing a console window ends the program that owns it. Close the game instead.
+Standard error also carries text that the game has no other place to display, such as the help that `-?` prints.
 
-The console also shows text that a windowed program has no other place to display, such as the help that `-?` prints. In a Release build, pass `-XC` together with `-?` to read that help.
-
-After printing the help, and when it rejects an option or cannot use a directory named on the command line, the game waits for a keypress in the console before it exits, so the text stays readable.
+After printing the help, and when it rejects an option or cannot use a directory named on the command line, the game waits for Return before it exits when it was started from a terminal, so the text stays readable.
 
 ## Before sharing a log
 

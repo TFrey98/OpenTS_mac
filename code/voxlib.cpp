@@ -87,7 +87,6 @@ const Vector3 *VoxelNormalTables[] =
 
 
 /// warning C4305: 'argument' : truncation from 'const double' to 'float'
-#pragma warning(disable : 4305)
 
 float VoxelNormals1[][3] = {
 	{     0.54946297,       -0.000183,   -0.835518},

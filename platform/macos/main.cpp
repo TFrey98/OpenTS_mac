@@ -88,7 +88,7 @@ int main(int argc, char ** argv)
 		return(1);
 	}
 
-	NativeWindow native = {NATIVE_WINDOW_DEFAULT, nullptr, cocoa};
+	NativeWindow native = {cocoa};
 	if (!Backend_Init(native, width, height, BACKEND_RENDERER_AUTO, true)) {
 		std::fputs("Engine frame presenter initialization failed\n", stderr);
 		return(1);

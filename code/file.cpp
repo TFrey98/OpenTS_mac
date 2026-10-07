@@ -17,7 +17,6 @@
 
 #include <cstring>
 
-#ifndef _WIN32
 static void Resolve_File_Single(char * fname)
 {
 	Find_File_Data * ffblk;
@@ -36,11 +35,9 @@ static void Resolve_File_Single(char * fname)
 
 	delete ffblk;
 }
-#endif
 
 void Resolve_File(char * fname)
 {
-#ifndef _WIN32
 	// step through each sub-directory before going for the win
 	char * next = fname;
 	while (next = strchr(next, '/')) {
@@ -50,7 +47,6 @@ void Resolve_File(char * fname)
 	}
 
 	Resolve_File_Single(fname);
-#endif
 }
 
 bool Find_First(const char * fname, unsigned int mode, Find_File_Data ** ffblk)

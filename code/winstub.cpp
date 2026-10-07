@@ -63,7 +63,6 @@
 
 HWND	MainWindow;
 
-HINSTANCE	ProgramInstance;
 bool _MouseCaptured;
 
 

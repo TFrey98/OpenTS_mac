@@ -31,28 +31,9 @@
 
 #pragma once
 
-#if defined(_WIN32)
-
-#include "win.h"
-
-
-// Posted to the main window so that a requested test fault happens inside window procedure
-// dispatch, which the operating system unwinds differently from an ordinary call.
-#define WM_EXCEPTION_TEST (WM_APP + 0x54)
-
-// Exception codes OpenTS raises itself. Routing an engine error through RaiseException rather
-// than reporting it in place is what gives the handler a genuine machine context to dump: a
-// terminate or pure call handler is entered with none.
-#define EXCEPTION_OPENTS_FATAL				0xE0545301
-#define EXCEPTION_OPENTS_TERMINATE			0xE0545302
-#define EXCEPTION_OPENTS_PURECALL			0xE0545303
-#define EXCEPTION_OPENTS_INVALID_PARAMETER	0xE0545304
-
-#else
 
 #define _Printf_format_string_
 
-#endif
 
 void Install_Exception_Handler(void);
 void Exception_Register_Log_File(char const * path);

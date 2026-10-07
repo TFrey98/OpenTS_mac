@@ -1,6 +1,6 @@
 ---
 title: Project status
-summary: OpenTS provides playable releases and nightly developer builds; campaigns, skirmish, saving, and LAN play are functional.
+summary: This fork runs OpenTS natively on Apple silicon Macs; single-player campaigns and cinematics work.
 category: getting-started
 source_files:
   - README.md
@@ -12,21 +12,21 @@ related:
     id: game-data
 ---
 
-OpenTS continues the reconstructed Tiberian Sun engine as an actively developed project. Each release provides a standalone `Game.exe` and its `Language.dll` for 32-bit and 64-bit Windows, published with the engine source and this manual.
+This fork ports the reconstructed Tiberian Sun engine to macOS on Apple silicon, its only target. It builds a native `OpenTS.app` with Xcode, drawing through Metal and playing sound through Core Audio.
 
-Release 0.1.0 runs the full Tiberian Sun 2.03 Firestorm game, with the fixes and changes listed in its release notes. The GDI, Nod and Firestorm campaigns, skirmish, and saving and loading have had full play-through testing. LAN multiplayer is playable and has had more limited testing. No user-visible regression from the original game is currently known. CnCNet play is not yet supported.
+The single-player game runs from the original game data: the GDI and Nod campaigns, the Firestorm expansion, and the cinematics. Multiplayer, and saves exchanged with the Windows build of upstream OpenTS, have not been tested. The repository's `docs/MACOS_PORT.md` lists the known gaps.
 
-## Releases and developer builds
+Upstream OpenTS release 0.1.0, which this fork starts from, ran the full Tiberian Sun 2.03 Firestorm game on Windows.
 
-Stable releases are published on the project's GitHub releases page. Nightly developer builds carry the latest merged changes without release validation, and their downloads expire after 90 days.
+## Builds
 
-OpenTS does not distribute the original game assets. They come from an existing Tiberian Sun installation; [Game data](/using/game-data/) covers where a developer build finds them.
+There are no prebuilt releases of this fork; build it from source. OpenTS does not distribute the original game assets. They come from an existing copy of Tiberian Sun; [Game data](/using/game-data/) covers where the game finds them.
 
 ## Toolchain and targets
 
-- CMake with Visual Studio 2022
-- 32-bit and 64-bit Windows
+- Xcode 27 or newer
+- macOS on Apple silicon (`arm64`)
 - C++20
 - Debug and Release configurations
 
-Both platforms build in both configurations with the documented toolchain. [Build and run](/using/build-and-run/) gives the commands.
+[Build and run](/using/build-and-run/) gives the commands.

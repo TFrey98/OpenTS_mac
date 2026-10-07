@@ -2,16 +2,16 @@
 
 > [!IMPORTANT]
 > OpenTS targets macOS on Apple silicon only. The Xcode project builds the
-> game, a development shell, and ten engine test harnesses. The game starts but
-> needs the original game data to go further. [Mac port status](MACOS_PORT.md) records what has
-> been verified, and the [port TODO](../TODO.md) tracks the remaining work.
+> game, a development shell, and ten engine test harnesses. The game needs the
+> original game data to run. [Mac port status](MACOS_PORT.md) records what has
+> been verified and the known gaps.
 
 ## Supported target
 
 | Component | Requirement |
 | --- | --- |
 | Host and target | macOS on Apple silicon (`arm64`) |
-| Minimum macOS | 13.0, provisional until [M8.4](../TODO.md#m8-macos-application-delivery) records the tested version |
+| Minimum macOS | 13.0, set in the project but not yet tested on that version |
 | Toolchain | Xcode 27 or newer |
 | C++ language level | C++20 (`gnu++20`) |
 | Configurations | Debug and Release |
@@ -177,9 +177,8 @@ the version without one.
 
 ## Continuous integration
 
-There is no macOS continuous integration yet;
-[M8.3](../TODO.md#m8-macos-application-delivery) adds Debug and Release
-builds of the engine and the asset-free tests.
+There is no macOS continuous integration. Build and test locally with the
+commands above.
 
 ## Verification boundary
 

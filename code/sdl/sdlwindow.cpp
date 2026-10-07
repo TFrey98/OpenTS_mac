@@ -347,7 +347,7 @@ bool Main_Window_Create(bool windowed, int width, int height)
 
 NativeWindow Main_Window_Native(void)
 {
-	NativeWindow window = { NATIVE_WINDOW_DEFAULT, nullptr, nullptr };
+	NativeWindow window = { nullptr };
 	if (_Window != nullptr) {
 		window.Handle = SDL_GetPointerProperty(SDL_GetWindowProperties(_Window), SDL_PROP_WINDOW_COCOA_WINDOW_POINTER, nullptr);
 	}

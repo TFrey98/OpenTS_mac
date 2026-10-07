@@ -201,6 +201,5 @@ inline LONG CompareFileTime(FILETIME const * a, FILETIME const * b)
 	return x < y ? -1 : (x > y ? 1 : 0);
 }
 
-extern HINSTANCE	ProgramInstance;
 extern HWND			MainWindow;
 extern bool			GameInFocus;

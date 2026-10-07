@@ -13,7 +13,6 @@
 
 #include "always.h"
 
-#if !defined(_WIN32)
 
 #include "netsocket.h"
 
@@ -267,4 +266,3 @@ std::unique_ptr<SocketClass> Socket_Create_Platform_Socket(void)
 	return(std::make_unique<PosixSocketClass>());
 }
 
-#endif

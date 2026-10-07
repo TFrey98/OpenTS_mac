@@ -1,6 +1,6 @@
 ---
 title: UI files
-summary: Holds the RmlUi documents, style sheets, dialog kit and font that draw the game's screens, in a `ui` directory beside the executable.
+summary: Holds the RmlUi documents, style sheets, dialog kit and font that draw the game's screens, in a `ui` directory inside the application bundle.
 category: interface-controls
 keys: []
 related:
@@ -10,7 +10,7 @@ related:
     id: mix
 ---
 
-The `ui` directory sits beside the executable and holds everything the screens are built from. The build places it where `Language.dll` is written, and the release package carries it.
+The `ui` directory holds everything the screens are built from. The build copies it into the application bundle's `Contents/Resources` folder; an executable run outside a bundle reads a `ui` directory beside itself instead.
 
 | File | Role |
 | --- | --- |

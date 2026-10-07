@@ -72,10 +72,6 @@ typedef bool VQABool;
 #define VQA_VERSION "5.0"
 #define VQA_DATE    __DATE__ " " __TIME__
 
-#if _MSC_VER >= 1200
-#undef VQA_DATE
-#define VQA_DATE "Nov 12 1999 13:58:22"
-#endif
 
 #define VQA_IDSTRING "VQA playback " VQA_VERSION " (" VQA_DATE ")"
 #define VQA_REQUIRES "Support library " VQA_VERSION " or better."

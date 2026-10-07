@@ -1,6 +1,6 @@
 ---
 title: Out-of-sync reports
-summary: A network game that goes out of sync writes a checksum report beside the executable, so two players' reports can be compared to find where they diverged.
+summary: A network game that goes out of sync writes a checksum report to ~/Library/Logs/OpenTS, so two players' reports can be compared to find where they diverged.
 category: troubleshooting
 source_files:
   - code/syncreport.cpp
@@ -28,10 +28,10 @@ A network game writes the report without any setup. Recording playback can also 
 
 ## Where it is written
 
-The report goes into the `Debug` folder beside the executable, the folder that also holds the debug log. The file name gives the local player's house number, the local date and time in day-month-year order, and the frame the report was written on:
+The report goes into `~/Library/Logs/OpenTS`, the folder that also holds the debug log. The file name gives the local player's house number, the local date and time in day-month-year order, and the frame the report was written on:
 
 ```
-Debug/SYNC_H0_02-09-2026_18-42-07_F1530.LOG
+~/Library/Logs/OpenTS/SYNC_H0_02-09-2026_18-42-07_F1530.LOG
 ```
 
 Each machine limits how many reports it writes:
@@ -42,7 +42,7 @@ Each machine limits how many reports it writes:
 
 Before it writes a report, the game deletes reports in the folder that are more than thirty days old.
 
-Keep the folder beside the executable writable. If the report file cannot be created there, no report is written.
+Keep that folder writable. If the report file cannot be created there, no report is written.
 
 ## What it holds
 
@@ -66,10 +66,7 @@ Some history lines can differ between machines that are still in sync. Leave the
 - the value on a facing line; compare facing lines by frame and call site only;
 - animation lines marked `(local only)`.
 
-Every history line except the event lines also records the call site in the game that produced it, as an offset within the game executable. Two machines running the same build print the same offset for the same call, so the first comparable history line that differs points at the call that first diverged. The call site is also printed in two other forms when the information is available:
-
-- In a 32-bit build, the address that offset has in the build's `.map` file.
-- When the matching `.pdb` sits beside the executable, the function and source line.
+Every history line except the event lines also records the call site in the game that produced it, as an offset within the game executable. Two machines running the same build print the same offset for the same call, so the first comparable history line that differs points at the call that first diverged. When the call site lies in a function the executable exports, the report also names that function and the offset into it.
 
 A call from outside the game executable is printed with an `extern:` prefix. That address does not identify the call on another machine.
 

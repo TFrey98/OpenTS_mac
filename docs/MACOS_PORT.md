@@ -101,7 +101,7 @@ executable started from a background terminal waits for window focus that
 never comes; launch the bundle with `open` instead.
 
 The build reports 22 warnings in the application and several hundred in the
-engine. They include 99 `-Wshorten-64-to-32` truncations for the M2.4 audit,
+engine. They include 99 `-Wshorten-64-to-32` truncations to audit,
 and 33 `-Wformat` mismatches in log calls, which `DebugString`'s format
 checking now reveals.
 
@@ -183,8 +183,9 @@ Firestorm disc it takes `EXPAND01.MIX`, `WDTVOX.MIX`, and `MULTI.MIX` from
 `SCORES01.MIX`, `WDT.MIX`, `SIDECD01.MIX`, and `SIDECD02.MIX` from its root.
 Where the Firestorm disc carries a file that also exists on the 1999 discs,
 its copy is used. The Nod disc's `TIBSUN.MIX` and `MULTI.MIX` match the GDI
-disc's. The game has not yet been run with these files, and whether they
-match the 2.03 Firestorm baseline is still M3.1's question.
+disc's. With them the game found the expansion and the Nod campaign, and the user
+played single-player with cinematics. Whether every archive matches the 2.03
+Firestorm baseline has not been checked file by file.
 
 Disc images and archives are ignored anywhere in the repository (`*.iso`,
 `*.mix`), and none were ever committed.
@@ -211,8 +212,25 @@ Several faults were fixed on the way:
   separator even when it creates the folder, so the folder itself is now
   checked afterwards.
 
-## Remaining work
+## Known gaps
 
-The [port TODO](../TODO.md) owns the prioritized milestones and completion
-criteria, from validating the shell's window handling and building the native
-engine through asset loading, the main menu, gameplay, networking, and distribution.
+Single-player runs. These are the known gaps, kept as the place to start when a
+new bug appears:
+
+- 64-bit `long`: Windows' `long` is 32 bits and macOS's is 64. Every fault
+  found so far was a `long` in data read from or written to disk: the SHA-1
+  digest, the VQA records, and the `SN2J` record. Fields that still use it
+  include `unsigned long` members of `vqa.h`, `wspudp.h`, and `ipxmgr.h`, and
+  the 99 `-Wshorten-64-to-32` warnings mark where 64-bit values are narrowed.
+  Saves, replays, and network packets are the likeliest places for another.
+- Multiplayer has not been tried. The POSIX socket backend compiles but is
+  untested.
+- Saves written by the Windows build are untested on macOS, and the reverse.
+- The crash handler is a stub; macOS writes its own crash reports.
+- Only the ten harnesses in the `PortableTests` scheme build. The other 40
+  under `tests/` are not in the Xcode project, and `sdlkeys` loads Windows
+  keyboard layouts.
+- Window resizing, fullscreen toggling, and mouse capture have had only
+  ordinary play, not a deliberate check.
+- The 33 `-Wformat` warnings mark log calls whose formats do not match their
+  arguments.

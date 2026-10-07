@@ -1,34 +1,7 @@
-# Compiled output
-[Dd]ebug/
-[Rr]elease/
-/Run/*
-!/Run/place_steam_build_here
-*.obj
-*.exe
-*.dll
-*.lib
-*.res
-*.ilk
-*.map
-*.exp
-
-# MSVC intermediate files
-*.aps
-*.pdb
-*.idb
-*.pch
-
-# CMake and Visual Studio 2022
+# Build output
 [Bb]uild/
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-*.sln
-*.suo
-*.user
-*.vcxproj
-*.vcxproj.*
-.vs/
+/Run/*
+!/Run/place_game_data_here
 
 # Editors and language servers
 *~
@@ -36,12 +9,7 @@ cmake_install.cmake
 *.swp
 *.code-workspace
 .idea/
-.vscode/*
-!.vscode/extensions.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/settings.json
-!.vscode/c_cpp_properties.clang.example.json
+.vscode/
 .history/
 /.cache/
 /.clangd

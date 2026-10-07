@@ -60,16 +60,11 @@
 #include <cstdlib>
 #include <cstring>
 
-#ifndef _WIN32
 #include <ctime>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <utime.h>
 #define _unlink         unlink
-#else
-#include <unistd.h>
-#include "win.h"
-#endif
 
 
 /***********************************************************************************************
@@ -194,7 +189,6 @@ char const * RawFileClass::Set_Name(char const * filename)
 		return(NULL);
 	}
 
-#ifndef _WIN32
 	/*
 	** If we ever save this file, make sure we save it in lowercase but
 	** if Resolve_File finds an actual file on-disk we use the real name
@@ -206,7 +200,6 @@ char const * RawFileClass::Set_Name(char const * filename)
 	** Try to locate an existing file ignoring case, updates Filename
 	*/
 	Resolve_File(Filename);
-#endif
 
 	return(Filename);
 }
@@ -871,20 +864,6 @@ int RawFileClass::Delete(void)
  *=============================================================================================*/
 unsigned int RawFileClass::Get_Date_Time(void)
 {
-#ifdef _WIN32
-	if (RawFileClass::Is_Open()) {
-		BY_HANDLE_FILE_INFORMATION info;
-		HANDLE osHandle = (HANDLE)_get_osfhandle(_fileno(Handle));
-
-		if (osHandle != INVALID_HANDLE_VALUE &&
-		    GetFileInformationByHandle(osHandle, &info)) {
-			WORD dosdate;
-			WORD dostime;
-			FileTimeToDosDateTime(&info.ftLastWriteTime, &dosdate, &dostime);
-			return((dosdate << 16) | dostime);
-		}
-	}
-#else
 	/*
 	**	DOS date/time format:
 	**	https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-dosdatetimetovarianttime
@@ -909,7 +888,6 @@ unsigned int RawFileClass::Get_Date_Time(void)
 			return(Date << 16 | Time);
 		}
 	}
-#endif
 	return(0);
 }
 
@@ -931,20 +909,6 @@ unsigned int RawFileClass::Get_Date_Time(void)
  *=============================================================================================*/
 bool RawFileClass::Set_Date_Time(unsigned int datetime)
 {
-#ifdef _WIN32
-	if (RawFileClass::Is_Open()) {
-		BY_HANDLE_FILE_INFORMATION info;
-		HANDLE osHandle = (HANDLE)_get_osfhandle(_fileno(Handle));
-
-		if (osHandle != INVALID_HANDLE_VALUE &&
-		    GetFileInformationByHandle(osHandle, &info)) {
-			FILETIME filetime;
-			if (DosDateTimeToFileTime((WORD)(datetime >> 16), (WORD)(datetime & 0x0FFFF), &filetime)) {
-				return(SetFileTime(osHandle, &info.ftCreationTime, &filetime, &filetime) != 0);
-			}
-		}
-	}
-#else
 	/*
 	**	DOS date/time format:
 	**	https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-dosdatetimetovarianttime
@@ -976,7 +940,6 @@ bool RawFileClass::Set_Date_Time(unsigned int datetime)
 
 		return(utime(Filename, &buf) == 0);
 	}
-#endif
 	return(false);
 }
 

@@ -610,16 +610,10 @@ long VQA_Open(char const *filename, VQAConfig *_config, VQAHandle **handle)
 		}
 
 		if (config->InitialLoopID >= 0) {
-		#ifndef __WATCOMC__
-			#pragma inline_depth(0)
-		#endif
 			if (VQA_SetLoop(vqa, config->InitialLoopID, config->InitialLoopIterations, 2) != VQAERR_NONE) {
 				VQA_Close(vqa);
 				return(VQAERR_SETLOOP);
 			}
-		#ifndef __WATCOMC__
-			#pragma inline_depth()
-		#endif
 		} else {
 			if (VQA_SetLoop_Internal(vqa, 0, vqap->StopFrame, 0, 0) != VQAERR_NONE) {
 				VQA_Close(vqa);
@@ -1610,12 +1604,6 @@ long VQA_GetBlockInfo(VQAHandle *vqa, long & blockw, long & blockh, long & clrmo
 	clrmode = header->ColorMode;
 	return(VQAERR_NONE);
 }
-
-#if MSC_VER
-/// hack to force MSVC to keep this data
-#pragma comment(linker, "/include:?VerTag@@3PADA")
-#pragma comment(linker, "/include:?ReqTag@@3PADA")
-#endif
 
 /****************************************************************************
 *

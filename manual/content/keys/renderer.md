@@ -1,15 +1,15 @@
 ---
 key: Renderer
-summary: Which graphics interface the game draws through, as a number.
+summary: Which graphics interface the Windows build drew through; macOS always uses Metal.
 when_omitted:
   kind: value
   value: "0"
-  note: Zero lets the game choose the interface.
+  note: Every value selects Metal on macOS.
 ---
 
-The number selects the graphics interface the game asks for when it starts. It exists to work around a driver problem, so leave it at `0` unless a driver needs a specific interface.
+The number selected the graphics interface the Windows build asked for when it started. On macOS the game always draws through Metal, whatever the value, so the setting has no effect. It is still read and kept, so a settings file shared with the Windows build is unchanged.
 
-| Value | Interface |
+| Value | Interface on Windows |
 | --- | --- |
 | `0` | Chosen automatically |
 | `1` | Direct3D 11 |
@@ -17,10 +17,4 @@ The number selects the graphics interface the game asks for when it starts. It e
 | `3` | Vulkan |
 | `4` | OpenGL |
 
-A value outside this range is treated as `0`.
-
-The [debug log](/using/debug-logging/) names the interface that started. Check it to confirm that a requested interface is in use.
-
-If the game cannot start drawing, it reports that it is unable to set the video mode and closes. Set `Renderer` back to `0` in the settings file to undo a value that causes this.
-
-A change takes effect at the next launch.
+The [debug log](/using/debug-logging/) names the interface that started.

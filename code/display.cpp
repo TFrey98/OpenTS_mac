@@ -3690,15 +3690,6 @@ void DisplayClass::Reposition_Sidebar(void)
 }
 
 
-/// <summary>
-/// Handles a window message by handing it straight back to Windows.
-/// </summary>
-/// <returns>Returns with whatever the default window procedure decides.</returns>
-LRESULT DisplayClass::Windows_Message_Proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
-{
-	return(0);
-}
-
 
 /// <summary>
 /// Loads the display layers from the save game stream.

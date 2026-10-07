@@ -61,14 +61,7 @@ void Fatal(char const * message, ...)
 	vsnprintf(_text, sizeof(_text), message, va);
 	va_end(va);
 
-#if defined(_WIN32)
-	ULONG_PTR const argument = (ULONG_PTR)_text;
-	RaiseException(EXCEPTION_OPENTS_FATAL, EXCEPTION_NONCONTINUABLE, 1, &argument);
-
-	TerminateProcess(GetCurrentProcess(), EXIT_FAILURE);
-#else
 	fputs(_text, stderr);
 	fputc('\n', stderr);
 	abort();
-#endif
 }

@@ -69,7 +69,7 @@ The window takes the mouse while the pointer is over it, even where it covers a 
 
 ## The monochrome pages
 
-The monochrome pages are four pages of diagnostic text for a secondary monochrome display. They need a monochrome display driver, the `\\.\MONO` device. Without that device the pages can still be enabled, but nothing is drawn. If the device is present but refuses to clear a page, the pages switch off.
+The monochrome pages are four pages of diagnostic text for a secondary monochrome display. They needed a Windows monochrome display driver, which macOS has no counterpart for, so the pages can be enabled but nothing is drawn.
 
 The [monochrome launch option](/using/command-line/monochrome/) enables the pages. The [monochrome debug key](/commands/fixed-debug-monochrome/) switches them on and off. Separate debug keys step to the [previous](/commands/fixed-debug-previous-page/) and [next](/commands/fixed-debug-next-page/) page.
 
@@ -96,7 +96,7 @@ The file opens with the frame count, the average frame rate, the largest look-ah
 
 ## The sync dump
 
-A network game that goes out of sync writes an [out-of-sync report](/using/out-of-sync-reports/) into the `Debug` folder beside the executable, in either configuration. The [`PrintCRC`](/keys/printcrc/) playback trap writes the same report at a chosen frame and then exits. The report page describes what the report holds.
+A network game that goes out of sync writes an [out-of-sync report](/using/out-of-sync-reports/) into `~/Library/Logs/OpenTS`, in either configuration. The [`PrintCRC`](/keys/printcrc/) playback trap writes the same report at a chosen frame and then exits. The report page describes what the report holds.
 
 Seven `sun.ini` settings exist for tracking down a desynchronized game, and only `PrintCRC` has an effect:
 
@@ -107,7 +107,7 @@ Seven `sun.ini` settings exist for tracking down a desynchronized game, and only
 
 ## Crash reporting
 
-Both configurations report crashes. A crash writes a folder under `Exceptions` beside the executable, holding a minidump, a readable report and the end of that run's debug log. [Crash reports](/using/crash-reports/) describes the folder and what the report holds.
+The game writes no crash files of its own; macOS writes a crash report for it. [Crash reports](/using/crash-reports/) describes where to find it.
 
 While a debugger is attached, the debugger receives the crash instead, and no crash folder is written.
 
