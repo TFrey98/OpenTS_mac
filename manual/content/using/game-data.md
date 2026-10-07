@@ -31,7 +31,7 @@ The game offers Firestorm only when it finds `FIRESTRM.INI`, either as a loose f
 
 ## Keeping the data somewhere else
 
-[`-DATADIR=<path>`](/using/command-line/data-directory/) names the game data directory, which the game reads its data from and never writes to. Without it, the game reads its data from the directory that holds the executable, inside the application bundle, so name it whenever the data lives elsewhere.
+[`-DATADIR=<path>`](/using/command-line/data-directory/) names the game data directory, which the game reads its data from and never writes to. Without it, the game looks for `TIBSUN.MIX` in the folder chosen on an earlier launch, then in `~/Library/Application Support/OpenTS/Data`, the folder holding `OpenTS.app`, and the executable's own folder. When none holds it, the game asks for the folder with an Open panel and remembers the answer in `data-folder.txt` in the user data directory. Delete that file to choose again.
 
 [`-USERDIR=<path>`](/using/command-line/user-directory/) names the user data directory, which receives every file the game writes, including settings, saved games, recordings and downloaded maps. Without it, the game writes these files to `~/Library/Application Support/OpenTS`, since the application bundle must not change. The exceptions are the [debug log](/using/debug-logging/) and [out-of-sync reports](/using/out-of-sync-reports/), which always go to `~/Library/Logs/OpenTS`, and [crash reports](/using/crash-reports/), which macOS writes itself.
 

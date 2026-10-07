@@ -50,12 +50,11 @@ endorsed by Electronic Arts.
 
 OpenTS supplies the engine, not the game data. Tiberian Sun's original assets
 come from a legally obtained copy of the game; Electronic Arts released it as
-freeware. Copy the game's `.MIX` archives into a folder, such as `Run/`, then
-build the game and start it with that folder:
-
-```sh
-open build/xcode/Build/Products/Debug/OpenTS.app --args -DATADIR="$PWD/Run"
-```
+freeware. Copy the game's `.MIX` archives into a folder, then build
+`OpenTS.app` with Xcode, copy it to Applications, and open it. On first launch
+it asks for the folder holding the archives and remembers the answer; a folder
+named `Data` in `~/Library/Application Support/OpenTS`, or the folder beside
+the app, is found without asking.
 
 [Mac port status](docs/MACOS_PORT.md#game-data) lists the archives each disc
 provides.

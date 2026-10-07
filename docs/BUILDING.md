@@ -96,8 +96,23 @@ so its floating-point results match in every configuration. Debug defines
 engine's classes register themselves from static initializers that nothing
 else refers to. The `ui/` folder is copied into the bundle's `Resources`.
 
-Start the game with `open`, so it becomes the active application and its
-window receives focus:
+To install it, copy the Release build to Applications:
+
+```sh
+ditto build/xcode/Build/Products/Release/OpenTS.app /Applications/OpenTS.app
+```
+
+Opened from Finder with no data directory named, the game looks for
+`TIBSUN.MIX` in the folder chosen on an earlier launch, then in
+`~/Library/Application Support/OpenTS/Data`, the folder holding the application
+bundle, and the executable's own folder. When none holds it, an Open panel asks
+for the folder, and the answer is kept in
+`~/Library/Application Support/OpenTS/data-folder.txt`; delete that file to be
+asked again. The icon is `platform/macos/AppIcon.icns`, rendered from
+`code/resources/app-icon/opents.svg`.
+
+From Terminal, start the game with `open`, so it becomes the active application
+and its window receives focus:
 
 ```sh
 open build/xcode/Build/Products/Debug/OpenTS.app --args -XC

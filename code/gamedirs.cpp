@@ -12,6 +12,7 @@
 #include "gamedirs.h"
 
 #include "cdfile.h"
+#include "choosefolder.h"
 #include "dbgprint.h"
 #include "file.h"
 
@@ -19,7 +20,11 @@
 #include <cstdlib>
 #include <cstring>
 #include <filesystem>
+#include <fstream>
+#include <limits.h>
+#include <mach-o/dyld.h>
 #include <strings.h>
+#include <vector>
 
 /*
  * The directories the command line named. Empty means the game's own directory, so an
@@ -215,9 +220,88 @@ std::vector<std::string> Parse_Search_Folders(char const * list)
 }
 
 
+// The folder chosen for the game data, kept in the user directory so later launches find it.
+static char const DATA_FOLDER_RECORD[] = "data-folder.txt";
+
+
+// A folder holds the game when TIBSUN.MIX is in it or in its MIX folder, whatever the case
+// of the names.
+static bool Holds_Game_Data(std::filesystem::path const & folder)
+{
+	std::error_code error;
+	for (std::filesystem::path const & place : {folder, folder / "MIX"}) {
+		for (std::filesystem::directory_entry const & entry : std::filesystem::directory_iterator(place, error)) {
+			if (strcasecmp(entry.path().filename().c_str(), "TIBSUN.MIX") == 0) {
+				return(true);
+			}
+		}
+	}
+	return(false);
+}
+
+
 /// <summary>
-/// Makes the directories the command line named usable.
-/// Without a named user directory, the player's files go to ~/Library/Application
+/// Finds the game data when the command line named no data directory: the folder chosen on an
+/// earlier launch, ~/Library/Application Support/OpenTS/Data, the folder holding the application
+/// bundle, and the executable's own folder, in that order. When none holds the game, the player
+/// is asked to choose a folder until one that does is chosen or the panel is cancelled. The
+/// folder found is remembered in the user directory.
+/// </summary>
+/// <returns>The folder holding the game, or an empty string when the player cancelled.</returns>
+static std::string Find_Game_Data(void)
+{
+	std::filesystem::path const record = std::filesystem::path(UserDirectory) / DATA_FOLDER_RECORD;
+	std::vector<std::filesystem::path> candidates;
+
+	std::ifstream saved(record);
+	std::string line;
+	if (saved && std::getline(saved, line) && !line.empty()) {
+		candidates.push_back(line);
+	}
+	candidates.push_back(std::filesystem::path(UserDirectory) / "Data");
+
+	char executable[PATH_MAX];
+	uint32_t size = sizeof(executable);
+	if (_NSGetExecutablePath(executable, &size) == 0) {
+		std::error_code error;
+		std::filesystem::path const program = std::filesystem::canonical(executable, error);
+		// Contents/MacOS/OpenTS inside OpenTS.app, whose own folder is three levels up.
+		std::filesystem::path const bundle = program.parent_path().parent_path().parent_path();
+		if (bundle.extension() == ".app") {
+			candidates.push_back(bundle.parent_path());
+		}
+		candidates.push_back(program.parent_path());
+	}
+
+	std::string found;
+	for (std::filesystem::path const & candidate : candidates) {
+		if (Holds_Game_Data(candidate)) {
+			found = candidate.string();
+			break;
+		}
+	}
+
+	while (found.empty()) {
+		std::string const chosen = Choose_Folder("Choose the folder that holds Tiberian Sun's game files, such as TIBSUN.MIX.");
+		if (chosen.empty()) {
+			return(std::string());
+		}
+		if (Holds_Game_Data(chosen)) {
+			found = chosen;
+		} else {
+			Show_Alert("Tiberian Sun's game files were not found",
+				"That folder does not hold TIBSUN.MIX. Choose the folder the game's .MIX files were copied to.");
+		}
+	}
+
+	std::ofstream(record) << found << '\n';
+	return(found);
+}
+
+
+/// <summary>
+/// Makes the directories the command line named usable, finding the game data when no data
+/// directory was named. Without a named user directory, the player's files go to ~/Library/Application
 /// Support/OpenTS, since the application bundle the game runs from must not change. The user
 /// directory is created when it is not there yet, because it is the game's own to write. A
 /// named data directory must already exist, a missing one being reported here rather than as
@@ -242,6 +326,15 @@ bool Apply_Game_Directories(void)
 		}
 
 		DebugString("[GameDirs] User directory is %s.\n", UserDirectory.c_str());
+	}
+
+	if (DataDirectory.empty()) {
+		std::string const found = Find_Game_Data();
+		if (found.empty()) {
+			DebugString("[GameDirs] No game data folder was chosen.\n");
+			return(false);
+		}
+		Set_Data_Directory(found.c_str());
 	}
 
 	if (!DataDirectory.empty()) {

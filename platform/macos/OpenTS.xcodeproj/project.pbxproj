@@ -575,6 +575,13 @@
 			path = ../../code/vqalib/config.cpp;
 			sourceTree = SOURCE_ROOT;
 		};
+		0851AE87F594DFA93C063270 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = choosefolder.mm;
+			path = ../../code/choosefolder.mm;
+			sourceTree = SOURCE_ROOT;
+		};
 		0865D0D99695E24C0B455304 = {
 			isa = PBXBuildFile;
 			fileRef = 16B9910EEAA37A8840A565E1;
@@ -913,6 +920,10 @@
 		10817685B10B21BF6EA032E4 = {
 			isa = PBXBuildFile;
 			fileRef = 078EF765FCE3E50ED1E54E03;
+		};
+		10836DB0A53D4D639473DD00 = {
+			isa = PBXBuildFile;
+			fileRef = 0851AE87F594DFA93C063270;
 		};
 		109425291E8974B2F26BD73C = {
 			isa = PBXBuildFile;
@@ -5230,6 +5241,7 @@
 				F01ED480AC2EB26FDA7FC090,
 				27600A3A93901DB377CC0B0D,
 				345C1DDF8AE6899B7A086054,
+				0851AE87F594DFA93C063270,
 				4DFFC09AA0298D407A2094AF,
 				DCA814B739C986F1296DD0D3,
 				52824C220B62C2C1EAD0800F,
@@ -7116,6 +7128,7 @@
 		6B645519CC64D55BFFC13388 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"BX_CONFIG_DEBUG=0",
@@ -9116,6 +9129,13 @@
 			isa = PBXBuildFile;
 			fileRef = DDA751BC21662D2DB0058E51;
 		};
+		8C0A5962480C7CE7713E5CC8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.icns;
+			name = AppIcon.icns;
+			path = AppIcon.icns;
+			sourceTree = SOURCE_ROOT;
+		};
 		8C1F725A9060D5C739ED4688 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -10624,6 +10644,7 @@
 			isa = PBXGroup;
 			children = (
 				F5884727886A82938C493121,
+				8C0A5962480C7CE7713E5CC8,
 				11ED4BC5F0C043B880D5102F,
 			);
 			name = Game;
@@ -11114,6 +11135,7 @@
 					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
 					"$(SHARED_DERIVED_FILE_DIR)/generated",
 				);
+				INFOPLIST_FILE = "OpenTS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = OpenTS;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.strategy-games";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -12259,6 +12281,7 @@
 		C6F1AFAE1C60D85CF399D8E9 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					_DEBUG,
@@ -13017,6 +13040,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86608CB63A0ED5F7069738E1,
+				DCC7B3B9FE7545A1DF001AA7,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13419,6 +13443,10 @@
 			name = classids.cpp;
 			path = ../../code/classids.cpp;
 			sourceTree = SOURCE_ROOT;
+		};
+		DCC7B3B9FE7545A1DF001AA7 = {
+			isa = PBXBuildFile;
+			fileRef = 8C0A5962480C7CE7713E5CC8;
 		};
 		DD1068A4BD94E6662112C902 = {
 			isa = PBXBuildFile;
@@ -13955,6 +13983,7 @@
 					"$(SRCROOT)/../../thirdparty/bgfx.cmake/bx/include/compat/osx",
 					"$(SHARED_DERIVED_FILE_DIR)/generated",
 				);
+				INFOPLIST_FILE = "OpenTS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = OpenTS;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.strategy-games";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -15344,6 +15373,7 @@
 				501506A43CAADCA4FC16796C,
 				AE436D72F155DDE9497CC036,
 				1BAECC385B9D88598A52D1BA,
+				10836DB0A53D4D639473DD00,
 				B4A3D690B7768066FE100C96,
 				AA230A251456A92F3AD4B814,
 				BBC4E839282CF3D7B702B01A,
